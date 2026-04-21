@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bene Brandhofer — Portfolio 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-logo">Bene Brandhofer</div>
+    <ul class="nav-links">
+      <li><a href="#values">Approach</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-nav-links">
+      <li><a href="#values">Approach</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Section 1: Hero -->
+  <section class="hero" id="approach">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-headline">
+          <span>Designing</span>
+          <span class="tw-line"><em class="mono">[<span id="tw-word">data</span><span class="tw-cursor">|</span>]</em></span>
+          <span>for humans.</span>
+        </h1>
+        <p class="hero-sub">
+          I'm a multidisciplinary designer specializing in complex systems,
+          data visualization, and intuitive interfaces — making the complicated
+          feel accessible.
+        </p>
+      </div>
+      <div class="hero-graphic">
+        <svg class="hero-svg" width="576" height="576" viewBox="0 0 576 576" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Concentric rings -->
+          <circle class="ring ring-1" cx="288" cy="288" r="240" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <circle class="ring ring-2" cx="288" cy="288" r="180" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <circle class="ring ring-3" cx="288" cy="288" r="120" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <circle class="ring ring-4" cx="288" cy="288" r="60" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <!-- Outer nodes -->
+          <circle class="node-outer" cx="288" cy="48" r="6" fill="rgba(255,255,255,0.5)" style="--d:0s"/>
+          <circle class="node-outer" cx="480" cy="168" r="6" fill="rgba(255,255,255,0.5)" style="--d:0.4s"/>
+          <circle class="node-outer" cx="480" cy="408" r="6" fill="rgba(255,255,255,0.5)" style="--d:0.8s"/>
+          <circle class="node-outer" cx="288" cy="528" r="6" fill="rgba(255,255,255,0.5)" style="--d:1.2s"/>
+          <circle class="node-outer" cx="96" cy="408" r="6" fill="rgba(255,255,255,0.5)" style="--d:1.6s"/>
+          <circle class="node-outer" cx="96" cy="168" r="6" fill="rgba(255,255,255,0.5)" style="--d:2s"/>
+          <!-- Inner nodes -->
+          <circle class="node-inner" cx="288" cy="168" r="8" fill="rgba(255,255,255,0.7)" style="--d:0.2s"/>
+          <circle class="node-inner" cx="388" cy="228" r="5" fill="rgba(255,255,255,0.4)" style="--d:0.6s"/>
+          <circle class="node-inner" cx="388" cy="348" r="5" fill="rgba(255,255,255,0.4)" style="--d:1.0s"/>
+          <circle class="node-inner" cx="288" cy="408" r="8" fill="rgba(255,255,255,0.7)" style="--d:1.4s"/>
+          <circle class="node-inner" cx="188" cy="348" r="5" fill="rgba(255,255,255,0.4)" style="--d:1.8s"/>
+          <circle class="node-inner" cx="188" cy="228" r="5" fill="rgba(255,255,255,0.4)" style="--d:0.3s"/>
+          <!-- Center -->
+          <circle class="center-ring" cx="288" cy="288" r="14" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <circle class="center-dot" cx="288" cy="288" r="5" fill="white"/>
+          <!-- Outer lines -->
+          <line x1="288" y1="48" x2="480" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="480" y1="168" x2="480" y2="408" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="480" y1="408" x2="288" y2="528" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="288" y1="528" x2="96" y2="408" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="96" y1="408" x2="96" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="96" y1="168" x2="288" y2="48" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <!-- Inner lines -->
+          <line x1="288" y1="168" x2="388" y2="228" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="388" y1="228" x2="388" y2="348" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="388" y1="348" x2="288" y2="408" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="288" y1="408" x2="188" y2="348" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="188" y1="348" x2="188" y2="228" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="188" y1="228" x2="288" y2="168" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <!-- Center spokes -->
+          <line class="spoke" x1="288" y1="288" x2="288" y2="168" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <line class="spoke" x1="288" y1="288" x2="388" y2="348" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          <line class="spoke" x1="288" y1="288" x2="188" y2="348" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: What I Value -->
+  <section class="values" id="values">
+    <div class="values-top">
+      <div class="values-text">
+        <h2 class="values-heading">Simple &amp; Accessible</h2>
+        <p class="values-body">
+          I think the essence of good design has never been the output. It's about
+          collaboration, where people can see, question, and refine decisions together
+          in a shared space. I work closely with developers, editors, and stakeholders
+          to make sure the outcome is not just beautiful but genuinely useful — and
+          built to last.
+        </p>
+        <p class="values-body">
+          When I'm not pushing pixels, you'll find me <a href="https://benediktbrandhofer.de/" target="_blank" rel="noopener" class="values-link">making ceramics</a>.
+        </p>
+      </div>
+      <div class="values-graphic">
+        <svg class="cube-svg" width="383" height="320" viewBox="30 10 323 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Base cube shape -->
+          <polygon points="191,20 340,105 340,210 191,295 42,210 42,105" fill="none" stroke="#1c1c1c" stroke-width="2"/>
+          <!-- Top face -->
+          <polygon points="191,20 340,105 191,190 42,105" fill="rgba(28,28,28,0.08)"/>
+          <!-- Right face -->
+          <polygon points="340,105 340,210 191,295 191,190" fill="rgba(28,28,28,0.14)"/>
+          <!-- Left face -->
+          <polygon points="42,105 191,190 191,295 42,210" fill="rgba(28,28,28,0.06)"/>
+          <!-- Animated dashed lines -->
+          <line class="cube-dash" x1="191" y1="20" x2="191" y2="190" stroke="#1c1c1c" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3"/>
+          <line class="cube-dash" x1="42" y1="105" x2="340" y2="105" stroke="#1c1c1c" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3" style="animation-delay: -1s"/>
+          <line x1="191" y1="190" x2="191" y2="295" stroke="#1c1c1c" stroke-width="1.5" opacity="0.5"/>
+          <!-- Corner dots -->
+          <circle cx="191" cy="20" r="5" fill="#1c1c1c" opacity="0.5"/>
+          <circle cx="42" cy="105" r="5" fill="#1c1c1c" opacity="0.5"/>
+          <circle cx="340" cy="105" r="5" fill="#1c1c1c" opacity="0.5"/>
+          <!-- Accent dot (animated) -->
+          <circle class="cube-accent" cx="191" cy="190" r="6" fill="#e87a65"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-item">
+        <span class="service-bullet"></span>
+        <div>
+          <h4 class="service-title">UX &amp; Product Design</h4>
+          <p class="service-desc">End-to-end design for digital products — from concept and wireframes to polished, production-ready interfaces.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-bullet"></span>
+        <div>
+          <h4 class="service-title">User Research &amp; Concept</h4>
+          <p class="service-desc">Qualitative and quantitative research methods that ground design decisions in real user needs and behaviors.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-bullet"></span>
+        <div>
+          <h4 class="service-title">Strategy &amp; Consulting</h4>
+          <p class="service-desc">Design strategy workshops, critiques, and advisory work for teams building complex digital products.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-bullet"></span>
+        <div>
+          <h4 class="service-title">Data Visualization</h4>
+          <p class="service-desc">Interactive and static data visualizations that make complex information legible and compelling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Selected Works -->
+  <section class="works" id="work">
+    <h2 class="works-heading fade-up">Selected Works</h2>
+    <div class="works-grid">
+
+      <div class="card card--dark fade-up" data-delay="1">
+        <div class="card-image card-image--dataviz">
+          <img src="http://localhost:3845/assets/3aaf36c51c0994e06cdb50f5ca4072fd0258e6b9.png" alt="Data Viz Graphics" style="width:100%;height:100%;object-fit:cover"/>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Editorial · Data Journalism</span>
+          <h3 class="card-title">Data Viz Graphics</h3>
+          <p class="card-desc">Award-winning maps, charts, and interactive graphics for international news outlets — translating complex datasets into stories readers actually understand.</p>
+        </div>
+      </div>
+
+      <div class="card card--light fade-up" data-delay="2">
+        <div class="card-image card-image--vertical52">
+          <img src="http://localhost:3845/assets/4c7a8f45940ffcfb889ab4258279a1def665b97b.png" alt="Vertical52" style="width:100%;height:100%;object-fit:cover"/>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Product Design · SaaS</span>
+          <h3 class="card-title">Vertical52</h3>
+          <p class="card-desc">End-to-end product design for a satellite image analytics platform — turning a fragmented dashboard into a coherent, fast, and genuinely usable tool.</p>
+        </div>
+      </div>
+
+      <a href="housing-games.html" class="card card--dark fade-up" data-delay="1" style="text-decoration:none;display:block;">
+        <div class="card-image card-image--housing">
+          <img src="http://localhost:3845/assets/7dcd55daf862e53045313d7cf0dc4301712d93b5.png" alt="The Housing Games" style="width:100%;height:100%;object-fit:cover"/>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Interactive Journalism · 2025 Voices Award</span>
+          <h3 class="card-title">The Housing Games</h3>
+          <p class="card-desc">An interactive, game-like investigation into Europe's housing crisis — letting readers experience complex data in a meaningful and playful way.</p>
+        </div>
+      </a>
+
+      <div class="card card--dark fade-up" data-delay="2">
+        <div class="card-image card-image--artdir">
+          <img src="http://localhost:3845/assets/af0ebbe8550b39bcc3773946cb7fcbf36cff8db5.png" alt="Art Direction" style="width:100%;height:100%;object-fit:cover"/>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Art Direction · Editorial</span>
+          <h3 class="card-title">Art Direction</h3>
+          <p class="card-desc">Visual identity and art direction for long-form digital features — building the systems, templates, and visual language for stories that need to breathe.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4: Recognition -->
+  <section class="awards" id="awards">
+    <h2 class="awards-heading fade-up">Recognition &amp; Awards</h2>
+    <ul class="awards-list">
+      <li class="award-item fade-up" data-delay="1">
+        <div class="award-left">
+          <span class="award-year">2026</span>
+          <a href="https://voicesfestival.eu/voices-awards/" target="_blank" rel="noopener" class="award-name">Voices Award</a>
+        </div>
+        <div class="award-right">
+          <a href="#" class="award-project">The Housing Games</a>
+          <span class="award-dot"></span>
+          <span class="award-category">Storytelling</span>
+        </div>
+      </li>
+      <li class="award-item fade-up" data-delay="2">
+        <div class="award-left">
+          <span class="award-year">2022</span>
+          <a href="https://www.europeanpressprize.com/" target="_blank" rel="noopener" class="award-name">European Press Prize</a>
+        </div>
+        <div class="award-right">
+          <a href="#" class="award-project">Cities4Rent</a>
+          <span class="award-dot"></span>
+          <span class="award-category">Innovation Award</span>
+        </div>
+      </li>
+      <li class="award-item fade-up" data-delay="3">
+        <div class="award-left">
+          <span class="award-year">2021</span>
+          <a href="https://www.djp.de/" target="_blank" rel="noopener" class="award-name">German Reporter Prize</a>
+        </div>
+        <div class="award-right">
+          <a href="#" class="award-project">Der BER im 3D-Modell</a>
+          <span class="award-dot"></span>
+          <span class="award-category">Multimedia</span>
+        </div>
+      </li>
+      <li class="award-item fade-up" data-delay="4">
+        <div class="award-left">
+          <span class="award-year">2021</span>
+          <a href="https://www.medienpreis-luft-und-raumfahrt.de/" target="_blank" rel="noopener" class="award-name">Medienpreis Luft- und Raumfahrt</a>
+        </div>
+        <div class="award-right">
+          <a href="#" class="award-project">Der BER im Überblick</a>
+          <span class="award-dot"></span>
+          <span class="award-category">Storytelling</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Section 5: Contact -->
+  <section class="contact" id="contact">
+    <div class="contact-glow"></div>
+    <div class="contact-content">
+      <h2 class="contact-heading fade-up">Interested in working together?</h2>
+      <p class="contact-sub">I'm always open to new projects, collaborations, and conversations. Drop me a line.</p>
+      <a href="mailto:hello@beneb.de" class="contact-email">hello@beneb.de</a>
+      <div class="contact-socials">
+        <a href="https://www.instagram.com/benebrandhofer/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.threads.com/@benebrandhofer?xmt=AQF0oNlsNtb_hOBxFHop7qlfSlc_Se6Lx6-e3HqLSSBaHno" target="_blank" rel="noopener" class="social-btn" aria-label="Threads">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.879-6.43 2.525-8.482C5.848 1.205 8.6.024 12.18 0h.014c2.746.018 5.145.8 6.93 2.286 1.696 1.425 2.717 3.437 3.035 5.994l-2.6.235c-.535-4.137-3.096-5.96-7.37-5.985-2.874.018-5.006.927-6.337 2.702C4.68 6.951 4.073 9.376 4.05 12c.023 2.624.63 5.049 1.802 6.768 1.331 1.775 3.463 2.684 6.337 2.702 2.677-.016 4.558-.718 5.594-2.088.677-.896 1.074-2.166 1.183-3.781a8.01 8.01 0 0 0-.031-.782c-.146-1.564-.87-2.647-2.15-3.218-.315 1.687-.895 3.037-1.747 3.994-.962 1.077-2.196 1.63-3.669 1.645-1.229-.012-2.23-.384-2.976-1.107-.808-.782-1.215-1.863-1.178-3.135.034-1.17.428-2.14 1.172-2.882.782-.778 1.88-1.198 3.175-1.216 1.063.014 2.024.294 2.859.833.108.071.214.145.317.222v-.6c-.01-.65-.07-1.184-.184-1.594-.39-1.39-1.48-2.156-3.133-2.172-1.312.013-2.226.513-2.72 1.488l-2.32-1.337C8.162 4.747 9.85 3.783 12.18 3.763c.032 0 .063 0 .094.001 2.73.016 4.816 1.3 5.47 3.59.22.783.32 1.672.306 2.697-.002.155-.007.306-.014.455.508.227.975.524 1.391.883 1.11.965 1.767 2.34 1.95 4.09.03.296.046.598.047.9-.008 2.048-.565 3.73-1.656 5.005C18.386 22.892 15.636 24 12.186 24Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/benebrandhofer/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7"/><path d="M11 10v7"/><path d="M11 14a3 3 0 0 1 6 0v3"/><circle cx="7" cy="7" r="0.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <footer class="footer">
+      <span class="footer-copy">© 2026 Benedikt Brandhofer</span>
+      <div class="footer-links">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </footer>
+  </section>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 13 10 7 16 13"/>
+    </svg>
+  </button>
+
+  <script>
+    // ── Typewriter effect ──────────────────────────────────────────
+    const words = ['data', 'products', 'interfaces', 'web'];
+    const el = document.getElementById('tw-word');
+    let wordIdx = 0;
+    let charIdx = words[0].length;
+    let deleting = true;
+    const TYPE_SPEED = 90;
+    const DELETE_SPEED = 55;
+    const PAUSE_AFTER_TYPE = 1800;
+    const PAUSE_AFTER_DELETE = 300;
+
+    function tick() {
+      const current = words[wordIdx];
+      if (deleting) {
+        charIdx--;
+        el.textContent = current.slice(0, charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          wordIdx = (wordIdx + 1) % words.length;
+          setTimeout(tick, PAUSE_AFTER_DELETE);
+        } else {
+          setTimeout(tick, DELETE_SPEED);
+        }
+      } else {
+        charIdx++;
+        el.textContent = words[wordIdx].slice(0, charIdx);
+        if (charIdx === words[wordIdx].length) {
+          deleting = true;
+          setTimeout(tick, PAUSE_AFTER_TYPE);
+        } else {
+          setTimeout(tick, TYPE_SPEED);
+        }
+      }
+    }
+    setTimeout(tick, PAUSE_AFTER_TYPE);
+
+    // ── Mobile hamburger menu ─────────────────────────────────────
+    const burger = document.getElementById('navBurger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMenu(open) {
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open);
+      mobileMenu.classList.toggle('is-open', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    burger.addEventListener('click', () => {
+      toggleMenu(!burger.classList.contains('is-open'));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // ── Scroll-to-top button ───────────────────────────────────────
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Smooth scroll with nav offset ─────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    // ── Scroll-triggered reveal ────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
+
+    // ── Contact glow grow on scroll ───────────────────────────────
+    const glow = document.querySelector('.contact-glow');
+    const glowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          glow.classList.add('is-grown');
+          glowObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    glowObserver.observe(document.getElementById('contact'));
+
+    // ── Hero parallax (text only, graphic stays fixed) ────────────
+    const heroText = document.querySelector('.hero-text');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        heroText.style.transform = `translateY(${y * 0.05}px)`;
+      }
+    }, { passive: true });
+</script>
+
+</body>
+</html>

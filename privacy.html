@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutz — Bene Brandhofer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .legal-page {
+      background: #f5f0ea;
+      min-height: 100vh;
+      padding: 160px 72px 96px;
+    }
+    .legal-inner {
+      max-width: 680px;
+    }
+    .legal-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(28,28,28,0.5);
+      text-decoration: none;
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+    .legal-back:hover { color: #1c1c1c; }
+    .legal-back svg { flex-shrink: 0; }
+    .legal-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: clamp(40px, 5vw, 64px);
+      letter-spacing: -0.02em;
+      color: #1c1c1c;
+      margin-bottom: 48px;
+      line-height: 1.1;
+    }
+    .legal-section {
+      margin-bottom: 40px;
+    }
+    .legal-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      color: #1c1c1c;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .legal-section p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(28,28,28,0.75);
+      margin-bottom: 12px;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a {
+      color: #1c1c1c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 768px) {
+      .legal-page { padding: 120px 24px 64px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-logo">Bene Brandhofer</div>
+    <ul class="nav-links">
+      <li><a href="index.html#values">Approach</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#awards">Awards</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="legal-page">
+    <div class="legal-inner">
+      <a href="index.html" class="legal-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="10 4 6 8 10 12"/>
+        </svg>
+        Back
+      </a>
+
+      <h1 class="legal-h1">Datenschutz&shy;erklärung</h1>
+
+      <div class="legal-section">
+        <h2>1. Datenschutz auf einen Blick</h2>
+        <p>
+          Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten
+          passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie
+          persönlich identifiziert werden können.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>2. Datenerfassung auf dieser Website</h2>
+        <p>
+          Diese Website wird statisch ausgeliefert und erhebt keine personenbezogenen Daten über Besucher.
+          Es werden keine Cookies gesetzt, keine Tracking-Skripte eingebunden und keine Nutzungsdaten gespeichert.
+        </p>
+        <p>
+          Beim Aufruf der Website werden technische Zugriffsdaten (IP-Adresse, Uhrzeit, aufgerufene Seite) im
+          Webserver-Log des Hosting-Anbieters protokolliert. Diese Daten werden nicht mit anderen Datenquellen
+          zusammengeführt und nach kurzer Zeit gelöscht.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>3. Externe Dienste</h2>
+        <p>
+          Diese Website lädt Schriftarten über Google Fonts. Dabei wird eine Verbindung zu Googles Servern
+          hergestellt. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>4. Ihre Rechte</h2>
+        <p>
+          Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten, deren
+          Herkunft und Empfänger sowie den Zweck der Datenverarbeitung. Außerdem haben Sie ein Recht auf
+          Berichtigung, Sperrung oder Löschung dieser Daten.
+        </p>
+        <p>
+          Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im
+          Impressum angegebenen Adresse an uns wenden.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>5. Kontakt</h2>
+        <p>
+          Bei Fragen zum Datenschutz wenden Sie sich bitte an:
+          <a href="mailto:hello@beneb.de">hello@beneb.de</a>
+        </p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,666 @@
+/* ========================================
+   Case Study — Base & Reset
+   ======================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f0ea;
+  color: #1c1c1c;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   Shared tokens
+   ======================================== */
+:root {
+  --pad-x: max(72px, calc((100% - 1440px) / 2));
+  --pad-x-wide: max(96px, calc((100% - 1440px) / 2 + 24px));
+  --section-v: 128px;
+  --radius-card: 20px;
+  --shadow-card: 0 40px 80px rgba(0, 0, 0, 0.2);
+  --color-dark: #1c1c1c;
+  --color-accent: #e0e68a;
+}
+
+/* ========================================
+   Scroll-triggered reveal
+   ======================================== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up[data-delay="1"] { transition-delay: 0.1s; }
+.fade-up[data-delay="2"] { transition-delay: 0.2s; }
+.fade-up[data-delay="3"] { transition-delay: 0.3s; }
+.fade-up[data-delay="4"] { transition-delay: 0.4s; }
+
+/* ========================================
+   Navigation
+   ======================================== */
+.cs-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px var(--pad-x);
+  background: rgba(245, 240, 234, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.3s ease;
+}
+
+.cs-nav.is-scrolled {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.cs-nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-dark);
+  text-decoration: none;
+  letter-spacing: -0.05em;
+  transition: opacity 0.2s;
+}
+
+.cs-nav-logo:hover {
+  opacity: 0.65;
+}
+
+.cs-nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.cs-nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-dark);
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+
+.cs-nav-links a:hover {
+  opacity: 1;
+}
+
+/* Hamburger */
+.cs-nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+
+.cs-nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-dark);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.cs-nav-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.cs-nav-burger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.cs-nav-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ========================================
+   Mobile menu overlay
+   ======================================== */
+.cs-mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #1c1c1c;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.cs-mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cs-mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.cs-mobile-nav-links li {
+  overflow: hidden;
+}
+
+.cs-mobile-nav-links a {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(40px, 10vw, 64px);
+  letter-spacing: -0.02em;
+  color: white;
+  text-decoration: none;
+  padding: 12px 0;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease;
+}
+
+.cs-mobile-menu.is-open .cs-mobile-nav-links a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cs-mobile-menu.is-open .cs-mobile-nav-links li:nth-child(1) a { transition-delay: 0.08s; }
+.cs-mobile-menu.is-open .cs-mobile-nav-links li:nth-child(2) a { transition-delay: 0.14s; }
+.cs-mobile-menu.is-open .cs-mobile-nav-links li:nth-child(3) a { transition-delay: 0.20s; }
+.cs-mobile-menu.is-open .cs-mobile-nav-links li:nth-child(4) a { transition-delay: 0.26s; }
+
+.cs-mobile-nav-links a:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ========================================
+   Hero section
+   ======================================== */
+.cs-hero {
+  background: #f5f0ea;
+  padding: 140px var(--pad-x) 0;
+}
+
+.cs-back {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: none;
+  margin-bottom: 40px;
+  transition: color 0.2s;
+}
+
+.cs-back:hover {
+  color: var(--color-dark);
+}
+
+.cs-hero-text {
+  max-width: 800px;
+  margin-bottom: 64px;
+}
+
+.cs-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(48px, 6vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-bottom: 32px;
+}
+
+.cs-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.cs-hero-image {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #1e1e1e;
+  aspect-ratio: 21 / 8;
+}
+
+.cs-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ========================================
+   Meta bar
+   ======================================== */
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding: 64px var(--pad-x);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f5f0ea;
+}
+
+.cs-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-meta-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cs-meta-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--color-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ========================================
+   Challenge & Solution
+   ======================================== */
+.cs-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 74px;
+  padding: var(--section-v) var(--pad-x-wide);
+  background: #f5f0ea;
+  scroll-margin-top: 80px;
+}
+
+.cs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cs-section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cs-body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--color-dark);
+}
+
+.cs-body-text p {
+  margin-bottom: 20px;
+}
+
+.cs-body-text p:last-child {
+  margin-bottom: 0;
+}
+
+.cs-body-text ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.cs-body-text li {
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+
+/* ========================================
+   Showcase / Infographic placeholders
+   ======================================== */
+.cs-showcase {
+  background: #f5f0ea;
+  padding: 0 var(--pad-x) var(--section-v);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Shared viz box */
+.cs-viz {
+  background: var(--color-dark);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  position: relative;
+}
+
+.cs-viz--wide {
+  width: 100%;
+  min-height: 540px;
+}
+
+.cs-viz--embed {
+  /* Let the iframe's own height drive the box size */
+  position: static;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  padding: 32px;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.cs-viz--embed iframe {
+  position: static;
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: none;
+  vertical-align: bottom;
+}
+
+.cs-viz-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.cs-viz--half {
+  min-height: 400px;
+}
+
+/* Placeholder inner — shown when no iframe present */
+.cs-viz-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-viz-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.18);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+
+/* Take a guess card */
+.cs-guess-card {
+  background: var(--color-accent);
+  border-radius: var(--radius-card);
+  padding: 44px 32px 36px;
+  min-height: 276px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.cs-guess-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-guess-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-dark);
+  letter-spacing: -0.02em;
+}
+
+.cs-guess-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.cs-guess-cta {
+  align-self: flex-start;
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  background: white;
+  padding: 10px 18px;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+
+.cs-guess-cta:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   CTA section
+   ======================================== */
+.cs-cta {
+  background: var(--color-dark);
+  padding: var(--section-v) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  text-align: center;
+  scroll-margin-top: 80px;
+}
+
+.cs-cta-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(40px, 4.5vw, 64px);
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.cs-cta-btn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-dark);
+  background: var(--color-accent);
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 20px 56px;
+  transition: opacity 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-cta-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.cs-footer {
+  background: var(--color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px var(--pad-x);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cs-footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cs-footer-links {
+  display: flex;
+  gap: 36px;
+}
+
+.cs-footer-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cs-footer-links a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========================================
+   Scroll-to-top button
+   ======================================== */
+.cs-scroll-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(28, 28, 28, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(28, 28, 28, 0.15);
+  color: var(--color-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+
+.cs-scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cs-scroll-top:hover {
+  background: rgba(28, 28, 28, 0.18);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 1100px) {
+  .cs-content {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --pad-x: 24px;
+    --pad-x-wide: 24px;
+    --section-v: 80px;
+  }
+
+  .cs-nav {
+    padding: 20px 24px;
+  }
+
+  .cs-nav-links {
+    display: none;
+  }
+
+  .cs-nav-burger {
+    display: flex;
+  }
+
+  .cs-mobile-menu {
+    display: flex;
+  }
+
+  .cs-hero {
+    padding-top: 110px;
+  }
+
+  .cs-hero-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cs-meta {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px 24px;
+    gap: 32px 24px;
+  }
+
+  .cs-content {
+    grid-template-columns: 1fr;
+    padding: 80px 24px;
+  }
+
+  .cs-viz--wide {
+    min-height: 280px;
+  }
+
+  .cs-viz-row {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cs-viz--half {
+    min-height: 260px;
+  }
+
+  .cs-guess-card {
+    min-height: auto;
+    gap: 32px;
+  }
+
+  .cs-footer {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .cs-scroll-top {
+    bottom: 24px;
+    right: 24px;
+  }
+}
