@@ -133,6 +133,7 @@ section {
   color: white;
   letter-spacing: -0.02em;
   pointer-events: auto;
+  text-decoration: none;
 }
 
 .nav-links {
@@ -497,6 +498,8 @@ section {
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
+  display: block;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.45s ease;
 }

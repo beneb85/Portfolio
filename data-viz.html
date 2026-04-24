@@ -13,120 +13,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="case-study.css" />
   <style>
-    .cs-hero { background: #0f1b2d; }
-    .cs-hero-text h1 { color: #f6f7ed; }
-    .cs-hero-text p { color: rgba(246, 247, 237, 0.75); }
-    .cs-back { color: rgba(246, 247, 237, 0.5); }
-    .cs-back:hover { color: #f6f7ed; }
-
-    .cs-hero-image {
-      background: #162032;
-      border-radius: 24px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 360px;
-    }
-
-    /* Hero visual: grid of mini chart thumbnails */
-    .cs-hero-chart-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding: 40px;
-      width: 100%;
-    }
-
-    .cs-hero-chart-thumb {
-      background: #1e2f44;
-      border-radius: 10px;
-      aspect-ratio: 4/3;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .cs-hero-chart-thumb::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60%;
-    }
-
-    .cs-hero-chart-thumb:nth-child(1)::after {
-      background: linear-gradient(to top, rgba(99, 179, 237, 0.5), transparent);
-    }
-    .cs-hero-chart-thumb:nth-child(2)::after {
-      background: linear-gradient(to top, rgba(246, 173, 85, 0.5), transparent);
-    }
-    .cs-hero-chart-thumb:nth-child(3)::after {
-      background: linear-gradient(to top, rgba(104, 211, 145, 0.5), transparent);
-    }
-    .cs-hero-chart-thumb:nth-child(4)::after {
-      background: linear-gradient(to top, rgba(237, 100, 166, 0.5), transparent);
-    }
-    .cs-hero-chart-thumb:nth-child(5)::after {
-      background: linear-gradient(to top, rgba(118, 169, 250, 0.5), transparent);
-    }
-    .cs-hero-chart-thumb:nth-child(6)::after {
-      background: linear-gradient(to top, rgba(252, 211, 77, 0.5), transparent);
-    }
-
-    /* Bar chart SVG-like pseudo elements */
-    .cs-hero-chart-thumb .bars {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      right: 8px;
-      display: flex;
-      align-items: flex-end;
-      gap: 4px;
-      height: 50%;
-    }
-
-    .cs-hero-chart-thumb .bar {
-      flex: 1;
-      border-radius: 2px 2px 0 0;
-      opacity: 0.7;
-    }
-
-    .cs-hero-chart-thumb:nth-child(1) .bar { background: #63b3ed; }
-    .cs-hero-chart-thumb:nth-child(2) .bar { background: #f6ad55; }
-    .cs-hero-chart-thumb:nth-child(3) .bar { background: #68d391; }
-    .cs-hero-chart-thumb:nth-child(4) .bar { background: #ed64a6; }
-    .cs-hero-chart-thumb:nth-child(5) .bar { background: #76a9fa; }
-    .cs-hero-chart-thumb:nth-child(6) .bar { background: #fcd34d; }
-
-    /* dark meta bar text on light bg */
-    .cs-meta { background: #f5f0ea; }
-    .cs-meta-label { color: rgba(24, 24, 27, 0.5); }
-    .cs-meta-value { color: #18181b; }
-    .cs-meta-item { border-color: rgba(24, 24, 27, 0.12); }
-
-    /* project tags */
-    .cs-project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 24px;
-    }
-
-    .cs-project-tag {
-      font-family: 'Geist Mono', monospace;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(246, 247, 237, 0.6);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-      padding: 6px 14px;
-    }
+    .cs-hero { background: #f5f0ea; }
+    .cs-hero-text h1 { color: #18181b; }
+    .cs-hero-text p { color: rgba(24, 24, 27, 0.65); }
+    .cs-back { color: rgba(24, 24, 27, 0.45); }
+    .cs-back:hover { color: #18181b; }
   </style>
 </head>
 <body>
@@ -163,104 +54,11 @@
     <div class="cs-hero-text fade-up">
       <h1 class="cs-title">Data Viz Graphics</h1>
       <p class="cs-subtitle">A collection of interactive data journalism pieces — from climate and housing inequality to drug policy — built to make complex, cross-border datasets accessible, explorable, and human.</p>
-      <div class="cs-project-tags">
-        <span class="cs-project-tag">Climate & Housing</span>
-        <span class="cs-project-tag">Drug Policy</span>
-        <span class="cs-project-tag">D3 / Flourish</span>
-        <span class="cs-project-tag">Interactives</span>
-      </div>
     </div>
     <div class="cs-hero-image fade-up" data-delay="1">
-      <div class="cs-hero-chart-grid">
-        <!-- Bar chart thumb 1 -->
-        <div class="cs-hero-chart-thumb">
-          <div class="bars">
-            <div class="bar" style="height:45%"></div>
-            <div class="bar" style="height:70%"></div>
-            <div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:90%"></div>
-            <div class="bar" style="height:65%"></div>
-            <div class="bar" style="height:40%"></div>
-          </div>
-        </div>
-        <!-- Line chart thumb 2 -->
-        <div class="cs-hero-chart-thumb">
-          <div class="bars">
-            <div class="bar" style="height:30%"></div>
-            <div class="bar" style="height:50%"></div>
-            <div class="bar" style="height:75%"></div>
-            <div class="bar" style="height:60%"></div>
-            <div class="bar" style="height:85%"></div>
-            <div class="bar" style="height:95%"></div>
-          </div>
-        </div>
-        <!-- Thumb 3 -->
-        <div class="cs-hero-chart-thumb">
-          <div class="bars">
-            <div class="bar" style="height:80%"></div>
-            <div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:40%"></div>
-            <div class="bar" style="height:70%"></div>
-            <div class="bar" style="height:35%"></div>
-            <div class="bar" style="height:60%"></div>
-          </div>
-        </div>
-        <!-- Thumb 4 -->
-        <div class="cs-hero-chart-thumb">
-          <div class="bars">
-            <div class="bar" style="height:50%"></div>
-            <div class="bar" style="height:65%"></div>
-            <div class="bar" style="height:80%"></div>
-            <div class="bar" style="height:45%"></div>
-            <div class="bar" style="height:90%"></div>
-            <div class="bar" style="height:70%"></div>
-          </div>
-        </div>
-        <!-- Thumb 5 -->
-        <div class="cs-hero-chart-thumb">
-          <div class="bars">
-            <div class="bar" style="height:35%"></div>
-            <div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:45%"></div>
-            <div class="bar" style="height:80%"></div>
-            <div class="bar" style="height:60%"></div>
-            <div class="bar" style="height:75%"></div>
-          </div>
-        </div>
-        <!-- Thumb 6 -->
-        <div class="cs-hero-chart-thumb">
-          <div class="bars">
-            <div class="bar" style="height:70%"></div>
-            <div class="bar" style="height:40%"></div>
-            <div class="bar" style="height:85%"></div>
-            <div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:65%"></div>
-            <div class="bar" style="height:30%"></div>
-          </div>
-        </div>
-      </div>
+      <img src="Assets/Card_Preview-DataViz.png" alt="Data Viz Graphics" onerror="this.style.display='none'" />
     </div>
   </section>
-
-  <!-- Meta bar -->
-  <div class="cs-meta">
-    <div class="cs-meta-item fade-up" data-delay="1">
-      <span class="cs-meta-label">Client</span>
-      <span class="cs-meta-value">UJN</span>
-    </div>
-    <div class="cs-meta-item fade-up" data-delay="2">
-      <span class="cs-meta-label">Timeline</span>
-      <span class="cs-meta-value">2025</span>
-    </div>
-    <div class="cs-meta-item fade-up" data-delay="3">
-      <span class="cs-meta-label">Role</span>
-      <span class="cs-meta-value">Data Viz Designer</span>
-    </div>
-    <div class="cs-meta-item fade-up" data-delay="4">
-      <span class="cs-meta-label">Impact</span>
-      <span class="cs-meta-value">International Reports</span>
-    </div>
-  </div>
 
   <!-- Challenge & Solution -->
   <section class="cs-content">

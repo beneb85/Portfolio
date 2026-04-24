@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Portfolio Dev Server",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["-c", "PATH=/usr/local/bin:$PATH npx serve . -p 3000 -s"],
+      "port": 3000
+    }
+  ]
+}
