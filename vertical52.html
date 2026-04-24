@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertical52 — Bene Brandhofer</title>
+  <meta name="description" content="Vertical52 — UX/UI design for a data-heavy real estate intelligence platform. Clarity at scale, built for daily professional use. By Bene Brandhofer." />
+  <meta property="og:title" content="Vertical52 — Bene Brandhofer" />
+  <meta property="og:description" content="UX/UI design for a data-heavy real estate intelligence platform. Clarity at scale, built for daily professional use." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="case-study.css" />
+  <style>
+    /* ── Vertical52-specific overrides ─────────────────────────── */
+    .cs-hero { background: #f5f0ea; }
+    .cs-hero-text h1,
+    .cs-hero-text p { color: #18181b; }
+    .cs-back { color: #18181b; opacity: 0.5; }
+    .cs-back:hover { opacity: 1; }
+
+    /* Hero image: contained, centred */
+    .cs-hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: visible;
+      background: transparent;
+      border-radius: 0;
+      margin-top: 48px;
+    }
+    .cs-hero-image img {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.14);
+    }
+
+    /* Feature grid */
+    .cs-features {
+      padding: var(--section-v) max(48px, calc((100% - 1280px) / 2));
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+    }
+
+    .cs-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .cs-feature--reverse { direction: rtl; }
+    .cs-feature--reverse > * { direction: ltr; }
+
+    .cs-feature-visual {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #e8e3dc;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .cs-feature-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cs-feature-text {}
+    .cs-feature-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #71717a;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .cs-feature-heading {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #18181b;
+      line-height: 1.25;
+      margin: 0 0 20px;
+    }
+    .cs-feature-desc {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      color: #52525b;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Stats strip */
+    .cs-stats {
+      padding: 80px max(48px, calc((100% - 1280px) / 2));
+      background: #18181b;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+    .cs-stat {}
+    .cs-stat-value {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 51px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .cs-stat-label {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      color: #a1a1aa;
+      line-height: 1.5;
+    }
+
+    /* Full-bleed image */
+    .cs-full-image {
+      width: 100%;
+      overflow: hidden;
+      background: #e8e3dc;
+      max-height: 600px;
+    }
+    .cs-full-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .cs-feature { grid-template-columns: 1fr; gap: 32px; }
+      .cs-feature--reverse { direction: ltr; }
+      .cs-features { gap: 72px; }
+      .cs-stats { grid-template-columns: 1fr; gap: 40px; }
+      .cs-stat-value { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="cs-nav" id="csNav">
+    <a href="index.html" class="cs-nav-logo">Bene Brandhofer</a>
+    <ul class="cs-nav-links">
+      <li><a href="index.html#values">Approach</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#awards">Awards</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="cs-nav-burger" id="csNavBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="cs-mobile-menu" id="csMobileMenu" aria-hidden="true">
+    <ul class="cs-mobile-nav-links">
+      <li><a href="index.html#values">Approach</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#awards">Awards</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <section class="cs-hero">
+    <a href="index.html#work" class="cs-back">← All work</a>
+    <div class="cs-hero-text fade-up">
+      <h1 class="cs-title">Vertical52</h1>
+      <p class="cs-subtitle">Vertical52 is a data platform for real estate professionals — built to make complex market intelligence accessible, actionable, and fast. The design challenge was to bring clarity to high-density data without sacrificing depth.</p>
+    </div>
+    <div class="cs-hero-image fade-up" data-delay="1">
+      <img
+        src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
+        alt="Vertical52 dashboard on MacBook"
+        onerror="this.style.display='none'"
+      />
+    </div>
+  </section>
+
+  <!-- Meta bar -->
+  <div class="cs-meta">
+    <div class="cs-meta-item fade-up" data-delay="1">
+      <span class="cs-meta-label">Client</span>
+      <span class="cs-meta-value">Vertical52</span>
+    </div>
+    <div class="cs-meta-item fade-up" data-delay="2">
+      <span class="cs-meta-label">Timeline</span>
+      <span class="cs-meta-value">2025</span>
+    </div>
+    <div class="cs-meta-item fade-up" data-delay="3">
+      <span class="cs-meta-label">Role</span>
+      <span class="cs-meta-value">UX / UI Designer</span>
+    </div>
+    <div class="cs-meta-item fade-up" data-delay="4">
+      <span class="cs-meta-label">Impact</span>
+      <span class="cs-meta-value">International Reach</span>
+    </div>
+  </div>
+
+  <!-- Challenge & Solution -->
+  <section class="cs-content">
+    <div class="cs-col fade-up" data-delay="1">
+      <h2 class="cs-section-label">The Challenge</h2>
+      <div class="cs-body-text">
+        <p>At its core, the challenge was to design for complex, data-heavy workflows while maintaining clarity and usability. Users needed to move seamlessly from data access to insight generation.</p>
+        <p>Key friction points included:</p>
+        <ul>
+          <li>Overwhelming information density across market dashboards</li>
+          <li>No clear hierarchy between primary data and supporting context</li>
+          <li>Inconsistent patterns that slowed expert users and confused newcomers</li>
+          <li>A mobile experience that was an afterthought, not a first-class citizen</li>
+        </ul>
+        <p>The platform needed to serve two very different users simultaneously: analysts who live in the data, and executives who need a 30-second read of the market.</p>
+      </div>
+    </div>
+    <div class="cs-col fade-up" data-delay="2">
+      <h2 class="cs-section-label">The Solution</h2>
+      <div class="cs-body-text">
+        <p>A redesigned information architecture that separates signal from noise — giving each user type an entry point that respects their context without hiding depth.</p>
+        <p>Key design decisions:</p>
+        <ul>
+          <li>Progressive disclosure: summary cards surface key metrics first, detail layers reveal on demand</li>
+          <li>A unified component system that scales across six dashboard views without repetition</li>
+          <li>Contextual filters that persist across sessions, reducing repetitive setup time</li>
+          <li>Responsive-first layout that adapts data tables to mobile without losing functionality</li>
+        </ul>
+        <p>The result is a platform that handles real estate complexity with the same directness a professional expects from their tools — fast, trustworthy, and built for daily use.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats strip -->
+  <div class="cs-stats fade-up">
+    <div class="cs-stat">
+      <span class="cs-stat-value">↓ 40%</span>
+      <span class="cs-stat-label">Reduction in time-to-insight for analyst workflows after redesign</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-value">6</span>
+      <span class="cs-stat-label">Dashboard modules unified under a single component system</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-value">3×</span>
+      <span class="cs-stat-label">Increase in mobile session length compared to previous version</span>
+    </div>
+  </div>
+
+  <!-- Feature sections -->
+  <section class="cs-features">
+
+    <div class="cs-feature fade-up">
+      <div class="cs-feature-visual" style="background: #ddd8d0;">
+        <img
+          src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
+          alt="Dashboard overview"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div class="cs-feature-text">
+        <span class="cs-feature-tag">Information Architecture</span>
+        <h3 class="cs-feature-heading">Clarity at every scale</h3>
+        <p class="cs-feature-desc">The dashboard was rebuilt around a clear hierarchy: summary → trend → detail. Each level rewards attention without demanding it. Colour, weight, and space all carry meaning — nothing is decorative.</p>
+      </div>
+    </div>
+
+    <div class="cs-feature cs-feature--reverse fade-up" data-delay="1">
+      <div class="cs-feature-visual" style="background: #e8e3dc;">
+        <img
+          src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
+          alt="Component system"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div class="cs-feature-text">
+        <span class="cs-feature-tag">Design System</span>
+        <h3 class="cs-feature-heading">One system, six surfaces</h3>
+        <p class="cs-feature-desc">Rather than designing six dashboards independently, every module was built from a shared set of primitives. Tokens for spacing, colour, and typography ensured visual consistency across contexts — and made handoff to engineering straightforward.</p>
+      </div>
+    </div>
+
+    <div class="cs-feature fade-up" data-delay="1">
+      <div class="cs-feature-visual" style="background: #d4cfc7;">
+        <img
+          src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
+          alt="Mobile experience"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div class="cs-feature-text">
+        <span class="cs-feature-tag">Responsive Design</span>
+        <h3 class="cs-feature-heading">Data tables that actually work on mobile</h3>
+        <p class="cs-feature-desc">Dense tables were redesigned using a card-first approach on small screens, with horizontal scroll locked to data-critical columns. Professionals checking the market between meetings shouldn't have to pinch and zoom to find the number that matters.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA section -->
+  <section class="cs-cta">
+    <h2 class="cs-cta-heading fade-up">Like what you see?</h2>
+    <a href="index.html" class="cs-cta-btn">Back to Home</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="cs-footer">
+    <span class="cs-footer-copy">© 2026 Benedikt Brandhofer</span>
+    <div class="cs-footer-links">
+      <a href="imprint.html">Imprint</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="cs-scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 13 10 7 16 13"/>
+    </svg>
+  </button>
+
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
+
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const burger = document.getElementById('csNavBurger');
+    const mobileMenu = document.getElementById('csMobileMenu');
+
+    function toggleMenu(open) {
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open);
+      mobileMenu.classList.toggle('is-open', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    burger.addEventListener('click', () => {
+      toggleMenu(!burger.classList.contains('is-open'));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ── Video hero (activate by adding data-video="file.mp4" to .cs-hero-image) ──
+    function initVideoHero() {
+      document.querySelectorAll('.cs-hero-video-wrap[data-video]').forEach(wrap => {
+        const src = wrap.dataset.video;
+        const existingImg = wrap.querySelector('img');
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        video.playsinline = true;
+        video.autoplay = true;
+        video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        if (existingImg) existingImg.replaceWith(video);
+        else wrap.prepend(video);
+        const btn = wrap.querySelector('.cs-video-btn');
+        const fill = wrap.querySelector('.cs-video-progress-fill');
+        const track = wrap.querySelector('.cs-video-progress-track');
+        const timeEl = wrap.querySelector('.cs-video-time');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            video.paused ? video.play() : video.pause();
+            btn.innerHTML = video.paused
+              ? '<svg viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 19,10 5,17"/></svg>'
+              : '<svg viewBox="0 0 20 20" fill="currentColor"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></svg>';
+          });
+        }
+        if (fill) {
+          video.addEventListener('timeupdate', () => {
+            if (!video.duration) return;
+            fill.style.width = (video.currentTime / video.duration * 100) + '%';
+            if (timeEl) {
+              const m = Math.floor(video.currentTime / 60);
+              const s = Math.floor(video.currentTime % 60).toString().padStart(2, '0');
+              timeEl.textContent = `${m}:${s}`;
+            }
+          });
+        }
+        if (track) {
+          track.addEventListener('click', e => {
+            const rect = track.getBoundingClientRect();
+            video.currentTime = ((e.clientX - rect.left) / rect.width) * video.duration;
+          });
+        }
+      });
+    }
+    initVideoHero();
+  </script>
+
+</body>
+</html>

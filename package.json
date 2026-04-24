@@ -1,0 +1,9 @@
+{
+  "name": "beneb-portfolio",
+  "version": "1.0.0",
+  "description": "Bene Brandhofer Portfolio 2025",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000"
+  }
+}

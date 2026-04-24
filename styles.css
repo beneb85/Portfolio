@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   background: #1c1c1c;
   color: #1c1c1c;
   -webkit-font-smoothing: antialiased;
@@ -127,9 +127,9 @@ section {
 }
 
 .nav-logo {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 21px;
   color: white;
   letter-spacing: -0.02em;
   pointer-events: auto;
@@ -143,7 +143,7 @@ section {
 }
 
 .nav-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: white;
@@ -184,9 +184,9 @@ section {
 }
 
 .hero-headline {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: clamp(56px, 7vw, 100px);
+  font-size: clamp(51px, 6.5vw, 90px);
   line-height: 0.92;
   letter-spacing: -0.0224em;
   color: white;
@@ -202,8 +202,8 @@ section {
 }
 
 .hero-headline em.mono {
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
+  font-family: 'Geist Mono', monospace;
+  font-weight: 600;
   font-style: italic;
   white-space: nowrap;
 }
@@ -223,9 +223,9 @@ section {
 }
 
 .hero-sub {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   max-width: 520px;
@@ -234,6 +234,26 @@ section {
 .hero-sub u {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+}
+
+.hero-btn {
+  display: inline-block;
+  font-family: 'Geist Mono', monospace;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 14px 32px;
+  margin-top: 8px;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.65);
+  transform: translateY(-2px);
 }
 
 .hero-graphic {
@@ -306,7 +326,7 @@ section {
 }
 
 .section-label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist Mono', monospace;
   font-weight: 500;
   font-size: 13.6px;
   color: rgba(0, 0, 0, 0.5);
@@ -316,9 +336,9 @@ section {
 }
 
 .values-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: clamp(40px, 4.5vw, 64px);
+  font-size: clamp(38px, 4vw, 51px);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #1c1c1c;
@@ -326,9 +346,9 @@ section {
 }
 
 .values-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
   color: #1c1c1c;
   margin-bottom: 16px;
@@ -431,18 +451,18 @@ section {
 }
 
 .service-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 21px;
   letter-spacing: -0.017em;
   color: #1c1c1c;
   margin-bottom: 10px;
 }
 
 .service-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.8);
 }
@@ -458,9 +478,9 @@ section {
 }
 
 .works-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: 48px;
+  font-size: 51px;
   letter-spacing: -0.02em;
   color: #1c1c1c;
   margin-bottom: 64px;
@@ -518,7 +538,7 @@ section {
 
 .card-tag {
   display: inline-block;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist Mono', monospace;
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.06em;
@@ -528,9 +548,9 @@ section {
 }
 
 .card-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 28px;
   letter-spacing: -0.02em;
   color: #1c1c1c;
   margin-bottom: 12px;
@@ -538,7 +558,7 @@ section {
 }
 
 .card-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.65;
@@ -556,9 +576,9 @@ section {
 }
 
 .awards-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: 48px;
+  font-size: 51px;
   letter-spacing: -0.072em;
   color: #f6f7ed;
   margin-bottom: 40px;
@@ -592,7 +612,7 @@ section {
 }
 
 .award-year {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
   color: #e0e68a;
@@ -600,9 +620,9 @@ section {
 }
 
 .award-name {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 28px;
   letter-spacing: 0.013em;
   color: #f6f7ed;
   text-decoration: none;
@@ -620,7 +640,7 @@ section {
 }
 
 .award-project {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-style: italic;
   font-size: 18px;
   color: white;
@@ -643,7 +663,7 @@ section {
 }
 
 .award-category {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist Mono', monospace;
   font-weight: 500;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
@@ -700,16 +720,16 @@ section {
 }
 
 .contact-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: clamp(40px, 4.6vw, 66px);
+  font-size: clamp(38px, 4.5vw, 67px);
   line-height: 0.97;
   letter-spacing: -0.024em;
   color: white;
 }
 
 .contact-sub {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
   color: white;
@@ -720,7 +740,7 @@ section {
 
 .contact-email {
   display: inline-block;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist Mono', monospace;
   font-weight: 400;
   font-size: 18px;
   color: white;
@@ -775,7 +795,7 @@ section {
 }
 
 .footer-copy {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.4);
@@ -787,7 +807,7 @@ section {
 }
 
 .footer-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.4);
@@ -932,7 +952,7 @@ section {
 
 .mobile-nav-links a {
   display: block;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
   font-size: clamp(40px, 10vw, 64px);
   letter-spacing: -0.02em;

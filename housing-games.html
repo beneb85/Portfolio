@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Housing Games — Bene Brandhofer</title>
+  <meta name="description" content="The Housing Games — a cross-border data journalism project exploring housing affordability for essential workers across European cities. By Bene Brandhofer." />
+  <meta property="og:title" content="The Housing Games — Bene Brandhofer" />
+  <meta property="og:description" content="A cross-border data journalism project exploring housing affordability for essential workers across European cities." />
+  <meta property="og:type" content="article" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="case-study.css" />
 </head>
 <body>
@@ -45,7 +49,7 @@
       <p class="cs-subtitle">The Housing Games is a cross-border data journalism project that explores housing affordability for essential workers across European cities. It combines data analysis, storytelling, and interactive formats to reveal a growing gap between wages and housing costs.</p>
     </div>
     <div class="cs-hero-image fade-up" data-delay="1">
-      <img src="http://localhost:3845/assets/b8a2a1b92695af7f4c4273fefc4d4085c9f4f6d6.png" alt="The Housing Games — project overview" />
+      <img src="http://localhost:3845/assets/b8a2a1b92695af7f4c4273fefc4d4085c9f4f6d6.png" alt="The Housing Games — project overview" onerror="this.style.display='none'"/>
     </div>
   </section>
 
@@ -128,9 +132,10 @@
         <iframe id="euroviz-embed-BPzbzR" src="https://graphics.urbanjournalism.org/housing_calculator/embeds/BPzbzR/" class="euroviz-embed" frameborder="0" style="width:100%" height="600" scrolling="no"></iframe>
         <script src="https://graphics.urbanjournalism.org/housing_calculator/embeds/resize.js"></script>
       </div>
-      <div class="cs-viz cs-viz--half cs-viz--embed fade-up" data-delay="2">
-        <iframe id="euroviz-embed-wzTtzU" src="https://graphics.urbanjournalism.org/housing_calculator/embeds/wzTtzU/" class="euroviz-embed" frameborder="0" style="width:100%" height="600" scrolling="no"></iframe>
-        <script src="https://graphics.urbanjournalism.org/housing_calculator/embeds/resize.js"></script>
+      <div class="cs-viz cs-viz--half fade-up" data-delay="2">
+        <div class="cs-viz-placeholder">
+          <span class="cs-viz-label">Coming Soon</span>
+        </div>
       </div>
     </div>
 
@@ -212,6 +217,53 @@
     window.addEventListener('scroll', () => {
       document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
     }, { passive: true });
+
+    // ── Video hero (activate by adding data-video="file.mp4" to .cs-hero-image) ──
+    function initVideoHero() {
+      document.querySelectorAll('.cs-hero-video-wrap[data-video]').forEach(wrap => {
+        const src = wrap.dataset.video;
+        const existingImg = wrap.querySelector('img');
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        video.playsinline = true;
+        video.autoplay = true;
+        video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        if (existingImg) existingImg.replaceWith(video);
+        else wrap.prepend(video);
+        const btn = wrap.querySelector('.cs-video-btn');
+        const fill = wrap.querySelector('.cs-video-progress-fill');
+        const track = wrap.querySelector('.cs-video-progress-track');
+        const timeEl = wrap.querySelector('.cs-video-time');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            video.paused ? video.play() : video.pause();
+            btn.innerHTML = video.paused
+              ? '<svg viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 19,10 5,17"/></svg>'
+              : '<svg viewBox="0 0 20 20" fill="currentColor"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></svg>';
+          });
+        }
+        if (fill) {
+          video.addEventListener('timeupdate', () => {
+            if (!video.duration) return;
+            fill.style.width = (video.currentTime / video.duration * 100) + '%';
+            if (timeEl) {
+              const m = Math.floor(video.currentTime / 60);
+              const s = Math.floor(video.currentTime % 60).toString().padStart(2, '0');
+              timeEl.textContent = `${m}:${s}`;
+            }
+          });
+        }
+        if (track) {
+          track.addEventListener('click', e => {
+            const rect = track.getBoundingClientRect();
+            video.currentTime = ((e.clientX - rect.left) / rect.width) * video.duration;
+          });
+        }
+      });
+    }
+    initVideoHero();
   </script>
 
 </body>

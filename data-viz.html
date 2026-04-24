@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Viz Graphics — Bene Brandhofer</title>
+  <meta name="description" content="Data Viz Graphics — interactive data journalism projects visualizing climate, housing, and drug policy data across Europe. By Bene Brandhofer." />
+  <meta property="og:title" content="Data Viz Graphics — Bene Brandhofer" />
+  <meta property="og:description" content="Interactive data journalism projects visualizing climate, housing, and drug policy data across Europe." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="case-study.css" />
+  <style>
+    .cs-hero { background: #0f1b2d; }
+    .cs-hero-text h1 { color: #f6f7ed; }
+    .cs-hero-text p { color: rgba(246, 247, 237, 0.75); }
+    .cs-back { color: rgba(246, 247, 237, 0.5); }
+    .cs-back:hover { color: #f6f7ed; }
+
+    .cs-hero-image {
+      background: #162032;
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+    }
+
+    /* Hero visual: grid of mini chart thumbnails */
+    .cs-hero-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 40px;
+      width: 100%;
+    }
+
+    .cs-hero-chart-thumb {
+      background: #1e2f44;
+      border-radius: 10px;
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .cs-hero-chart-thumb::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+    }
+
+    .cs-hero-chart-thumb:nth-child(1)::after {
+      background: linear-gradient(to top, rgba(99, 179, 237, 0.5), transparent);
+    }
+    .cs-hero-chart-thumb:nth-child(2)::after {
+      background: linear-gradient(to top, rgba(246, 173, 85, 0.5), transparent);
+    }
+    .cs-hero-chart-thumb:nth-child(3)::after {
+      background: linear-gradient(to top, rgba(104, 211, 145, 0.5), transparent);
+    }
+    .cs-hero-chart-thumb:nth-child(4)::after {
+      background: linear-gradient(to top, rgba(237, 100, 166, 0.5), transparent);
+    }
+    .cs-hero-chart-thumb:nth-child(5)::after {
+      background: linear-gradient(to top, rgba(118, 169, 250, 0.5), transparent);
+    }
+    .cs-hero-chart-thumb:nth-child(6)::after {
+      background: linear-gradient(to top, rgba(252, 211, 77, 0.5), transparent);
+    }
+
+    /* Bar chart SVG-like pseudo elements */
+    .cs-hero-chart-thumb .bars {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 50%;
+    }
+
+    .cs-hero-chart-thumb .bar {
+      flex: 1;
+      border-radius: 2px 2px 0 0;
+      opacity: 0.7;
+    }
+
+    .cs-hero-chart-thumb:nth-child(1) .bar { background: #63b3ed; }
+    .cs-hero-chart-thumb:nth-child(2) .bar { background: #f6ad55; }
+    .cs-hero-chart-thumb:nth-child(3) .bar { background: #68d391; }
+    .cs-hero-chart-thumb:nth-child(4) .bar { background: #ed64a6; }
+    .cs-hero-chart-thumb:nth-child(5) .bar { background: #76a9fa; }
+    .cs-hero-chart-thumb:nth-child(6) .bar { background: #fcd34d; }
+
+    /* dark meta bar text on light bg */
+    .cs-meta { background: #f5f0ea; }
+    .cs-meta-label { color: rgba(24, 24, 27, 0.5); }
+    .cs-meta-value { color: #18181b; }
+    .cs-meta-item { border-color: rgba(24, 24, 27, 0.12); }
+
+    /* project tags */
+    .cs-project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .cs-project-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(246, 247, 237, 0.6);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 6px 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="cs-nav" id="csNav">
+    <a href="index.html" class="cs-nav-logo">Bene Brandhofer</a>
+    <ul class="cs-nav-links">
+      <li><a href="index.html#values">Approach</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#awards">Awards</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="cs-nav-burger" id="csNavBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="cs-mobile-menu" id="csMobileMenu" aria-hidden="true">
+    <ul class="cs-mobile-nav-links">
+      <li><a href="index.html#values">Approach</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#awards">Awards</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <section class="cs-hero">
+    <a href="index.html#work" class="cs-back">← All work</a>
+    <div class="cs-hero-text fade-up">
+      <h1 class="cs-title">Data Viz Graphics</h1>
+      <p class="cs-subtitle">A collection of interactive data journalism pieces — from climate and housing inequality to drug policy — built to make complex, cross-border datasets accessible, explorable, and human.</p>
+      <div class="cs-project-tags">
+        <span class="cs-project-tag">Climate & Housing</span>
+        <span class="cs-project-tag">Drug Policy</span>
+        <span class="cs-project-tag">D3 / Flourish</span>
+        <span class="cs-project-tag">Interactives</span>
+      </div>
+    </div>
+    <div class="cs-hero-image fade-up" data-delay="1">
+      <div class="cs-hero-chart-grid">
+        <!-- Bar chart thumb 1 -->
+        <div class="cs-hero-chart-thumb">
+          <div class="bars">
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:90%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar" style="height:40%"></div>
+          </div>
+        </div>
+        <!-- Line chart thumb 2 -->
+        <div class="cs-hero-chart-thumb">
+          <div class="bars">
+            <div class="bar" style="height:30%"></div>
+            <div class="bar" style="height:50%"></div>
+            <div class="bar" style="height:75%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar" style="height:85%"></div>
+            <div class="bar" style="height:95%"></div>
+          </div>
+        </div>
+        <!-- Thumb 3 -->
+        <div class="cs-hero-chart-thumb">
+          <div class="bars">
+            <div class="bar" style="height:80%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:35%"></div>
+            <div class="bar" style="height:60%"></div>
+          </div>
+        </div>
+        <!-- Thumb 4 -->
+        <div class="cs-hero-chart-thumb">
+          <div class="bars">
+            <div class="bar" style="height:50%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar" style="height:80%"></div>
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:90%"></div>
+            <div class="bar" style="height:70%"></div>
+          </div>
+        </div>
+        <!-- Thumb 5 -->
+        <div class="cs-hero-chart-thumb">
+          <div class="bars">
+            <div class="bar" style="height:35%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:80%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar" style="height:75%"></div>
+          </div>
+        </div>
+        <!-- Thumb 6 -->
+        <div class="cs-hero-chart-thumb">
+          <div class="bars">
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:85%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar" style="height:30%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meta bar -->
+  <div class="cs-meta">
+    <div class="cs-meta-item fade-up" data-delay="1">
+      <span class="cs-meta-label">Client</span>
+      <span class="cs-meta-value">UJN</span>
+    </div>
+    <div class="cs-meta-item fade-up" data-delay="2">
+      <span class="cs-meta-label">Timeline</span>
+      <span class="cs-meta-value">2025</span>
+    </div>
+    <div class="cs-meta-item fade-up" data-delay="3">
+      <span class="cs-meta-label">Role</span>
+      <span class="cs-meta-value">Data Viz Designer</span>
+    </div>
+    <div class="cs-meta-item fade-up" data-delay="4">
+      <span class="cs-meta-label">Impact</span>
+      <span class="cs-meta-value">International Reports</span>
+    </div>
+  </div>
+
+  <!-- Challenge & Solution -->
+  <section class="cs-content">
+    <div class="cs-col fade-up" data-delay="1">
+      <h2 class="cs-section-label">The Challenge</h2>
+      <div class="cs-body-text">
+        <p>Data journalism lives or dies by its ability to make abstract numbers tangible. Across these projects, the challenge was consistent: raw datasets — often spanning multiple countries, languages, and time periods — needed to become something a reader could understand in seconds and explore for minutes.</p>
+        <p>Specific obstacles included:</p>
+        <ul>
+          <li>Harmonising inconsistent data from different national sources</li>
+          <li>Building for newsroom constraints — tight timelines, no-framework environments</li>
+          <li>Making interactivity feel natural rather than forced</li>
+          <li>Ensuring accessibility across devices and screen sizes</li>
+        </ul>
+        <p>Two recurring themes: climate and housing inequality, and European drug policy — both demanding rigour and sensitivity in equal measure.</p>
+      </div>
+    </div>
+    <div class="cs-col fade-up" data-delay="2">
+      <h2 class="cs-section-label">The Solution</h2>
+      <div class="cs-body-text">
+        <p>Each piece was designed as a self-contained interactive story — the data structure determines the visual form, not the other way around. Flourish and custom D3 were used depending on what the data required.</p>
+        <p>Design principles across all pieces:</p>
+        <ul>
+          <li>Annotation-first: every chart leads with a clear, written insight before inviting exploration</li>
+          <li>Progressive disclosure: summary visuals link to detail layers for users who want more</li>
+          <li>Minimal chrome: no decorative elements that compete with the data signal</li>
+          <li>Embed-ready: each piece was built as an iframe embed for partner newsrooms across Europe</li>
+        </ul>
+        <p>The result is a library of interactives that work as standalone pieces and as a coordinated editorial package — consistently readable, consistently shareable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase: embedded interactives -->
+  <section class="cs-showcase">
+
+    <!-- Full-width: Climate & Housing #1 -->
+    <div class="cs-viz cs-viz--wide cs-viz--embed fade-up">
+      <iframe
+        id="euroviz-embed-7qnsQH"
+        src="https://graphics.urbanjournalism.org/climate_housing/embeds/7qnsQH/"
+        class="euroviz-embed"
+        frameborder="0"
+        style="width:100%"
+        height="600"
+        scrolling="no"
+        title="Climate & Housing — Interactive 1"
+      ></iframe>
+      <script src="https://graphics.urbanjournalism.org/climate_housing/embeds/resize.js"></script>
+    </div>
+
+    <!-- Row: Climate & Housing #2 + Drugs #1 -->
+    <div class="cs-viz-row">
+      <div class="cs-viz cs-viz--half cs-viz--embed fade-up" data-delay="1">
+        <iframe
+          id="euroviz-embed-vz8wxs"
+          src="https://graphics.urbanjournalism.org/climate_housing/embeds/vz8wxs/"
+          class="euroviz-embed"
+          frameborder="0"
+          style="width:100%"
+          height="600"
+          scrolling="no"
+          title="Climate & Housing — Interactive 2"
+        ></iframe>
+        <script src="https://graphics.urbanjournalism.org/climate_housing/embeds/resize.js"></script>
+      </div>
+      <div class="cs-viz cs-viz--half cs-viz--embed fade-up" data-delay="2">
+        <iframe
+          id="euroviz-embed-YpkLNp"
+          src="https://graphics.urbanjournalism.org/drugs_2026/embeds/YpkLNp/"
+          class="euroviz-embed"
+          frameborder="0"
+          style="width:100%"
+          height="600"
+          scrolling="no"
+          title="Drug Policy — Interactive 1"
+        ></iframe>
+        <script src="https://graphics.urbanjournalism.org/drugs_2026/embeds/resize.js"></script>
+      </div>
+    </div>
+
+    <!-- Row: Drugs #2 + Coming Soon -->
+    <div class="cs-viz-row">
+      <div class="cs-viz cs-viz--half cs-viz--embed fade-up" data-delay="1">
+        <iframe
+          id="euroviz-embed-po5MQO"
+          src="https://graphics.urbanjournalism.org/drugs_2026/embeds/po5MQO/"
+          class="euroviz-embed"
+          frameborder="0"
+          style="width:100%"
+          height="600"
+          scrolling="no"
+          title="Drug Policy — Interactive 2"
+        ></iframe>
+        <script src="https://graphics.urbanjournalism.org/drugs_2026/embeds/resize.js"></script>
+      </div>
+      <div class="cs-viz cs-viz--half fade-up" data-delay="2">
+        <div class="cs-viz-placeholder">
+          <span class="cs-viz-label">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cs-cta">
+    <h2 class="cs-cta-heading fade-up">Like what you see?</h2>
+    <a href="index.html" class="cs-cta-btn">Back to Home</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="cs-footer">
+    <span class="cs-footer-copy">© 2026 Benedikt Brandhofer</span>
+    <div class="cs-footer-links">
+      <a href="imprint.html">Imprint</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="cs-scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 13 10 7 16 13"/>
+    </svg>
+  </button>
+
+  <script>
+    // ── Fade-up reveal ──────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
+
+    // ── Scroll-to-top ──────────────────────────────────────────
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Mobile menu ────────────────────────────────────────────
+    const burger = document.getElementById('csNavBurger');
+    const mobileMenu = document.getElementById('csMobileMenu');
+
+    function toggleMenu(open) {
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open);
+      mobileMenu.classList.toggle('is-open', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    burger.addEventListener('click', () => toggleMenu(!burger.classList.contains('is-open')));
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+    // ── Nav scroll shadow ──────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ── Video hero (activate by adding data-video="file.mp4" to .cs-hero-image) ──
+    function initVideoHero() {
+      document.querySelectorAll('.cs-hero-video-wrap[data-video]').forEach(wrap => {
+        const src = wrap.dataset.video;
+        const existingImg = wrap.querySelector('img');
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        video.playsinline = true;
+        video.autoplay = true;
+        video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        if (existingImg) existingImg.replaceWith(video);
+        else wrap.prepend(video);
+
+        const btn = wrap.querySelector('.cs-video-btn');
+        const fill = wrap.querySelector('.cs-video-progress-fill');
+        const track = wrap.querySelector('.cs-video-progress-track');
+        const timeEl = wrap.querySelector('.cs-video-time');
+
+        if (btn) {
+          btn.addEventListener('click', () => {
+            video.paused ? video.play() : video.pause();
+            btn.innerHTML = video.paused
+              ? '<svg viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 19,10 5,17"/></svg>'
+              : '<svg viewBox="0 0 20 20" fill="currentColor"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></svg>';
+          });
+        }
+
+        if (fill) {
+          video.addEventListener('timeupdate', () => {
+            if (!video.duration) return;
+            fill.style.width = (video.currentTime / video.duration * 100) + '%';
+            if (timeEl) {
+              const m = Math.floor(video.currentTime / 60);
+              const s = Math.floor(video.currentTime % 60).toString().padStart(2, '0');
+              timeEl.textContent = `${m}:${s}`;
+            }
+          });
+        }
+
+        if (track) {
+          track.addEventListener('click', e => {
+            const rect = track.getBoundingClientRect();
+            video.currentTime = ((e.clientX - rect.left) / rect.width) * video.duration;
+          });
+        }
+      });
+    }
+    initVideoHero();
+  </script>
+
+</body>
+</html>

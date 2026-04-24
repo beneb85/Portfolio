@@ -4,9 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bene Brandhofer — Portfolio 2025</title>
+  <meta name="description" content="Bene Brandhofer — Product & UX/UI Designer focused on interactive data visualization, journalism, editorial design, and digital products. Based in Leipzig." />
+  <meta property="og:title" content="Bene Brandhofer — Portfolio 2025" />
+  <meta property="og:description" content="Bene Brandhofer — Product & UX/UI Designer focused on interactive data visualization, journalism, editorial design, and digital products. Based in Leipzig." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bene Brandhofer — Portfolio 2025" />
+  <meta name="twitter:description" content="Bene Brandhofer — Product & UX/UI Designer focused on interactive data visualization, journalism, editorial design, and digital products. Based in Leipzig." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -51,6 +58,7 @@
           data visualization, and intuitive interfaces — making the complicated
           feel accessible.
         </p>
+        <a href="#work" class="hero-btn">See selected work</a>
       </div>
       <div class="hero-graphic">
         <svg class="hero-svg" width="576" height="576" viewBox="0 0 576 576" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -176,31 +184,9 @@
     <h2 class="works-heading fade-up">Selected Works</h2>
     <div class="works-grid">
 
-      <div class="card card--dark fade-up" data-delay="1">
-        <div class="card-image card-image--dataviz">
-          <img src="http://localhost:3845/assets/3aaf36c51c0994e06cdb50f5ca4072fd0258e6b9.png" alt="Data Viz Graphics" style="width:100%;height:100%;object-fit:cover"/>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Editorial · Data Journalism</span>
-          <h3 class="card-title">Data Viz Graphics</h3>
-          <p class="card-desc">Award-winning maps, charts, and interactive graphics for international news outlets — translating complex datasets into stories readers actually understand.</p>
-        </div>
-      </div>
-
-      <div class="card card--light fade-up" data-delay="2">
-        <div class="card-image card-image--vertical52">
-          <img src="http://localhost:3845/assets/4c7a8f45940ffcfb889ab4258279a1def665b97b.png" alt="Vertical52" style="width:100%;height:100%;object-fit:cover"/>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">Product Design · SaaS</span>
-          <h3 class="card-title">Vertical52</h3>
-          <p class="card-desc">End-to-end product design for a satellite image analytics platform — turning a fragmented dashboard into a coherent, fast, and genuinely usable tool.</p>
-        </div>
-      </div>
-
       <a href="housing-games.html" class="card card--dark fade-up" data-delay="1" style="text-decoration:none;display:block;">
-        <div class="card-image card-image--housing">
-          <img src="http://localhost:3845/assets/7dcd55daf862e53045313d7cf0dc4301712d93b5.png" alt="The Housing Games" style="width:100%;height:100%;object-fit:cover"/>
+        <div class="card-image card-image--housing" style="background:#1a2535;">
+          <img src="http://localhost:3845/assets/7dcd55daf862e53045313d7cf0dc4301712d93b5.png" alt="The Housing Games" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Interactive Journalism · 2025 Voices Award</span>
@@ -209,16 +195,38 @@
         </div>
       </a>
 
-      <div class="card card--dark fade-up" data-delay="2">
-        <div class="card-image card-image--artdir">
-          <img src="http://localhost:3845/assets/af0ebbe8550b39bcc3773946cb7fcbf36cff8db5.png" alt="Art Direction" style="width:100%;height:100%;object-fit:cover"/>
+      <a href="vertical52.html" class="card card--light fade-up" data-delay="2" style="text-decoration:none;display:block;">
+        <div class="card-image card-image--vertical52" style="background:#d4cfc7;">
+          <img src="http://localhost:3845/assets/4c7a8f45940ffcfb889ab4258279a1def665b97b.png" alt="Vertical52" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Product Design · SaaS</span>
+          <h3 class="card-title">Vertical52</h3>
+          <p class="card-desc">End-to-end product design for a satellite image analytics platform — turning a fragmented dashboard into a coherent, fast, and genuinely usable tool.</p>
+        </div>
+      </a>
+
+      <a href="data-viz.html" class="card card--dark fade-up" data-delay="1">
+        <div class="card-image card-image--dataviz" style="background:#1e2235;">
+          <img src="http://localhost:3845/assets/3aaf36c51c0994e06cdb50f5ca4072fd0258e6b9.png" alt="Data Viz Graphics" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Editorial · Data Journalism</span>
+          <h3 class="card-title">Data Viz Graphics</h3>
+          <p class="card-desc">Award-winning maps, charts, and interactive graphics for international news outlets — translating complex datasets into stories readers actually understand.</p>
+        </div>
+      </a>
+
+      <a href="art-direction.html" class="card card--dark fade-up" data-delay="2">
+        <div class="card-image card-image--artdir" style="background:#2e2418;">
+          <img src="http://localhost:3845/assets/af0ebbe8550b39bcc3773946cb7fcbf36cff8db5.png" alt="Art Direction" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Art Direction · Editorial</span>
           <h3 class="card-title">Art Direction</h3>
           <p class="card-desc">Visual identity and art direction for long-form digital features — building the systems, templates, and visual language for stories that need to breathe.</p>
         </div>
-      </div>
+      </a>
 
     </div>
   </section>
