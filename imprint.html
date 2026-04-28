@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Impressum — Bene Brandhofer</title>
+  <title>Impressum / Legal Notice — Bene Brandhofer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -40,6 +40,21 @@
       margin-bottom: 48px;
       line-height: 1.1;
     }
+    .legal-lang-divider {
+      border: none;
+      border-top: 1px solid rgba(28,28,28,0.12);
+      margin: 64px 0;
+    }
+    .legal-lang-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(28,28,28,0.4);
+      margin-bottom: 40px;
+      display: block;
+    }
     .legal-section {
       margin-bottom: 40px;
     }
@@ -51,13 +66,16 @@
       margin-bottom: 12px;
       letter-spacing: -0.01em;
     }
-    .legal-section p, .legal-section address {
+    .legal-section p,
+    .legal-section address {
       font-family: 'Geist', sans-serif;
       font-size: 16px;
       line-height: 1.7;
       color: rgba(28,28,28,0.75);
       font-style: normal;
+      margin-bottom: 8px;
     }
+    .legal-section p:last-child { margin-bottom: 0; }
     .legal-section a {
       color: #1c1c1c;
       text-decoration: underline;
@@ -70,7 +88,7 @@
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-logo">Bene Brandhofer</div>
+    <a href="index.html" class="nav-logo">Bene Brandhofer</a>
     <ul class="nav-links">
       <li><a href="index.html#values">Approach</a></li>
       <li><a href="index.html#work">Work</a></li>
@@ -90,59 +108,94 @@
 
       <h1 class="legal-h1">Impressum</h1>
 
+      <!-- German -->
+      <span class="legal-lang-label">🇩🇪 Deutsch</span>
+
       <div class="legal-section">
         <h2>Angaben gemäß § 5 TMG</h2>
         <address>
           Benedikt Brandhofer<br>
-          [Straße und Hausnummer]<br>
-          [PLZ] [Stadt]<br>
+          Brockhausstraße 1<br>
+          04229 Leipzig<br>
           Deutschland
         </address>
       </div>
 
       <div class="legal-section">
         <h2>Kontakt</h2>
-        <p>
-          E-Mail: <a href="mailto:hello@beneb.de">hello@beneb.de</a>
-        </p>
+        <p>E-Mail: <a href="mailto:post@beneb.de">post@beneb.de</a></p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Berufsbezeichnung</h2>
+        <p>UX/UI Designer (Freelancer)</p>
       </div>
 
       <div class="legal-section">
         <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-        <address>
-          Benedikt Brandhofer<br>
-          [Straße und Hausnummer]<br>
-          [PLZ] [Stadt]
-        </address>
+        <p>Benedikt Brandhofer, Brockhausstraße 1, 04229 Leipzig</p>
       </div>
 
       <div class="legal-section">
         <h2>Haftung für Inhalte</h2>
-        <p>
-          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
-          allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
-          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
-          zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-        </p>
+        <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
       </div>
 
       <div class="legal-section">
         <h2>Haftung für Links</h2>
-        <p>
-          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
-          Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
-          verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-        </p>
+        <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.</p>
       </div>
 
       <div class="legal-section">
         <h2>Urheberrecht</h2>
-        <p>
-          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
-          Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
-          Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-        </p>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte, Designs und Werke unterliegen dem deutschen Urheberrecht. Insbesondere gilt dies für präsentierte UX/UI Projekte, Konzepte und Designs.</p>
       </div>
+
+      <hr class="legal-lang-divider" />
+
+      <!-- English -->
+      <span class="legal-lang-label">🇬🇧 English</span>
+
+      <div class="legal-section">
+        <h2>Information according to applicable laws</h2>
+        <address>
+          Benedikt Brandhofer<br>
+          Brockhausstraße 1<br>
+          04229 Leipzig<br>
+          Germany
+        </address>
+      </div>
+
+      <div class="legal-section">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:post@beneb.de">post@beneb.de</a></p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Profession</h2>
+        <p>UX/UI Designer (Freelancer)</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Responsible for content</h2>
+        <p>Benedikt Brandhofer</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Liability for Content</h2>
+        <p>As a service provider, we are responsible for our own content on these pages under general laws.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Liability for Links</h2>
+        <p>This website contains links to external third-party websites. We have no influence on their content.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Copyright</h2>
+        <p>All content, including UX/UI designs, case studies, and visual work, is subject to copyright.</p>
+      </div>
+
     </div>
   </main>
 </body>

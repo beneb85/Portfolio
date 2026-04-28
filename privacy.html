@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datenschutz — Bene Brandhofer</title>
+  <title>Datenschutz / Privacy Policy — Bene Brandhofer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -40,6 +40,21 @@
       margin-bottom: 48px;
       line-height: 1.1;
     }
+    .legal-lang-divider {
+      border: none;
+      border-top: 1px solid rgba(28,28,28,0.12);
+      margin: 64px 0;
+    }
+    .legal-lang-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(28,28,28,0.4);
+      margin-bottom: 40px;
+      display: block;
+    }
     .legal-section {
       margin-bottom: 40px;
     }
@@ -56,9 +71,20 @@
       font-size: 16px;
       line-height: 1.7;
       color: rgba(28,28,28,0.75);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
     .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(28,28,28,0.75);
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+    .legal-section ul li {
+      margin-bottom: 4px;
+    }
     .legal-section a {
       color: #1c1c1c;
       text-decoration: underline;
@@ -71,7 +97,7 @@
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-logo">Bene Brandhofer</div>
+    <a href="index.html" class="nav-logo">Bene Brandhofer</a>
     <ul class="nav-links">
       <li><a href="index.html#values">Approach</a></li>
       <li><a href="index.html#work">Work</a></li>
@@ -91,56 +117,111 @@
 
       <h1 class="legal-h1">Datenschutz&shy;erklärung</h1>
 
+      <!-- German -->
+      <span class="legal-lang-label">🇩🇪 Deutsch</span>
+
       <div class="legal-section">
-        <h2>1. Datenschutz auf einen Blick</h2>
-        <p>
-          Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten
-          passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie
-          persönlich identifiziert werden können.
-        </p>
+        <h2>1. Allgemeine Hinweise</h2>
+        <p>Diese Website dient der Präsentation meiner UX/UI-Arbeiten und der Kontaktaufnahme.</p>
       </div>
 
       <div class="legal-section">
-        <h2>2. Datenerfassung auf dieser Website</h2>
-        <p>
-          Diese Website wird statisch ausgeliefert und erhebt keine personenbezogenen Daten über Besucher.
-          Es werden keine Cookies gesetzt, keine Tracking-Skripte eingebunden und keine Nutzungsdaten gespeichert.
-        </p>
-        <p>
-          Beim Aufruf der Website werden technische Zugriffsdaten (IP-Adresse, Uhrzeit, aufgerufene Seite) im
-          Webserver-Log des Hosting-Anbieters protokolliert. Diese Daten werden nicht mit anderen Datenquellen
-          zusammengeführt und nach kurzer Zeit gelöscht.
-        </p>
+        <h2>2. Hosting</h2>
+        <p>Die Website wird bei einem externen Dienstleister gehostet (z. B. Webhoster). Dabei können technische Daten (IP-Adresse etc.) erfasst werden.</p>
       </div>
 
       <div class="legal-section">
-        <h2>3. Externe Dienste</h2>
-        <p>
-          Diese Website lädt Schriftarten über Google Fonts. Dabei wird eine Verbindung zu Googles Servern
-          hergestellt. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
-        </p>
+        <h2>3. Kontaktaufnahme</h2>
+        <p>Wenn Sie mich per E-Mail oder Formular kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert.</p>
       </div>
 
       <div class="legal-section">
-        <h2>4. Ihre Rechte</h2>
-        <p>
-          Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten, deren
-          Herkunft und Empfänger sowie den Zweck der Datenverarbeitung. Außerdem haben Sie ein Recht auf
-          Berichtigung, Sperrung oder Löschung dieser Daten.
-        </p>
-        <p>
-          Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im
-          Impressum angegebenen Adresse an uns wenden.
-        </p>
+        <h2>4. Server-Log-Dateien</h2>
+        <p>Der Hosting-Anbieter erhebt automatisch Daten wie:</p>
+        <ul>
+          <li>IP-Adresse</li>
+          <li>Browsertyp</li>
+          <li>Betriebssystem</li>
+          <li>Uhrzeit der Serveranfrage</li>
+        </ul>
+        <p>Diese Daten dienen der technischen Sicherheit.</p>
       </div>
 
       <div class="legal-section">
-        <h2>5. Kontakt</h2>
-        <p>
-          Bei Fragen zum Datenschutz wenden Sie sich bitte an:
-          <a href="mailto:hello@beneb.de">hello@beneb.de</a>
-        </p>
+        <h2>5. Cookies</h2>
+        <p>Diese Website verwendet ggf. technisch notwendige Cookies. Tracking-Cookies werden nur mit Einwilligung eingesetzt (falls vorhanden).</p>
       </div>
+
+      <div class="legal-section">
+        <h2>6. Ihre Rechte</h2>
+        <p>Sie haben das Recht auf:</p>
+        <ul>
+          <li>Auskunft</li>
+          <li>Berichtigung</li>
+          <li>Löschung</li>
+          <li>Einschränkung der Verarbeitung</li>
+          <li>Datenübertragbarkeit</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>7. Widerruf Ihrer Einwilligung</h2>
+        <p>Sie können eine Einwilligung jederzeit widerrufen.</p>
+      </div>
+
+      <hr class="legal-lang-divider" />
+
+      <!-- English -->
+      <span class="legal-lang-label">🇬🇧 English</span>
+
+      <div class="legal-section">
+        <h2>1. General Information</h2>
+        <p>This website is used to present my UX/UI work and allow users to get in contact.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>2. Hosting</h2>
+        <p>This website is hosted by an external service provider. Technical data (e.g., IP address) may be collected.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>3. Contact Requests</h2>
+        <p>If you contact me via email or form, your data will be stored for processing your request.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>4. Server Log Files</h2>
+        <p>The hosting provider automatically collects:</p>
+        <ul>
+          <li>IP address</li>
+          <li>Browser type</li>
+          <li>Operating system</li>
+          <li>Time of request</li>
+        </ul>
+        <p>This data is used for technical security.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>5. Cookies</h2>
+        <p>This website may use essential cookies. Tracking cookies are only used with user consent (if applicable).</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>6. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Access your data</li>
+          <li>Request correction or deletion</li>
+          <li>Restrict processing</li>
+          <li>Data portability</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>7. Withdrawal of Consent</h2>
+        <p>You may withdraw your consent at any time.</p>
+      </div>
+
     </div>
   </main>
 </body>
