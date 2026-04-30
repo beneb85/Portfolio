@@ -247,7 +247,7 @@ body {
   border-radius: 24px;
   overflow: hidden;
   background: #1e1e1e;
-  aspect-ratio: 21 / 8;
+  aspect-ratio: 21 / 9;
 }
 
 .cs-hero-image img {
@@ -420,96 +420,168 @@ body {
 
 
 /* Take a guess card */
-.cs-guess-card {
-  background: var(--color-accent);
-  border-radius: var(--radius-card);
-  padding: 44px 32px 36px;
-  min-height: 276px;
+/* ========================================
+   Published Articles grid
+   ======================================== */
+.cs-articles {
+  background: #e0e68a;
+  border-radius: 20px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: relative;
+  gap: 40px;
 }
 
-.cs-guess-body {
+.cs-articles-header {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
-.cs-guess-title {
+.cs-articles-title {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  color: var(--color-dark);
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-size: 24px;
+  color: #18181b;
+  letter-spacing: -0.4px;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+  line-height: normal;
 }
 
-.cs-guess-desc {
+.cs-articles-subtitle {
   font-family: 'Geist', sans-serif;
+  font-weight: 400;
   font-size: 15px;
-  line-height: 1.55;
-  color: rgba(0, 0, 0, 0.75);
+  line-height: 23.25px;
+  color: #18181b;
 }
 
-.cs-guess-cta {
-  align-self: flex-start;
-  display: inline-block;
+.cs-articles-row {
+  display: flex;
+  gap: 44px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cs-article-card {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 1px solid #fff;
+  border-radius: 24px;
+  padding: 16px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cs-article-lang {
   font-family: 'Geist Mono', monospace;
-  font-weight: 500;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.45);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  background: white;
-  padding: 10px 18px;
-  border-radius: 4px;
-  transition: opacity 0.2s;
+  font-weight: 400;
+  font-size: 14px;
+  color: #18181b;
+  line-height: normal;
+  flex-shrink: 0;
 }
 
-.cs-guess-cta:hover {
-  opacity: 0.7;
+.cs-article-link {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: normal;
+  color: #18181b;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+}
+
+.cs-article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #18181b;
+  width: 100%;
+  line-height: normal;
+  flex-shrink: 0;
+}
+
+.cs-article-pub {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cs-article-date {
+  font-family: 'Geist Mono', monospace;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ========================================
    CTA section
    ======================================== */
 .cs-cta {
-  background: var(--color-dark);
-  padding: var(--section-v) var(--pad-x);
+  background: #1c1c1c;
+  padding: 128px 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 48px;
   text-align: center;
-  scroll-margin-top: 80px;
 }
 
 .cs-cta-heading {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: clamp(38px, 4.5vw, 51px);
-  color: white;
+  font-size: clamp(38px, 5vw, 64px);
+  color: #fff;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  white-space: nowrap;
+}
+
+.cs-cta-btns {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cs-cta-btn {
   display: inline-block;
-  font-family: 'Geist Mono', monospace;
-  font-weight: 500;
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
   font-size: 16px;
-  color: var(--color-dark);
-  background: var(--color-accent);
   text-decoration: none;
   border-radius: 999px;
   padding: 20px 56px;
   transition: opacity 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+
+.cs-cta-btn--primary {
+  background: #e0e68a;
+  color: #1c1c1c;
+  border: 1px solid transparent;
+}
+
+.cs-cta-btn--outline {
+  background: transparent;
+  color: #e0e68a;
+  border: 1px solid #e0e68a;
 }
 
 .cs-cta-btn:hover {
-  opacity: 0.85;
+  opacity: 0.8;
   transform: translateY(-2px);
 }
 
@@ -717,7 +789,7 @@ body {
   }
 
   .cs-hero-image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 21 / 9;
   }
 
   .cs-meta {
@@ -744,9 +816,14 @@ body {
     min-height: 260px;
   }
 
-  .cs-guess-card {
-    min-height: auto;
-    gap: 32px;
+  .cs-articles-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .cs-article-card {
+    flex: 1 0 calc(50% - 8px);
+    min-height: 140px;
   }
 
   .cs-footer {
@@ -758,5 +835,11 @@ body {
   .cs-scroll-top {
     bottom: 24px;
     right: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-article-card {
+    flex: 1 0 100%;
   }
 }

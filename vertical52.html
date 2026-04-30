@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vertical52 — Bene Brandhofer</title>
-  <meta name="description" content="Vertical52 — UX/UI design for a data-heavy real estate intelligence platform. Clarity at scale, built for daily professional use. By Bene Brandhofer." />
+  <meta name="description" content="Vertical52 — A redesign of a satellite image data platform for journalists into a clearer investigative workspace. By Bene Brandhofer." />
   <meta property="og:title" content="Vertical52 — Bene Brandhofer" />
-  <meta property="og:description" content="UX/UI design for a data-heavy real estate intelligence platform. Clarity at scale, built for daily professional use." />
+  <meta property="og:description" content="A redesign of a satellite image data platform for journalists into a clearer investigative workspace, improving workflows, navigation, and spatial data interaction." />
   <meta property="og:type" content="article" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,24 +20,30 @@
     .cs-back { color: #18181b; opacity: 0.5; }
     .cs-back:hover { opacity: 1; }
 
-    /* Hero image: contained, centred */
+    /* Hero image: full-width 16/9 — inherits base .cs-hero-image, just override bg */
     .cs-hero-image {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      overflow: visible;
-      background: transparent;
-      border-radius: 0;
-      margin-top: 48px;
+      background: #0d1520;
+      position: relative;
     }
-    .cs-hero-image img {
+    .cs-hero-macbook-wrap {
+      position: absolute;
+      inset: 0;
+    }
+    .cs-hero-macbook-wrap img.cs-hero-bg {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      max-width: 900px;
-      height: auto;
+      height: 158.54%;
+      object-fit: cover;
       display: block;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.14);
+    }
+    .cs-hero-macbook-wrap img.cs-hero-fg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* Feature grid */
@@ -54,17 +60,23 @@
       gap: 64px;
       align-items: center;
     }
-    .cs-feature--reverse { direction: rtl; }
-    .cs-feature--reverse > * { direction: ltr; }
-
     .cs-feature-visual {
       border-radius: 16px;
       overflow: hidden;
-      background: #e8e3dc;
-      aspect-ratio: 4/3;
+      height: 456px;
       position: relative;
     }
-    .cs-feature-visual img {
+    .cs-feature-visual img.cs-feat-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cs-feature-visual img.cs-feat-overlay {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -89,6 +101,7 @@
       color: #18181b;
       line-height: 1.25;
       margin: 0 0 20px;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
     }
     .cs-feature-desc {
       font-family: 'Geist', sans-serif;
@@ -98,51 +111,10 @@
       margin: 0;
     }
 
-    /* Stats strip */
-    .cs-stats {
-      padding: 80px max(48px, calc((100% - 1280px) / 2));
-      background: #18181b;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-    }
-    .cs-stat {}
-    .cs-stat-value {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 51px;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1;
-      display: block;
-      margin-bottom: 12px;
-    }
-    .cs-stat-label {
-      font-family: 'Geist', sans-serif;
-      font-size: 16px;
-      color: #a1a1aa;
-      line-height: 1.5;
-    }
-
-    /* Full-bleed image */
-    .cs-full-image {
-      width: 100%;
-      overflow: hidden;
-      background: #e8e3dc;
-      max-height: 600px;
-    }
-    .cs-full-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
     @media (max-width: 768px) {
       .cs-feature { grid-template-columns: 1fr; gap: 32px; }
-      .cs-feature--reverse { direction: ltr; }
       .cs-features { gap: 72px; }
-      .cs-stats { grid-template-columns: 1fr; gap: 40px; }
-      .cs-stat-value { font-size: 38px; }
+
     }
   </style>
 </head>
@@ -179,14 +151,13 @@
     <a href="index.html#work" class="cs-back">← All work</a>
     <div class="cs-hero-text fade-up">
       <h1 class="cs-title">Vertical52</h1>
-      <p class="cs-subtitle">The Vertical52 redesign transforms a complex satellite image platform into an intuitive investigative workspace for journalists. It enables users to explore imagery, manage investigations, and analyze spatial data within a unified experience. By centralizing workflows, improving navigation, and enhancing the interface and interactions, the platform shifts from a fragmented toolset to a cohesive product—supporting faster, clearer, and more effective investigations.</p>
+      <p class="cs-subtitle">A redesign of a satellite image data platform for journalists into a clearer investigative workspace, improving workflows, navigation, and spatial data interaction.</p>
     </div>
     <div class="cs-hero-image fade-up" data-delay="1">
-      <img
-        src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
-        alt="Vertical52 dashboard on MacBook"
-        onerror="this.style.display='none'"
-      />
+      <div class="cs-hero-macbook-wrap">
+        <img class="cs-hero-bg" src="Assets/V52_hero-macbook.png" alt="Vertical52 dashboard on MacBook" onerror="this.style.display='none'" />
+        <img class="cs-hero-fg" src="Assets/V52_hero-overlay.png" alt="" onerror="this.style.display='none'" />
+      </div>
     </div>
   </section>
 
@@ -194,11 +165,11 @@
   <div class="cs-meta">
     <div class="cs-meta-item fade-up" data-delay="1">
       <span class="cs-meta-label">Client</span>
-      <span class="cs-meta-value">Vertical52</span>
+      <span class="cs-meta-value"><a href="https://vertical52.org/de" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Vertical52</a></span>
     </div>
     <div class="cs-meta-item fade-up" data-delay="2">
       <span class="cs-meta-label">Timeline</span>
-      <span class="cs-meta-value">2025</span>
+      <span class="cs-meta-value">2026</span>
     </div>
     <div class="cs-meta-item fade-up" data-delay="3">
       <span class="cs-meta-label">Role</span>
@@ -242,67 +213,45 @@
     </div>
   </section>
 
-  <!-- Stats strip -->
-  <div class="cs-stats fade-up">
-    <div class="cs-stat">
-      <span class="cs-stat-value">↓ 40%</span>
-      <span class="cs-stat-label">Reduction in time-to-insight for analyst workflows after redesign</span>
-    </div>
-    <div class="cs-stat">
-      <span class="cs-stat-value">6</span>
-      <span class="cs-stat-label">Dashboard modules unified under a single component system</span>
-    </div>
-    <div class="cs-stat">
-      <span class="cs-stat-value">3×</span>
-      <span class="cs-stat-label">Increase in mobile session length compared to previous version</span>
-    </div>
-  </div>
-
   <!-- Feature sections -->
   <section class="cs-features">
 
+    <!-- Feature 1: visual left, text right -->
     <div class="cs-feature fade-up">
       <div class="cs-feature-visual" style="background: #ddd8d0;">
-        <img
-          src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
-          alt="Dashboard overview"
-          onerror="this.style.display='none'"
-        />
+        <img class="cs-feat-bg" src="Assets/V52_hero-macbook.png" alt="" onerror="this.style.display='none'" />
+        <img class="cs-feat-overlay" src="Assets/V52_dashboard-overview.png" alt="New File Explorer" onerror="this.style.display='none'" />
       </div>
       <div class="cs-feature-text">
         <span class="cs-feature-tag">Information Architecture</span>
-        <h3 class="cs-feature-heading">Clarity at every scale</h3>
-        <p class="cs-feature-desc">The dashboard was rebuilt around a clear hierarchy: summary → trend → detail. Each level rewards attention without demanding it. Colour, weight, and space all carry meaning — nothing is decorative.</p>
+        <h3 class="cs-feature-heading">New File Explorer</h3>
+        <p class="cs-feature-desc">A centralized file explorer brings together investigations, satellite images, and workflows — eliminating context switching and improving control.</p>
       </div>
     </div>
 
-    <div class="cs-feature cs-feature--reverse fade-up" data-delay="1">
-      <div class="cs-feature-visual" style="background: #e8e3dc;">
-        <img
-          src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
-          alt="Component system"
-          onerror="this.style.display='none'"
-        />
-      </div>
+    <!-- Feature 2: text left, visual right -->
+    <div class="cs-feature fade-up" data-delay="1">
       <div class="cs-feature-text">
-        <span class="cs-feature-tag">Design System</span>
-        <h3 class="cs-feature-heading">One system, six surfaces</h3>
-        <p class="cs-feature-desc">Rather than designing six dashboards independently, every module was built from a shared set of primitives. Tokens for spacing, colour, and typography ensured visual consistency across contexts — and made handoff to engineering straightforward.</p>
+        <span class="cs-feature-tag">New Ways</span>
+        <h3 class="cs-feature-heading">Views</h3>
+        <p class="cs-feature-desc">Users can switch between list, grid, and map views, allowing them to approach data from multiple perspectives and uncover insights more effectively.</p>
+      </div>
+      <div class="cs-feature-visual" style="background: #e8e3dc;">
+        <img class="cs-feat-bg" src="Assets/V52_component-system.png" alt="" onerror="this.style.display='none'" />
+        <img class="cs-feat-overlay" src="Assets/V52_views-overlay.png" alt="Views" onerror="this.style.display='none'" />
       </div>
     </div>
 
+    <!-- Feature 3: visual left, text right -->
     <div class="cs-feature fade-up" data-delay="1">
       <div class="cs-feature-visual" style="background: #d4cfc7;">
-        <img
-          src="https://www.figma.com/api/mcp/asset/8e471200-fb8d-47bd-a37c-17550ca824e5"
-          alt="Mobile experience"
-          onerror="this.style.display='none'"
-        />
+        <img class="cs-feat-bg" src="Assets/V52_hero-macbook.png" alt="" onerror="this.style.display='none'" />
+        <img class="cs-feat-overlay" src="Assets/V52_spatial.png" alt="Advanced Spatial Analysis" onerror="this.style.display='none'" />
       </div>
       <div class="cs-feature-text">
-        <span class="cs-feature-tag">Responsive Design</span>
-        <h3 class="cs-feature-heading">Data tables that actually work on mobile</h3>
-        <p class="cs-feature-desc">Dense tables were redesigned using a card-first approach on small screens, with horizontal scroll locked to data-critical columns. Professionals checking the market between meetings shouldn't have to pinch and zoom to find the number that matters.</p>
+        <span class="cs-feature-tag">New Features</span>
+        <h3 class="cs-feature-heading">Advanced Spatial Analysis</h3>
+        <p class="cs-feature-desc">The new map viewer enables users to open, layer, and compare multiple satellite images across different map backgrounds — turning static data into interactive analysis.</p>
       </div>
     </div>
 
@@ -311,7 +260,10 @@
   <!-- CTA section -->
   <section class="cs-cta">
     <h2 class="cs-cta-heading fade-up">Like what you see?</h2>
-    <a href="index.html" class="cs-cta-btn">Back to Home</a>
+    <div class="cs-cta-btns fade-up" data-delay="1">
+      <a href="index.html" class="cs-cta-btn cs-cta-btn--primary">Back Home</a>
+      <a href="index.html#contact" class="cs-cta-btn cs-cta-btn--outline">Get in Touch</a>
+    </div>
   </section>
 
   <!-- Footer -->

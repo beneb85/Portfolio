@@ -13,57 +13,82 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="case-study.css" />
   <style>
-    /* Hero overrides */
+    /* ── Hero overrides ── */
     .cs-hero { background: #f5f0ea; }
     .cs-hero-text h1 { color: #18181b; }
-    .cs-hero-text p { color: rgba(24, 24, 27, 0.65); }
+    .cs-hero-text p { color: rgba(24, 24, 27, 0.65); font-size: 20px; line-height: 32px; }
     .cs-back { color: rgba(24, 24, 27, 0.45); }
     .cs-back:hover { color: #18181b; }
 
-    /* Hero image: colour swatch grid */
-    .cs-hero-image {
+    /* ── Collage hero image ── */
+    .cs-ad-collage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21 / 9;
+      background: #1e1e1e;
       border-radius: 24px;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 3px;
-      min-height: 340px;
     }
 
-    .cs-hero-swatch {
-      position: relative;
-      overflow: hidden;
-    }
-    .cs-hero-swatch:first-child { grid-column: span 2; }
-
-    .cs-hero-swatch-inner {
+    .cs-ad-collage img {
       position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: flex-end;
-      padding: 16px;
+      object-fit: cover;
+      pointer-events: none;
     }
 
-    .cs-hero-swatch-label {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
+    /* image31: top-left large panel */
+    .cs-ad-img--tl {
+      left: 0;
+      top: 0;
+      width: 45.1%;
+      height: 70.7%;
     }
 
-    /* Meta bar */
+    /* image29: right-side tall panel */
+    .cs-ad-img--tr {
+      left: 40.4%;
+      top: -20.5%;
+      width: 62.3%;
+      height: 127%;
+    }
+
+    /* image21: bottom-left small */
+    .cs-ad-img--bl {
+      left: 0;
+      top: 57.5%;
+      width: 20.9%;
+      height: 47.5%;
+      object-fit: contain;
+    }
+
+    /* image30: bottom-center */
+    .cs-ad-img--bc {
+      left: 18.8%;
+      top: 63.3%;
+      width: 26.2%;
+      height: 41.7%;
+    }
+
+    /* image32: center-right overlay */
+    .cs-ad-img--cr {
+      left: 41%;
+      top: 40.9%;
+      width: 48.1%;
+      height: 59.1%;
+    }
+
+    /* ── Meta bar ── */
     .cs-meta { background: #f5f0ea; }
     .cs-meta-label { color: rgba(24, 24, 27, 0.5); }
     .cs-meta-value { color: #18181b; }
     .cs-meta-item { border-color: rgba(24, 24, 27, 0.12); }
 
-    /* Gallery grid */
-    .cs-gallery {
-      padding: var(--section-v) var(--pad-x);
+    /* ── Gallery ── */
+    .cs-ad-gallery {
+      background: #f5f0ea;
+      padding: 128px 72px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
 
@@ -71,60 +96,33 @@
       border-radius: 16px;
       overflow: hidden;
       background: #e8e3dc;
-      position: relative;
-      cursor: default;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
 
     .cs-gallery-item:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
     }
-
-    .cs-gallery-item--tall { grid-row: span 2; }
-    .cs-gallery-item--wide { grid-column: span 2; }
 
     .cs-gallery-visual {
-      width: 100%;
-      aspect-ratio: 4/3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
+      width: 100%;
       overflow: hidden;
-    }
-
-    .cs-gallery-item--tall .cs-gallery-visual {
-      aspect-ratio: unset;
-      height: 100%;
-      min-height: 400px;
+      aspect-ratio: 16/9;
     }
 
     .cs-gallery-visual img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-    }
-
-    /* Placeholder fills when no image loads */
-    .cs-gallery-fill {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .cs-gallery-fill-label {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(24, 24, 27, 0.35);
+      pointer-events: none;
     }
 
     .cs-gallery-caption {
@@ -132,6 +130,7 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
+      flex-shrink: 0;
     }
 
     .cs-gallery-caption-title {
@@ -140,6 +139,9 @@
       font-weight: 600;
       color: #18181b;
       line-height: 1.3;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      text-decoration: underline;
+      text-decoration-style: solid;
     }
 
     .cs-gallery-caption-meta {
@@ -150,20 +152,14 @@
     }
 
     @media (max-width: 768px) {
-      .cs-gallery {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .cs-gallery-item--tall { grid-row: span 1; }
-      .cs-gallery-item--tall .cs-gallery-visual { min-height: 0; aspect-ratio: 4/3; }
-      .cs-gallery-item--wide { grid-column: span 2; }
-      .cs-hero-image { grid-template-columns: 1fr 1fr; }
-      .cs-hero-swatch:first-child { grid-column: span 2; }
+      /* cs-ad-collage inherits aspect-ratio: 16/9 */
+      .cs-ad-gallery { padding: 64px 24px; gap: 16px; }
+
     }
 
     @media (max-width: 480px) {
-      .cs-gallery { grid-template-columns: 1fr; }
-      .cs-gallery-item--wide { grid-column: span 1; }
+      .cs-ad-gallery { grid-template-columns: 1fr; }
+      /* cs-ad-collage inherits aspect-ratio: 16/9 */
     }
   </style>
 </head>
@@ -200,24 +196,16 @@
     <a href="index.html#work" class="cs-back">← All work</a>
     <div class="cs-hero-text fade-up">
       <h1 class="cs-title">Art Direction</h1>
-      <p class="cs-subtitle">A selection of editorial, social media, and visual identity work — from magazine covers and print campaigns to motion graphics and data-driven infographics. Spanning journalism, culture, and advocacy.</p>
+      <p class="cs-subtitle">I build visual systems across concept, design, and storytelling—focusing on clarity, atmosphere, and strong visual narratives with intention.</p>
     </div>
-    <div class="cs-hero-image fade-up" data-delay="1">
-      <div class="cs-hero-swatch" style="background:#c8b89a;">
-        <div class="cs-hero-swatch-inner"><span class="cs-hero-swatch-label">Editorial</span></div>
-      </div>
-      <div class="cs-hero-swatch" style="background:#4a3728;">
-        <div class="cs-hero-swatch-inner"><span class="cs-hero-swatch-label">Print</span></div>
-      </div>
-      <div class="cs-hero-swatch" style="background:#e87a65;">
-        <div class="cs-hero-swatch-inner"><span class="cs-hero-swatch-label">Digital</span></div>
-      </div>
-      <div class="cs-hero-swatch" style="background:#2e5f56;">
-        <div class="cs-hero-swatch-inner"><span class="cs-hero-swatch-label">Social</span></div>
-      </div>
-      <div class="cs-hero-swatch" style="background:#e0d6c2;">
-        <div class="cs-hero-swatch-inner"><span class="cs-hero-swatch-label">Identity</span></div>
-      </div>
+
+    <!-- Collage hero image -->
+    <div class="cs-ad-collage fade-up" data-delay="1">
+      <img class="cs-ad-img--tr" src="Assets/AD_hero-1.png" alt="" />
+      <img class="cs-ad-img--tl" src="Assets/AD_drogen-berlin.png" alt="" />
+      <img class="cs-ad-img--bc" src="Assets/AD_hero-2.png" alt="" />
+      <img class="cs-ad-img--bl" src="Assets/AD_trump-grafiken.png" alt="" />
+      <img class="cs-ad-img--cr" src="Assets/AD_hero-3.png" alt="" />
     </div>
   </section>
 
@@ -229,7 +217,7 @@
     </div>
     <div class="cs-meta-item fade-up" data-delay="2">
       <span class="cs-meta-label">Timeline</span>
-      <span class="cs-meta-value">2022 – 2025</span>
+      <span class="cs-meta-value">2020 – ongoing</span>
     </div>
     <div class="cs-meta-item fade-up" data-delay="3">
       <span class="cs-meta-label">Role</span>
@@ -237,34 +225,28 @@
     </div>
     <div class="cs-meta-item fade-up" data-delay="4">
       <span class="cs-meta-label">Output</span>
-      <span class="cs-meta-value">Print & Digital</span>
+      <span class="cs-meta-value">Digital &amp; Print</span>
     </div>
   </div>
 
-  <!-- Challenge & Solution -->
+  <!-- The Approach / The Work -->
   <section class="cs-content">
     <div class="cs-col fade-up" data-delay="1">
       <h2 class="cs-section-label">The Approach</h2>
       <div class="cs-body-text">
-        <p>Art direction for journalism is a discipline of restraint. The visual language must serve the story — never compete with it. Across editorial, social, and print formats, the challenge is always the same: how does the eye enter the page, and where does it go next?</p>
-        <p>Key considerations across this work:</p>
-        <ul>
-          <li>Typography as a structural element, not just a carrier of text</li>
-          <li>Colour used for hierarchy and emotion, not decoration</li>
-          <li>Data visualisations that read as editorial content, not charts</li>
-          <li>Consistent visual identity across wildly different formats and contexts</li>
-        </ul>
+        <p>As an Art Director, I'm interested in how ideas take visual form—and how that form shapes understanding. I like working at the intersection of concept, design, and storytelling, building visual systems that feel intentional rather than decorative.</p>
+        <p>My approach is hands-on and iterative: exploring, refining, and questioning until the visuals not only look right but mean something. I care about clarity, but also about tone, rhythm, and atmosphere—because how something feels is just as important as how it works.</p>
       </div>
     </div>
     <div class="cs-col fade-up" data-delay="2">
       <h2 class="cs-section-label">The Work</h2>
       <div class="cs-body-text">
-        <p>This collection spans three years of editorial and visual work — magazine features, social media campaigns, award-winning infographic series, and print campaigns for cultural and political subjects.</p>
+        <p>This collection spans three years of editorial and visual work — online features, social media campaigns, award-winning infographic series, and concepts for cultural and political subjects.</p>
         <p>Recurring formats include:</p>
         <ul>
-          <li>Long-form magazine layouts with integrated data graphics</li>
+          <li>Long-form online magazine layouts with integrated data graphics</li>
           <li>Social media design systems for ongoing editorial series</li>
-          <li>Print infographics combining typography, illustration, and data</li>
+          <li>Infographics combining typography, illustration, and data</li>
           <li>Motion graphics for short-form digital distribution</li>
         </ul>
         <p>Each project is driven by a single question: what is the most direct visual path to understanding?</p>
@@ -273,83 +255,47 @@
   </section>
 
   <!-- Gallery -->
-  <section class="cs-gallery">
+  <section class="cs-ad-gallery">
 
-    <div class="cs-gallery-item cs-gallery-item--tall fade-up" data-delay="1">
-      <div class="cs-gallery-visual" style="background: #1a1a2e;">
-        <div class="cs-gallery-fill">
-          <span class="cs-gallery-fill-label">Editorial</span>
-        </div>
-        <img src="" alt="Editorial spread" onerror="this.style.display='none'" />
-      </div>
-      <div class="cs-gallery-caption">
-        <span class="cs-gallery-caption-title">Magazine Feature</span>
-        <span class="cs-gallery-caption-meta">Print · 2024</span>
-      </div>
-    </div>
-
-    <div class="cs-gallery-item fade-up" data-delay="2">
+    <!-- Row 1 -->
+    <a class="cs-gallery-item fade-up" data-delay="1" href="https://interaktiv.tagesspiegel.de/lab/3-jahre-trump-in-15-grafiken/" target="_blank" rel="noopener">
       <div class="cs-gallery-visual" style="background: #e87a65;">
-        <div class="cs-gallery-fill">
-          <span class="cs-gallery-fill-label">Social Media</span>
-        </div>
-        <img src="" alt="Social media campaign" onerror="this.style.display='none'" />
+        <img src="Assets/AD_trump-grafiken.png" alt="Trump 3 Jahre in 15 Grafiken" />
       </div>
       <div class="cs-gallery-caption">
-        <span class="cs-gallery-caption-title">Social Campaign</span>
-        <span class="cs-gallery-caption-meta">Digital · 2024</span>
+        <span class="cs-gallery-caption-title">Trump 3 Jahre in 15 Grafiken</span>
+        <span class="cs-gallery-caption-meta">Tagesspiegel · 2020</span>
       </div>
-    </div>
+    </a>
 
-    <div class="cs-gallery-item fade-up" data-delay="3">
-      <div class="cs-gallery-visual" style="background: #2e5f56;">
-        <div class="cs-gallery-fill">
-          <span class="cs-gallery-fill-label">Data Maps</span>
-        </div>
-        <img src="" alt="Data map" onerror="this.style.display='none'" />
+    <a class="cs-gallery-item fade-up" data-delay="2" href="https://interaktiv.tagesspiegel.de/lab/europa-auf-koks-und-keta-bei-drogen-im-abwasser-ist-berlin-top-drogen-analyse-europa-deutschland/" target="_blank" rel="noopener">
+      <div class="cs-gallery-visual" style="background: #4a3728;">
+        <img src="Assets/AD_drogen-berlin.png" alt="Bei Drogen im Abwasser ist Berlin top" />
       </div>
       <div class="cs-gallery-caption">
-        <span class="cs-gallery-caption-title">Data Maps</span>
-        <span class="cs-gallery-caption-meta">Print & Digital · 2023</span>
+        <span class="cs-gallery-caption-title">Bei Drogen im Abwasser ist Berlin top</span>
+        <span class="cs-gallery-caption-meta">Tagesspiegel · 2026</span>
       </div>
-    </div>
+    </a>
 
-    <div class="cs-gallery-item cs-gallery-item--wide fade-up" data-delay="1">
-      <div class="cs-gallery-visual" style="background: #c8b89a;">
-        <div class="cs-gallery-fill">
-          <span class="cs-gallery-fill-label">Infographic Series</span>
-        </div>
-        <img src="" alt="Infographic spread" onerror="this.style.display='none'" />
+    <!-- Row 2 (taller visuals) -->
+    <a class="cs-gallery-item fade-up" data-delay="1" href="https://interaktiv.tagesspiegel.de/lab/laengste-beheizte-pipeline-der-welt-oelbrunnen-im-nationalpark/" target="_blank" rel="noopener">
+      <div class="cs-gallery-visual" style="background: #4a3728;">
+        <img src="Assets/AD_oelbrunnen.png" alt="Ölbrunnen im Nationalpark" />
       </div>
       <div class="cs-gallery-caption">
-        <span class="cs-gallery-caption-title">Award-Winning Infographics</span>
-        <span class="cs-gallery-caption-meta">Print · 2023 – 2025</span>
+        <span class="cs-gallery-caption-title">Ölbrunnen im Nationalpark</span>
+        <span class="cs-gallery-caption-meta">Tagesspiegel · 2022</span>
       </div>
-    </div>
+    </a>
 
     <div class="cs-gallery-item fade-up" data-delay="2">
       <div class="cs-gallery-visual" style="background: #4a3728;">
-        <div class="cs-gallery-fill">
-          <span class="cs-gallery-fill-label">Identity</span>
-        </div>
-        <img src="" alt="Visual identity" onerror="this.style.display='none'" />
+        <img src="Assets/AD_cities-for-rent.png" alt="Cities for Rent" />
       </div>
       <div class="cs-gallery-caption">
-        <span class="cs-gallery-caption-title">Visual Identity</span>
-        <span class="cs-gallery-caption-meta">Branding · 2022</span>
-      </div>
-    </div>
-
-    <div class="cs-gallery-item fade-up" data-delay="3">
-      <div class="cs-gallery-visual" style="background: #1e2235;">
-        <div class="cs-gallery-fill">
-          <span class="cs-gallery-fill-label">Network Viz</span>
-        </div>
-        <img src="" alt="Network visualisation" onerror="this.style.display='none'" />
-      </div>
-      <div class="cs-gallery-caption">
-        <span class="cs-gallery-caption-title">Network Visualisation</span>
-        <span class="cs-gallery-caption-meta">Digital · 2025</span>
+        <span class="cs-gallery-caption-title">Cities for Rent</span>
+        <span class="cs-gallery-caption-meta">Urban Journalism Network · 2022</span>
       </div>
     </div>
 
@@ -358,7 +304,10 @@
   <!-- CTA -->
   <section class="cs-cta">
     <h2 class="cs-cta-heading fade-up">Like what you see?</h2>
-    <a href="index.html" class="cs-cta-btn">Back to Home</a>
+    <div class="cs-cta-btns fade-up" data-delay="1">
+      <a href="index.html" class="cs-cta-btn cs-cta-btn--primary">Back Home</a>
+      <a href="index.html#contact" class="cs-cta-btn cs-cta-btn--outline">Get in Touch</a>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -418,26 +367,21 @@
       document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // ── Video hero (activate by adding data-video="file.mp4" to .cs-hero-image) ──
+    // ── Video hero ─────────────────────────────────────────────
     function initVideoHero() {
       document.querySelectorAll('.cs-hero-video-wrap[data-video]').forEach(wrap => {
         const src = wrap.dataset.video;
         const existingImg = wrap.querySelector('img');
         const video = document.createElement('video');
-        video.src = src;
-        video.loop = true;
-        video.muted = true;
-        video.playsinline = true;
-        video.autoplay = true;
+        video.src = src; video.loop = true; video.muted = true;
+        video.playsinline = true; video.autoplay = true;
         video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
         if (existingImg) existingImg.replaceWith(video);
         else wrap.prepend(video);
-
         const btn = wrap.querySelector('.cs-video-btn');
         const fill = wrap.querySelector('.cs-video-progress-fill');
         const track = wrap.querySelector('.cs-video-progress-track');
         const timeEl = wrap.querySelector('.cs-video-time');
-
         if (btn) {
           btn.addEventListener('click', () => {
             video.paused ? video.play() : video.pause();
@@ -446,7 +390,6 @@
               : '<svg viewBox="0 0 20 20" fill="currentColor"><rect x="4" y="3" width="4" height="14"/><rect x="12" y="3" width="4" height="14"/></svg>';
           });
         }
-
         if (fill) {
           video.addEventListener('timeupdate', () => {
             if (!video.duration) return;
@@ -458,7 +401,6 @@
             }
           });
         }
-
         if (track) {
           track.addEventListener('click', e => {
             const rect = track.getBoundingClientRect();
