@@ -371,14 +371,18 @@ body {
 }
 
 .cs-viz--embed {
-  /* Let the iframe's own height drive the box size */
   position: static;
   height: auto;
   min-height: 0;
+  max-height: 700px;
   overflow: hidden;
   padding: 32px;
   background: #ffffff;
   box-shadow: none;
+}
+
+.cs-viz--wide.cs-viz--embed {
+  max-height: 600px;
 }
 
 .cs-viz--embed iframe {

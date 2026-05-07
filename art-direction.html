@@ -86,7 +86,7 @@
     /* ── Gallery ── */
     .cs-ad-gallery {
       background: #f5f0ea;
-      padding: 128px 72px;
+      padding: 128px max(72px, calc((100% - 1440px) / 2));
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
@@ -95,7 +95,7 @@
     .cs-gallery-item {
       border-radius: 16px;
       overflow: hidden;
-      background: #e8e3dc;
+      background: #ffffff;
       display: flex;
       flex-direction: column;
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
@@ -153,7 +153,7 @@
 
     @media (max-width: 768px) {
       /* cs-ad-collage inherits aspect-ratio: 16/9 */
-      .cs-ad-gallery { padding: 64px 24px; gap: 16px; }
+      .cs-ad-gallery { padding: 64px 24px; gap: 16px; grid-template-columns: 1fr 1fr; }
 
     }
 
@@ -289,7 +289,7 @@
       </div>
     </a>
 
-    <div class="cs-gallery-item fade-up" data-delay="2">
+    <a class="cs-gallery-item fade-up" data-delay="2" href="https://urbanjournalism.org/cities-for-rent/" target="_blank" rel="noopener">
       <div class="cs-gallery-visual" style="background: #4a3728;">
         <img src="Assets/AD_cities-for-rent.png" alt="Cities for Rent" />
       </div>
@@ -297,7 +297,7 @@
         <span class="cs-gallery-caption-title">Cities for Rent</span>
         <span class="cs-gallery-caption-meta">Urban Journalism Network · 2022</span>
       </div>
-    </div>
+    </a>
 
   </section>
 
