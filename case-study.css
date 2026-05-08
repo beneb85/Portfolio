@@ -374,15 +374,10 @@ body {
   position: static;
   height: auto;
   min-height: 0;
-  max-height: 700px;
   overflow: hidden;
-  padding: 32px;
+  padding: 0;
   background: #ffffff;
   box-shadow: none;
-}
-
-.cs-viz--wide.cs-viz--embed {
-  max-height: 600px;
 }
 
 .cs-viz--embed iframe {
@@ -554,7 +549,7 @@ body {
 
 .cs-cta-btns {
   display: flex;
-  gap: 48px;
+  gap: 20px;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
@@ -793,7 +788,8 @@ body {
   }
 
   .cs-hero-image {
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
   }
 
   .cs-meta {
@@ -820,6 +816,10 @@ body {
     min-height: 260px;
   }
 
+  .cs-viz--embed iframe {
+    height: 420px;
+  }
+
   .cs-articles-row {
     flex-wrap: wrap;
     gap: 16px;
@@ -828,6 +828,26 @@ body {
   .cs-article-card {
     flex: 1 0 calc(50% - 8px);
     min-height: 140px;
+  }
+
+  .cs-cta {
+    padding: 80px 24px;
+  }
+
+  .cs-cta-heading {
+    white-space: normal;
+  }
+
+  .cs-cta-btns {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .cs-cta-btn {
+    width: 100%;
+    text-align: center;
+    padding: 18px 32px;
   }
 
   .cs-footer {

@@ -321,7 +321,8 @@
         video.src = src;
         video.loop = true;
         video.muted = true;
-        video.playsinline = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
         video.autoplay = true;
         video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
         if (existingImg) existingImg.replaceWith(video);

@@ -124,6 +124,17 @@ section {
   padding: 32px max(72px, calc((100% - 1440px) / 2));
   mix-blend-mode: difference;
   pointer-events: none;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.3s ease;
+}
+
+.nav.is-scrolled {
+  background: rgba(0, 40, 34, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mix-blend-mode: normal;
+  pointer-events: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .nav-logo {
@@ -187,7 +198,7 @@ section {
 .hero-headline {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: clamp(51px, 6.5vw, 90px);
+  font-size: clamp(32px, 8.5vw, 90px);
   line-height: 0.92;
   letter-spacing: -0.0224em;
   color: white;
@@ -247,7 +258,7 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
   padding: 14px 32px;
-  margin-top: 8px;
+  margin-top: 40px;
   transition: background 0.25s, border-color 0.25s, transform 0.25s;
 }
 
@@ -482,6 +493,7 @@ section {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
   font-size: 51px;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: #1c1c1c;
   margin-bottom: 64px;
@@ -582,6 +594,7 @@ section {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
   font-size: 51px;
+  line-height: 1.1;
   letter-spacing: -0.072em;
   color: #f6f7ed;
   margin-bottom: 40px;
@@ -927,7 +940,7 @@ section {
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: #004852;
+  background: #004038;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -1049,12 +1062,30 @@ section {
     padding-bottom: 80px;
   }
 
+  .awards-heading {
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+
   .award-item {
     flex-direction: column;
     height: auto;
-    padding: 24px 0;
-    gap: 12px;
+    padding: 20px 0;
+    gap: 8px;
     align-items: flex-start;
+  }
+
+  .award-name {
+    font-size: 20px;
+  }
+
+  .award-project {
+    font-size: 14px;
+  }
+
+  .award-category {
+    font-size: 11px;
   }
 
   .contact {
