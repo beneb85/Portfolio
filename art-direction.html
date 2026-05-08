@@ -358,6 +358,7 @@
       burger.setAttribute('aria-expanded', open);
       mobileMenu.classList.toggle('is-open', open);
       mobileMenu.setAttribute('aria-hidden', !open);
+      document.getElementById('csNav').classList.toggle('menu-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
 
