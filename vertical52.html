@@ -48,7 +48,7 @@
 
     /* Feature grid */
     .cs-features {
-      padding: var(--section-v) var(--pad-x);
+      padding: 0 var(--pad-x) var(--section-v);
       display: flex;
       flex-direction: column;
       gap: 120px;
@@ -308,9 +308,13 @@
     document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 
     const scrollBtn = document.getElementById('scrollTop');
+    const _darkStart = document.querySelector('.cs-cta');
     window.addEventListener('scroll', () => {
       const pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       scrollBtn.classList.toggle('visible', pct >= 0.85);
+      if (_darkStart) {
+        scrollBtn.classList.toggle('is-inverted', _darkStart.getBoundingClientRect().top < window.innerHeight);
+      }
     }, { passive: true });
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });

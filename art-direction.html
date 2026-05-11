@@ -86,7 +86,7 @@
     /* ── Gallery ── */
     .cs-ad-gallery {
       background: #f5f0ea;
-      padding: 128px max(72px, calc((100% - 1440px) / 2));
+      padding: 0 max(72px, calc((100% - 1440px) / 2)) 128px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 48px;
@@ -153,7 +153,7 @@
 
     @media (max-width: 768px) {
       .cs-ad-gallery {
-        padding: 64px 24px;
+        padding: 0 24px 64px;
         gap: 24px;
         grid-template-columns: 1fr;
       }
@@ -347,9 +347,13 @@
 
     // ── Scroll-to-top ──────────────────────────────────────────
     const scrollBtn = document.getElementById('scrollTop');
+    const _darkStart = document.querySelector('.cs-cta');
     window.addEventListener('scroll', () => {
       const pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
       scrollBtn.classList.toggle('visible', pct >= 0.85);
+      if (_darkStart) {
+        scrollBtn.classList.toggle('is-inverted', _darkStart.getBoundingClientRect().top < window.innerHeight);
+      }
     }, { passive: true });
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });

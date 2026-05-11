@@ -238,7 +238,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 21px;
-  line-height: 1.6;
+  line-height: 1.35;
   color: rgba(255, 255, 255, 0.9);
   max-width: 520px;
 }
@@ -249,7 +249,9 @@ section {
 }
 
 .hero-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'Geist Mono', monospace;
   font-weight: 500;
   font-size: 16px;
@@ -266,6 +268,15 @@ section {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.65);
   transform: translateY(-2px);
+}
+
+.hero-btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-btn:hover .hero-btn-arrow {
+  transform: translateX(4px);
 }
 
 .hero-graphic {
@@ -361,7 +372,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: #1c1c1c;
   margin-bottom: 16px;
 }
@@ -475,7 +486,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: rgba(0, 0, 0, 0.8);
 }
 
@@ -569,14 +580,14 @@ section {
   letter-spacing: -0.02em;
   color: #1c1c1c;
   margin-bottom: 12px;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
 .card-desc {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.65;
+  line-height: 1.55;
   color: rgba(28, 28, 28, 0.7);
 }
 
@@ -1102,5 +1113,12 @@ section {
   .scroll-top {
     bottom: 24px;
     right: 24px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
   }
 }
