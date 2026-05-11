@@ -386,7 +386,8 @@
     // ── Scroll-to-top button ───────────────────────────────────────
     const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
-      scrollBtn.classList.toggle('visible', window.scrollY > 600);
+      const pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      scrollBtn.classList.toggle('visible', pct >= 0.85);
     }, { passive: true });
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });

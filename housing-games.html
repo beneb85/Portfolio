@@ -116,6 +116,11 @@
     </div>
   </section>
 
+  <!-- The Outcome -->
+  <div class="cs-outcome fade-up">
+    <h2 class="cs-section-label">The Outcome</h2>
+  </div>
+
   <!-- Showcase / Interactive infographics -->
   <section class="cs-showcase">
 
@@ -245,8 +250,8 @@
   <section class="cs-cta">
     <h2 class="cs-cta-heading fade-up">Like what you see?</h2>
     <div class="cs-cta-btns fade-up" data-delay="1">
-      <a href="index.html" class="cs-cta-btn cs-cta-btn--primary">Back Home</a>
-      <a href="index.html#contact" class="cs-cta-btn cs-cta-btn--outline">Get in Touch</a>
+      <a href="index.html#contact" class="cs-cta-btn cs-cta-btn--primary">Get in Touch</a>
+      <a href="index.html" class="cs-cta-btn cs-cta-btn--outline">Back Home</a>
     </div>
   </section>
 
@@ -281,7 +286,8 @@
     // ── Scroll-to-top ───────────────────────────────────────────────
     const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
-      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+      const pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      scrollBtn.classList.toggle('visible', pct >= 0.85);
     }, { passive: true });
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -324,8 +330,10 @@
         video.muted = true;
         video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
+        video.setAttribute('preload', 'auto');
         video.autoplay = true;
-        video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        if (existingImg && existingImg.src) video.poster = existingImg.src;
+        video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;';
         if (existingImg) existingImg.replaceWith(video);
         else wrap.prepend(video);
         const btn = wrap.querySelector('.cs-video-btn');

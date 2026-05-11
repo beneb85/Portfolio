@@ -198,7 +198,7 @@ section {
 .hero-headline {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: clamp(32px, 8.5vw, 90px);
+  font-size: clamp(36px, 8.5vw, 90px);
   line-height: 0.92;
   letter-spacing: -0.0224em;
   color: white;
@@ -997,7 +997,12 @@ section {
 
 @media (max-width: 768px) {
   .nav {
-    padding: 24px 24px;
+    padding: 20px 24px;
+    mix-blend-mode: normal;
+    pointer-events: auto;
+    background: rgba(0, 64, 56, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .nav-burger {

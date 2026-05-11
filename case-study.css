@@ -361,6 +361,14 @@ body {
 }
 
 /* ========================================
+   Outcome label
+   ======================================== */
+.cs-outcome {
+  padding: var(--section-v) var(--pad-x) 0;
+  background: #f5f0ea;
+}
+
+/* ========================================
    Showcase / Infographic placeholders
    ======================================== */
 .cs-showcase {
@@ -833,6 +841,11 @@ body {
 
   .cs-viz--embed iframe {
     height: 420px;
+  }
+
+  .cs-articles {
+    padding: 20px 16px;
+    gap: 24px;
   }
 
   .cs-articles-row {
