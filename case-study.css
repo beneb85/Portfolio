@@ -364,7 +364,9 @@ body {
    Outcome label
    ======================================== */
 .cs-outcome {
-  padding: var(--section-v) var(--pad-x) 0;
+  padding: var(--section-v) 72px 0;
+  padding-left: max(24px, var(--pad-x));
+  padding-right: max(24px, var(--pad-x));
   background: #f5f0ea;
 }
 
@@ -841,6 +843,10 @@ body {
 
   .cs-viz--embed iframe {
     height: 420px;
+  }
+
+  .cs-outcome {
+    padding: 64px 24px 0;
   }
 
   .cs-articles {
