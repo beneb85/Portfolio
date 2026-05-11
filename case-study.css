@@ -687,6 +687,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 24px;
+  display: block; /* iOS Safari: needed for aspect-ratio to resolve height */
 }
 
 .cs-hero-video-wrap video,
