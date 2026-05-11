@@ -48,8 +48,13 @@
       <h1 class="cs-title">The Housing Games</h1>
       <p class="cs-subtitle">A cross-border data journalism project exploring housing affordability for essential workers in Europe through data, storytelling, and interactive experiences.</p>
     </div>
-    <div class="cs-hero-image cs-hero-video-wrap fade-up" data-delay="1" data-video="Assets/UJN_TheHousingGames-Hero-Video.mp4">
-      <img src="Assets/Card_Preview-HousingGames.png" alt="The Housing Games — project overview" onerror="this.style.display='none'"/>
+    <div class="cs-hero-image cs-hero-video-wrap fade-up" data-delay="1">
+      <video
+        src="Assets/UJN_TheHousingGames-Hero-Video.mp4"
+        poster="Assets/Card_Preview-HousingGames.png"
+        autoplay muted loop playsinline preload="auto"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      ></video>
       <div class="cs-hero-video-controls">
         <div class="cs-video-controls-inner">
           <button class="cs-video-btn" aria-label="Play/Pause">
@@ -319,25 +324,12 @@
       document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // ── Video hero (activate by adding data-video="file.mp4" to .cs-hero-image) ──
+    // ── Video hero — wire controls onto static <video> elements ──
     function initVideoHero() {
-      document.querySelectorAll('.cs-hero-video-wrap[data-video]').forEach(wrap => {
-        const src = wrap.dataset.video;
-        const existingImg = wrap.querySelector('img');
-        const video = document.createElement('video');
-        video.src = src;
-        video.loop = true;
-        video.muted = true;
-        video.setAttribute('muted', '');
-        video.setAttribute('playsinline', '');
-        video.setAttribute('autoplay', '');
-        video.setAttribute('preload', 'auto');
-        if (existingImg && existingImg.src) video.poster = existingImg.src;
-        // Don't use position:absolute — let CSS aspect-ratio parent define height on iOS
-        video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-        if (existingImg) existingImg.replaceWith(video);
-        else wrap.prepend(video);
-        // Explicit play() required for iOS Safari autoplay of JS-created videos
+      document.querySelectorAll('.cs-hero-video-wrap').forEach(wrap => {
+        const video = wrap.querySelector('video');
+        if (!video) return;
+        // Nudge play on browsers that need it (no-op on iOS if already autoplaying)
         video.play().catch(() => {});
         const btn = wrap.querySelector('.cs-video-btn');
         const fill = wrap.querySelector('.cs-video-progress-fill');
