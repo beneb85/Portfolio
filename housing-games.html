@@ -50,11 +50,12 @@
     </div>
     <div class="cs-hero-image cs-hero-video-wrap fade-up" data-delay="1">
       <video
-        src="Assets/UJN_TheHousingGames-Hero-Video.mp4"
         poster="Assets/Card_Preview-HousingGames.png"
-        autoplay muted loop playsinline preload="auto"
+        autoplay muted loop playsinline webkit-playsinline preload="auto"
         style="width:100%;height:100%;object-fit:cover;display:block;"
-      ></video>
+      >
+        <source src="Assets/UJN_TheHousingGames-Hero-Video.mp4" type="video/mp4">
+      </video>
       <div class="cs-hero-video-controls">
         <div class="cs-video-controls-inner">
           <button class="cs-video-btn" aria-label="Play/Pause">
@@ -324,13 +325,58 @@
       document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
     }, { passive: true });
 
+    // ── Video fallback: replace <video> with poster <img> ──
+    function showPosterFallback(video) {
+      const src = video.poster || video.querySelector('source')?.src;
+      if (!src) { video.style.display = 'none'; return; }
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      video.replaceWith(img);
+    }
+
     // ── Video hero — wire controls onto static <video> elements ──
     function initVideoHero() {
       document.querySelectorAll('.cs-hero-video-wrap').forEach(wrap => {
         const video = wrap.querySelector('video');
         if (!video) return;
-        // Nudge play on browsers that need it (no-op on iOS if already autoplaying)
-        video.play().catch(() => {});
+
+        // iOS codec check — if MP4/H.264 not supported, show poster as img
+        const canPlay = video.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+                     || video.canPlayType('video/mp4');
+        if (!canPlay) {
+          showPosterFallback(video);
+          return;
+        }
+
+        // Helper to attempt play and fall back on error
+        function tryPlay() { video.play().catch(() => {}); }
+
+        // 1. Immediate attempt
+        tryPlay();
+
+        // 2. iOS suppresses autoplay inside opacity:0 containers — play again
+        //    when the fade-up parent becomes visible
+        const fadeParent = video.closest('.fade-up');
+        if (fadeParent) {
+          const mo = new MutationObserver(() => {
+            if (fadeParent.classList.contains('is-visible')) {
+              tryPlay();
+              mo.disconnect();
+            }
+          });
+          mo.observe(fadeParent, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        // 3. Low Power Mode / strict autoplay policy — play on first user touch
+        document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+
+        // 4. If still stalled after 5s show poster as static image
+        const stallTimer = setTimeout(() => {
+          if (video.readyState < 2) showPosterFallback(video);
+        }, 5000);
+        video.addEventListener('canplay', () => clearTimeout(stallTimer), { once: true });
         const btn = wrap.querySelector('.cs-video-btn');
         const fill = wrap.querySelector('.cs-video-progress-fill');
         const track = wrap.querySelector('.cs-video-progress-track');
