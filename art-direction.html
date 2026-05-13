@@ -24,7 +24,7 @@
     .cs-ad-collage {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 21 / 9;
       background: #1e1e1e;
       border-radius: 24px;
       overflow: hidden;
@@ -157,11 +157,13 @@
         gap: 24px;
         grid-template-columns: 1fr;
       }
+      .cs-ad-collage {
+        aspect-ratio: 4 / 5;
+      }
     }
 
     @media (max-width: 480px) {
       .cs-ad-gallery { grid-template-columns: 1fr; }
-      /* cs-ad-collage inherits aspect-ratio: 16/9 */
     }
   </style>
 </head>
