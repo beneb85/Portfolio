@@ -114,9 +114,9 @@
     }
     .cs-feature-desc {
       font-family: 'Geist', sans-serif;
-      font-size: 16px;
+      font-size: 20px;
       color: #52525b;
-      line-height: 1.7;
+      line-height: 1.5;
       margin: 0;
     }
 
@@ -164,8 +164,14 @@
     </div>
     <div class="cs-hero-image fade-up" data-delay="1">
       <div class="cs-hero-macbook-wrap">
-        <img class="cs-hero-bg" src="Assets/V52_hero-macbook.png" alt="Vertical52 dashboard on MacBook" onerror="this.style.display='none'" />
-        <img class="cs-hero-fg" src="Assets/V52_hero-overlay.png" alt="" onerror="this.style.display='none'" />
+        <picture>
+          <source media="(max-width: 768px)" srcset="Assets/Macbook-stone-angle-1_mobile.png" />
+          <img class="cs-hero-bg" src="Assets/Macbook-stone-angle-1.png" alt="Vertical52 dashboard on MacBook" onerror="this.style.display='none'" />
+        </picture>
+        <picture>
+          <source media="(max-width: 768px)" srcset="Assets/V52_hero-overlay_mobile.png" />
+          <img class="cs-hero-fg" src="Assets/V52_hero-overlay.png" alt="" onerror="this.style.display='none'" />
+        </picture>
       </div>
     </div>
   </section>

@@ -371,8 +371,8 @@ section {
 .values-body {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 20px;
+  line-height: 1.5;
   color: #1c1c1c;
   margin-bottom: 16px;
 }
@@ -485,8 +485,8 @@ section {
 .service-desc {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 20px;
+  line-height: 1.5;
   color: rgba(0, 0, 0, 0.8);
 }
 
@@ -758,11 +758,11 @@ section {
 .contact-sub {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   color: white;
   opacity: 0.8;
   max-width: 480px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .contact-email {
