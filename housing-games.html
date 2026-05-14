@@ -48,11 +48,26 @@
       <h1 class="cs-title">The Housing Games</h1>
       <p class="cs-subtitle">A cross-border data journalism project exploring housing affordability for essential workers in Europe through data, storytelling, and interactive experiences.</p>
     </div>
-    <div class="cs-hero-image fade-up" data-delay="1">
-      <video autoplay muted loop playsinline>
+    <div class="cs-hero-image cs-hero-video-wrap fade-up" data-delay="1" id="heroVideoWrap">
+      <video id="heroVideo" autoplay muted loop playsinline>
         <source src="Assets/UJN_TheHousingGames-Hero-Video.mp4" type="video/mp4">
       </video>
+      <div class="cs-hero-video-controls">
+        <div class="cs-video-controls-inner">
+          <button class="cs-video-btn" id="videoPlayBtn" aria-label="Pause">
+            <!-- Pause icon (shown while playing) -->
+            <svg class="icon-pause" viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><rect x="4" y="3" width="4" height="14" rx="1"/><rect x="12" y="3" width="4" height="14" rx="1"/></svg>
+            <!-- Play icon (shown while paused) -->
+            <svg class="icon-play" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" style="display:none"><polygon points="5,3 17,10 5,17"/></svg>
+          </button>
+          <div class="cs-video-progress-track" id="videoProgressTrack">
+            <div class="cs-video-progress-fill" id="videoProgressFill"></div>
+          </div>
+          <span class="cs-video-time" id="videoTime">0:00</span>
+        </div>
+      </div>
     </div>
+    <p class="cs-hero-caption">Illustration: Markus Günther – UJN</p>
   </section>
 
   <!-- Meta bar -->
@@ -314,7 +329,54 @@
       document.getElementById('csNav').classList.toggle('is-scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // Hero video uses Apple's <img src="*.mp4"> pattern — no JS needed.
+    // ── Hero video controls ─────────────────────────────────────────
+    (function () {
+      const video   = document.getElementById('heroVideo');
+      const btn     = document.getElementById('videoPlayBtn');
+      const fill    = document.getElementById('videoProgressFill');
+      const track   = document.getElementById('videoProgressTrack');
+      const timeEl  = document.getElementById('videoTime');
+      const iconPause = btn.querySelector('.icon-pause');
+      const iconPlay  = btn.querySelector('.icon-play');
+
+      if (!video || !btn) return;
+
+      function fmtTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + String(sec).padStart(2, '0');
+      }
+
+      function syncBtn() {
+        const paused = video.paused;
+        iconPause.style.display = paused ? 'none' : '';
+        iconPlay.style.display  = paused ? ''     : 'none';
+        btn.setAttribute('aria-label', paused ? 'Play' : 'Pause');
+      }
+
+      btn.addEventListener('click', () => {
+        video.paused ? video.play() : video.pause();
+      });
+
+      video.addEventListener('play',  syncBtn);
+      video.addEventListener('pause', syncBtn);
+
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const pct = (video.currentTime / video.duration) * 100;
+        fill.style.width = pct + '%';
+        timeEl.textContent = fmtTime(video.currentTime);
+      });
+
+      track.addEventListener('click', (e) => {
+        if (!video.duration) return;
+        const rect = track.getBoundingClientRect();
+        const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        video.currentTime = pct * video.duration;
+      });
+
+      syncBtn();
+    })();
   </script>
 
 </body>

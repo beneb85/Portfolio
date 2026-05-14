@@ -7,8 +7,8 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -25,7 +25,8 @@ body {
 :root {
   --pad-x: max(72px, calc((100% - 1440px) / 2));
   --pad-x-wide: max(96px, calc((100% - 1440px) / 2 + 24px));
-  --section-v: 128px;
+  --section-v: 120px;
+  --inner-v: 72px;
   --radius-card: 20px;
   --shadow-card: 0 40px 80px rgba(0, 0, 0, 0.2);
   --color-dark: #1c1c1c;
@@ -273,6 +274,15 @@ body {
   display: block;
 }
 
+.cs-hero-caption {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.35);
+  text-align: right;
+  margin: 10px 0 0;
+}
+
 /* ========================================
    Meta bar
    ======================================== */
@@ -316,7 +326,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 74px;
-  padding: var(--section-v) var(--pad-x-wide);
+  padding: var(--section-v) var(--pad-x-wide) var(--inner-v);
   background: #f5f0ea;
   scroll-margin-top: 80px;
 }
@@ -365,9 +375,7 @@ body {
    Outcome label
    ======================================== */
 .cs-outcome {
-  padding: var(--section-v) 72px 48px;
-  padding-left: max(24px, var(--pad-x));
-  padding-right: max(24px, var(--pad-x));
+  padding: var(--inner-v) max(24px, var(--pad-x)) 56px;
   background: #f5f0ea;
 }
 
@@ -379,7 +387,7 @@ body {
   padding: 0 var(--pad-x) var(--section-v);
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 40px;
 }
 
 /* Shared viz box */
@@ -798,10 +806,13 @@ body {
 }
 
 @media (max-width: 768px) {
+  html { font-size: 18px; }
+
   :root {
     --pad-x: 24px;
     --pad-x-wide: 24px;
     --section-v: 80px;
+    --inner-v: 48px;
   }
 
   .cs-nav {
@@ -837,7 +848,7 @@ body {
 
   .cs-content {
     grid-template-columns: 1fr;
-    padding: 80px 24px;
+    padding: var(--section-v) 24px var(--inner-v);
   }
 
   .cs-viz--wide {
@@ -858,7 +869,7 @@ body {
   }
 
   .cs-outcome {
-    padding: 64px 24px 48px;
+    padding: var(--inner-v) 24px 40px;
   }
 
   .cs-articles {

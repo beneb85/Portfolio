@@ -377,10 +377,45 @@
       link.addEventListener('click', () => toggleMenu(false));
     });
 
-    // ── Sticky nav background on scroll ──────────────────────────
+    // ── Nav: adaptive frosted-glass per section ───────────────────
     const mainNav = document.getElementById('mainNav');
+    const navSections = [
+      { id: 'approach', key: 'hero'    },
+      { id: 'values',   key: 'values'  },
+      { id: 'work',     key: 'works'   },
+      { id: 'awards',   key: 'awards'  },
+      { id: 'contact',  key: 'contact' },
+    ];
+
+    // rootMargin: the nav sits ~70px tall, so we trigger when a section
+    // enters the top 70px of the viewport
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const match = navSections.find(s => s.id === entry.target.id);
+          if (match) {
+            if (match.key === 'hero' && window.scrollY < 80) {
+              // At the very top: revert to blend-mode transparent state
+              mainNav.removeAttribute('data-section');
+            } else {
+              mainNav.setAttribute('data-section', match.key);
+            }
+          }
+        }
+      });
+    }, {
+      rootMargin: '-70px 0px -85% 0px',
+      threshold: 0
+    });
+
+    navSections.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+
+    // Remove data-section when back at very top (hero blend-mode state)
     window.addEventListener('scroll', () => {
-      mainNav.classList.toggle('is-scrolled', window.scrollY > 80);
+      if (window.scrollY < 80) mainNav.removeAttribute('data-section');
     }, { passive: true });
 
     // ── Scroll-to-top button ───────────────────────────────────────
