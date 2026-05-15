@@ -11,8 +11,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Bene Brandhofer — Portfolio 2025" />
   <meta name="twitter:description" content="Bene Brandhofer — Product & UX/UI Designer focused on interactive data visualization, journalism, editorial design, and digital products. Based in Leipzig." />
-  <meta property="og:image" content="Assets/Card_Preview-DataViz.png" />
-  <meta name="twitter:image" content="Assets/Card_Preview-DataViz.png" />
+  <meta property="og:image" content="Assets/Card_Preview-DataViz.webp" />
+  <meta name="twitter:image" content="Assets/Card_Preview-DataViz.webp" />
   <!-- favicon: add favicon.ico / favicon.svg to repo root when ready -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -189,7 +189,7 @@
 
       <a href="housing-games.html" class="card card--dark fade-up" data-delay="1" style="text-decoration:none;display:block;">
         <div class="card-image card-image--housing" style="background:#1a2535;">
-          <img src="Assets/Card_Preview-HousingGames.png" alt="The Housing Games" style="width:100%;height:100%;object-fit:fill"/>
+          <img src="Assets/Card_Preview-HousingGames.webp" alt="The Housing Games" style="width:100%;height:100%;object-fit:fill"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Interactive Journalism · 2025 Voices Award</span>
@@ -200,7 +200,7 @@
 
       <a href="vertical52.html" class="card card--light fade-up" data-delay="2" style="text-decoration:none;display:block;">
         <div class="card-image card-image--vertical52" style="background:#d4cfc7;">
-          <img src="Assets/Card_Preview-Vertical52.png" alt="Vertical52" style="width:100%;height:100%;object-fit:cover"/>
+          <img src="Assets/Card_Preview-Vertical52.webp" alt="Vertical52" style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Product Design · SaaS</span>
@@ -211,7 +211,7 @@
 
       <a href="data-viz.html" class="card card--dark fade-up" data-delay="1">
         <div class="card-image card-image--dataviz" style="background:#1e2235;">
-          <img src="Assets/Card_Preview-DataViz.png" alt="Data Viz Graphics" style="width:100%;height:100%;object-fit:cover"/>
+          <img src="Assets/Card_Preview-DataViz.webp" alt="Data Viz Graphics" style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Editorial · Data Journalism</span>
@@ -222,7 +222,7 @@
 
       <a href="art-direction.html" class="card card--dark fade-up" data-delay="2">
         <div class="card-image card-image--artdir" style="background:#2e2418;">
-          <img src="Assets/Card_Preview-ArtDirection.png" alt="Art Direction" style="width:100%;height:100%;object-fit:cover"/>
+          <img src="Assets/Card_Preview-ArtDirection.webp" alt="Art Direction" style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Art Direction · Editorial</span>
@@ -366,6 +366,7 @@
       burger.setAttribute('aria-expanded', open);
       mobileMenu.classList.toggle('is-open', open);
       mobileMenu.setAttribute('aria-hidden', !open);
+      mainNav.classList.toggle('menu-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
 
