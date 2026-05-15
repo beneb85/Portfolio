@@ -731,7 +731,8 @@ body {
   pointer-events: none;
 }
 
-.cs-hero-video-wrap:hover .cs-hero-video-controls {
+.cs-hero-video-wrap:hover .cs-hero-video-controls,
+.cs-hero-video-wrap.controls-visible .cs-hero-video-controls {
   opacity: 1;
   pointer-events: auto;
 }
