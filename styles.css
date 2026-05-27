@@ -886,7 +886,9 @@ section {
   background: #1c1c1c;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-top: 100px;
+  padding-bottom: 48px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
@@ -902,7 +904,9 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0;
+  flex: 1;
 }
 
 .mobile-nav-links li {
@@ -940,21 +944,20 @@ section {
 
 /* Social icons row at bottom of mobile menu */
 .mobile-socials {
-  position: absolute;
-  bottom: 48px;
-  left: 50%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 16px;
+  flex-shrink: 0;
   opacity: 0;
-  transform: translateX(-50%) translateY(12px);
+  transform: translateY(12px);
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0s;
 }
 
 .mobile-menu.is-open .mobile-socials {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
   transition-delay: 0.3s;
 }
 
