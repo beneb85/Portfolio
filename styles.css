@@ -938,6 +938,25 @@ section {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Social icons row at bottom of mobile menu */
+.mobile-socials {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateX(-50%) translateY(12px);
+}
+
+.mobile-menu.is-open .mobile-socials {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0.3s;
+}
+
 @media (max-width: 768px) {
   html { font-size: 18px; }
 
