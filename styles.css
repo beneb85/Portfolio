@@ -1005,6 +1005,11 @@ section {
     font-size: clamp(32px, 9vw, 48px);
   }
 
+  .hero-btn {
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+
   .values {
     padding-top: 80px;
     padding-bottom: 80px;
