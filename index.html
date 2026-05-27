@@ -21,6 +21,11 @@
 </head>
 <body>
 
+  <!-- Page intro overlay -->
+  <div id="pageIntro" class="page-intro">
+    <span class="page-intro-name">Bene Brandhofer</span>
+  </div>
+
   <!-- Navigation -->
   <nav class="nav" id="mainNav">
     <a href="index.html" class="nav-logo">Bene Brandhofer</a>
@@ -51,61 +56,17 @@
   <section class="hero" id="approach">
     <div class="hero-inner">
       <div class="hero-text">
-        <h1 class="hero-headline">
+        <h1 class="hero-headline hero-animate" data-delay="0">
           <span>Designing</span>
           <span class="tw-line"><em class="mono">[<span id="tw-word">data</span><span class="tw-cursor">|</span>]</em></span>
           <span>for humans.</span>
         </h1>
-        <p class="hero-sub">
-          I'm a multidisciplinary designer specializing in complex systems,
-          data visualization, and intuitive interfaces — making the complicated
+        <p class="hero-sub hero-animate" data-delay="1">
+          I'm a multidisciplinary designer specializing in <span class="flip-wrap"><span class="flip-text" id="flipText">data visualisations</span></span>,
+          and intuitive interfaces — making the complicated
           feel accessible.
         </p>
-        <a href="#work" class="hero-btn">See selected work <span class="hero-btn-arrow">→</span></a>
-      </div>
-      <div class="hero-graphic">
-        <svg class="hero-svg" width="576" height="576" viewBox="0 0 576 576" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Concentric rings -->
-          <circle class="ring ring-1" cx="288" cy="288" r="240" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-          <circle class="ring ring-2" cx="288" cy="288" r="180" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-          <circle class="ring ring-3" cx="288" cy="288" r="120" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-          <circle class="ring ring-4" cx="288" cy="288" r="60" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-          <!-- Outer nodes -->
-          <circle class="node-outer" cx="288" cy="48" r="6" fill="rgba(255,255,255,0.5)" style="--d:0s"/>
-          <circle class="node-outer" cx="480" cy="168" r="6" fill="rgba(255,255,255,0.5)" style="--d:0.4s"/>
-          <circle class="node-outer" cx="480" cy="408" r="6" fill="rgba(255,255,255,0.5)" style="--d:0.8s"/>
-          <circle class="node-outer" cx="288" cy="528" r="6" fill="rgba(255,255,255,0.5)" style="--d:1.2s"/>
-          <circle class="node-outer" cx="96" cy="408" r="6" fill="rgba(255,255,255,0.5)" style="--d:1.6s"/>
-          <circle class="node-outer" cx="96" cy="168" r="6" fill="rgba(255,255,255,0.5)" style="--d:2s"/>
-          <!-- Inner nodes -->
-          <circle class="node-inner" cx="288" cy="168" r="8" fill="rgba(255,255,255,0.7)" style="--d:0.2s"/>
-          <circle class="node-inner" cx="388" cy="228" r="5" fill="rgba(255,255,255,0.4)" style="--d:0.6s"/>
-          <circle class="node-inner" cx="388" cy="348" r="5" fill="rgba(255,255,255,0.4)" style="--d:1.0s"/>
-          <circle class="node-inner" cx="288" cy="408" r="8" fill="rgba(255,255,255,0.7)" style="--d:1.4s"/>
-          <circle class="node-inner" cx="188" cy="348" r="5" fill="rgba(255,255,255,0.4)" style="--d:1.8s"/>
-          <circle class="node-inner" cx="188" cy="228" r="5" fill="rgba(255,255,255,0.4)" style="--d:0.3s"/>
-          <!-- Center -->
-          <circle class="center-ring" cx="288" cy="288" r="14" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <circle class="center-dot" cx="288" cy="288" r="5" fill="white"/>
-          <!-- Outer lines -->
-          <line x1="288" y1="48" x2="480" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="480" y1="168" x2="480" y2="408" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="480" y1="408" x2="288" y2="528" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="288" y1="528" x2="96" y2="408" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="96" y1="408" x2="96" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="96" y1="168" x2="288" y2="48" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <!-- Inner lines -->
-          <line x1="288" y1="168" x2="388" y2="228" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-          <line x1="388" y1="228" x2="388" y2="348" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-          <line x1="388" y1="348" x2="288" y2="408" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-          <line x1="288" y1="408" x2="188" y2="348" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-          <line x1="188" y1="348" x2="188" y2="228" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-          <line x1="188" y1="228" x2="288" y2="168" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-          <!-- Center spokes -->
-          <line class="spoke" x1="288" y1="288" x2="288" y2="168" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-          <line class="spoke" x1="288" y1="288" x2="388" y2="348" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-          <line class="spoke" x1="288" y1="288" x2="188" y2="348" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-        </svg>
+        <a href="#work" class="hero-btn hero-animate" data-delay="2">See selected work <span class="hero-btn-arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -125,28 +86,6 @@
         <p class="values-body">
           When I'm not pushing pixels, you'll find me <a href="https://benediktbrandhofer.de/" target="_blank" rel="noopener" class="values-link">making ceramics</a>.
         </p>
-      </div>
-      <div class="values-graphic">
-        <svg class="cube-svg" width="383" height="320" viewBox="30 10 323 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Base cube shape -->
-          <polygon points="191,20 340,105 340,210 191,295 42,210 42,105" fill="none" stroke="#1c1c1c" stroke-width="2"/>
-          <!-- Top face -->
-          <polygon points="191,20 340,105 191,190 42,105" fill="rgba(28,28,28,0.08)"/>
-          <!-- Right face -->
-          <polygon points="340,105 340,210 191,295 191,190" fill="rgba(28,28,28,0.14)"/>
-          <!-- Left face -->
-          <polygon points="42,105 191,190 191,295 42,210" fill="rgba(28,28,28,0.06)"/>
-          <!-- Animated dashed lines -->
-          <line class="cube-dash" x1="191" y1="20" x2="191" y2="190" stroke="#1c1c1c" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3"/>
-          <line class="cube-dash" x1="42" y1="105" x2="340" y2="105" stroke="#1c1c1c" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3" style="animation-delay: -1s"/>
-          <line x1="191" y1="190" x2="191" y2="295" stroke="#1c1c1c" stroke-width="1.5" opacity="0.5"/>
-          <!-- Corner dots -->
-          <circle cx="191" cy="20" r="5" fill="#1c1c1c" opacity="0.5"/>
-          <circle cx="42" cy="105" r="5" fill="#1c1c1c" opacity="0.5"/>
-          <circle cx="340" cy="105" r="5" fill="#1c1c1c" opacity="0.5"/>
-          <!-- Accent dot (animated) -->
-          <circle class="cube-accent" cx="191" cy="190" r="6" fill="#e87a65"/>
-        </svg>
       </div>
     </div>
 
@@ -244,7 +183,7 @@
           <a href="https://voicesfestival.eu/voices-awards/" target="_blank" rel="noopener" class="award-name">Voices Award</a>
         </div>
         <div class="award-right">
-          <a href="#" class="award-project">The Housing Games</a>
+          <a href="https://urbanjournalism.org/the-housing-games/" target="_blank" rel="noopener" class="award-project">The Housing Games</a>
           <span class="award-dot"></span>
           <span class="award-category">Storytelling</span>
         </div>
@@ -255,7 +194,7 @@
           <a href="https://www.europeanpressprize.com/" target="_blank" rel="noopener" class="award-name">European Press Prize</a>
         </div>
         <div class="award-right">
-          <a href="#" class="award-project">Cities4Rent</a>
+          <a href="https://urbanjournalism.org/cities-for-rent/" target="_blank" rel="noopener" class="award-project">Cities4Rent</a>
           <span class="award-dot"></span>
           <span class="award-category">Innovation Award</span>
         </div>
@@ -266,7 +205,7 @@
           <a href="https://www.djp.de/" target="_blank" rel="noopener" class="award-name">German Reporter Prize</a>
         </div>
         <div class="award-right">
-          <a href="#" class="award-project">Der BER im 3D-Modell</a>
+          <a href="https://interaktiv.tagesspiegel.de/lab/flughafen-ber-in-3d/" target="_blank" rel="noopener" class="award-project">Der BER im 3D-Modell</a>
           <span class="award-dot"></span>
           <span class="award-category">Multimedia</span>
         </div>
@@ -277,7 +216,7 @@
           <a href="https://www.medienpreis-luft-und-raumfahrt.de/" target="_blank" rel="noopener" class="award-name">Medienpreis Luft- und Raumfahrt</a>
         </div>
         <div class="award-right">
-          <a href="#" class="award-project">Der BER im Überblick</a>
+          <a href="https://interaktiv.tagesspiegel.de/lab/flughafen-ber-in-3d/" target="_blank" rel="noopener" class="award-project">Der BER im Überblick</a>
           <span class="award-dot"></span>
           <span class="award-category">Storytelling</span>
         </div>
@@ -466,7 +405,7 @@
     }, { threshold: 0.2 });
     glowObserver.observe(document.getElementById('contact'));
 
-    // ── Hero parallax (text only, graphic stays fixed) ────────────
+    // ── Hero parallax ─────────────────────────────────────────────
     const heroText = document.querySelector('.hero-text');
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
@@ -474,6 +413,53 @@
         heroText.style.transform = `translateY(${y * 0.05}px)`;
       }
     }, { passive: true });
+
+    // ── Hero stagger animation ────────────────────────────────────
+    function triggerHeroAnimation() {
+      document.querySelectorAll('.hero-animate').forEach(el => {
+        const delay = (parseInt(el.dataset.delay || 0) * 130);
+        setTimeout(() => el.classList.add('hero-animate--visible'), delay);
+      });
+    }
+
+    // ── Page intro overlay ────────────────────────────────────────
+    const intro = document.getElementById('pageIntro');
+    if (sessionStorage.getItem('introPlayed')) {
+      intro.style.display = 'none';
+      triggerHeroAnimation();
+    } else {
+      setTimeout(() => {
+        intro.classList.add('page-intro--leaving');
+        intro.addEventListener('animationend', () => {
+          intro.style.display = 'none';
+          sessionStorage.setItem('introPlayed', '1');
+          triggerHeroAnimation();
+        }, { once: true });
+      }, 1800);
+    }
+
+    // ── Flip / cycling text ───────────────────────────────────────
+    (function () {
+      const words = ['data visualisations', 'interfaces', 'digital products', 'storytelling'];
+      let idx = 0;
+      const el = document.getElementById('flipText');
+      if (!el) return;
+
+      function next() {
+        el.classList.add('flip-text--out');
+        el.addEventListener('animationend', () => {
+          idx = (idx + 1) % words.length;
+          el.textContent = words[idx];
+          el.classList.remove('flip-text--out');
+          el.classList.add('flip-text--in');
+          el.addEventListener('animationend', () => {
+            el.classList.remove('flip-text--in');
+          }, { once: true });
+        }, { once: true });
+      }
+
+      setInterval(next, 2500);
+    })();
 </script>
 
 </body>
