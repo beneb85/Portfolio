@@ -206,7 +206,7 @@ section {
   max-width: 680px;
   display: flex;
   flex-direction: column;
-  gap: 31px;
+  gap: 32px;
 }
 
 .hero-headline {
@@ -230,7 +230,7 @@ section {
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  padding: 22px 50px;
+  padding: 20px 48px;
   transition: background 0.25s, border-color 0.25s, transform 0.25s;
 }
 
@@ -267,7 +267,7 @@ section {
 /* ── Hero stagger ── */
 .hero-animate {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(24px);
   transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -329,7 +329,7 @@ section {
 .section-label {
   font-family: 'Geist Mono', monospace;
   font-weight: 500;
-  font-size: 13.6px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -350,7 +350,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.75);
   margin-bottom: 16px;
 }
@@ -384,8 +384,8 @@ section {
 
 .service-bullet {
   flex-shrink: 0;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #e87a65;
   margin-top: 8px;
@@ -396,7 +396,7 @@ section {
 .service-bullet::after {
   content: '';
   position: absolute;
-  inset: -5px;
+  inset: -4px;
   border-radius: 50%;
   background: #e87a65;
   opacity: 0;
@@ -427,14 +427,14 @@ section {
   font-size: 21px;
   letter-spacing: -0.017em;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .service-desc {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -518,7 +518,7 @@ section {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(28, 28, 28, 0.45);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .card-title {
@@ -535,7 +535,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.5;
   color: rgba(28, 28, 28, 0.7);
 }
 
@@ -545,8 +545,8 @@ section {
 .awards {
   background: #18181b;
   padding-top: 128px;
-  padding-bottom: 164px;
-  min-height: 797px;
+  padding-bottom: 160px;
+  min-height: 800px;
 }
 
 .awards-heading {
@@ -567,7 +567,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 101px;
+  height: 100px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   transition: background 0.2s;
 }
@@ -710,7 +710,7 @@ section {
   color: white;
   opacity: 0.8;
   max-width: 480px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .contact-email {
@@ -722,7 +722,7 @@ section {
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
-  padding: 21px 49px;
+  padding: 20px 48px;
   transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
@@ -841,7 +841,7 @@ section {
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   width: 40px;
   height: 40px;
   background: none;
@@ -865,14 +865,14 @@ section {
 
 /* Open state — animate to X */
 .nav-burger.is-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
 }
 .nav-burger.is-open span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 .nav-burger.is-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ========================================
