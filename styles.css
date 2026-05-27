@@ -212,7 +212,7 @@ section {
 .hero-headline {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
-  font-size: clamp(40px, 6.5vw, 80px);
+  font-size: clamp(36px, 5.5vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.025em;
   color: rgba(255, 255, 255, 0.9);
