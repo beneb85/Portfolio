@@ -201,29 +201,31 @@
     <div class="cs-col fade-up" data-delay="1">
       <h2 class="cs-section-label">The Challenge</h2>
       <div class="cs-body-text">
-        <p>At its core, the challenge was to design for complex, data-heavy workflows while maintaining clarity and usability. Users needed to move seamlessly from data access to insight generation.</p>
-        <p>Key friction points included:</p>
+        <p>Investigative journalists working with satellite imagery often deal with complex workflows, large datasets, and disconnected tools. The original platform made it difficult to maintain overview, compare imagery, and manage investigations efficiently.</p>
+        <p>Key challenges included:</p>
         <ul>
-          <li>Overwhelming information density across market dashboards</li>
-          <li>No clear hierarchy between primary data and supporting context</li>
-          <li>Inconsistent patterns that slowed expert users and confused newcomers</li>
-          <li>A mobile experience that was an afterthought, not a first-class citizen</li>
+          <li>Fragmented workflows across multiple tools</li>
+          <li>Limited ways to explore and compare satellite imagery</li>
+          <li>Lack of spatial context during investigations</li>
+          <li>Complex interfaces that slowed down research processes</li>
+          <li>Difficulty organizing investigations and image assets</li>
         </ul>
-        <p>The platform needed to serve two very different users simultaneously: analysts who live in the data, and executives who need a 30-second read of the market.</p>
+        <p>The challenge was to design a platform that supports deep investigative work without overwhelming users with technical complexity.</p>
       </div>
     </div>
     <div class="cs-col fade-up" data-delay="2">
       <h2 class="cs-section-label">The Solution</h2>
       <div class="cs-body-text">
-        <p>A redesigned information architecture that separates signal from noise — giving each user type an entry point that respects their context without hiding depth.</p>
-        <p>Key design decisions:</p>
+        <p>The redesigned Vertical52 platform creates a more focused and intuitive environment for investigative journalism with satellite imagery.</p>
+        <p>The new experience enables journalists to:</p>
         <ul>
-          <li>Progressive disclosure: summary cards surface key metrics first, detail layers reveal on demand</li>
-          <li>A unified component system that scales across six dashboard views without repetition</li>
-          <li>Contextual filters that persist across sessions, reducing repetitive setup time</li>
-          <li>Responsive-first layout that adapts data tables to mobile without losing functionality</li>
+          <li>Manage investigations and imagery within one centralized workspace</li>
+          <li>Switch between list, grid, and map views depending on investigative needs</li>
+          <li>Compare and layer satellite images directly within the platform</li>
+          <li>Navigate large datasets with greater clarity and control</li>
+          <li>Access spatial analysis tools without disrupting their workflow</li>
         </ul>
-        <p>The result is a platform that handles real estate complexity with the same directness a professional expects from their tools — fast, trustworthy, and built for daily use.</p>
+        <p>By reducing complexity and improving usability, the redesign allows journalists to focus less on managing tools and more on uncovering stories through satellite data.</p>
       </div>
     </div>
   </section>
@@ -240,7 +242,7 @@
     <div class="cs-feature fade-up">
       <div class="cs-feature-visual" style="background: #ddd8d0;">
         <img class="cs-feat-bg" src="Assets/V52_hero-macbook.webp" alt="" onerror="this.style.display='none'" />
-        <img class="cs-feat-overlay" src="Assets/V52_dashboard-overview.webp" alt="New File Explorer" onerror="this.style.display='none'" />
+        <img class="cs-feat-overlay" src="Assets/V52_dashboard-overview.webp" alt="New File Explorer" onerror="this.style.display='none'" data-lightbox />
       </div>
       <div class="cs-feature-text">
         <span class="cs-feature-tag">Information Architecture</span>
@@ -258,7 +260,7 @@
       </div>
       <div class="cs-feature-visual" style="background: #e8e3dc;">
         <img class="cs-feat-bg" src="Assets/V52_component-system.webp" alt="" onerror="this.style.display='none'" />
-        <img class="cs-feat-overlay" src="Assets/V52_views-overlay.webp" alt="Views" onerror="this.style.display='none'" />
+        <img class="cs-feat-overlay" src="Assets/V52_views-overlay.webp" alt="Views" onerror="this.style.display='none'" data-lightbox />
       </div>
     </div>
 
@@ -266,7 +268,7 @@
     <div class="cs-feature fade-up" data-delay="1">
       <div class="cs-feature-visual" style="background: #d4cfc7;">
         <img class="cs-feat-bg" src="Assets/V52_hero-macbook.webp" alt="" onerror="this.style.display='none'" />
-        <img class="cs-feat-overlay" src="Assets/V52_spatial.webp" alt="Advanced Spatial Analysis" onerror="this.style.display='none'" />
+        <img class="cs-feat-overlay" src="Assets/V52_spatial.webp" alt="Advanced Spatial Analysis" onerror="this.style.display='none'" data-lightbox />
       </div>
       <div class="cs-feature-text">
         <span class="cs-feature-tag">New Features</span>
@@ -397,6 +399,80 @@
       });
     }
     initVideoHero();
+
+    // ── Lightbox ────────────────────────────────────────────────────
+    (function () {
+      const imgs = Array.from(document.querySelectorAll('img[data-lightbox]'));
+      if (!imgs.length) return;
+
+      // Build overlay
+      const lb = document.createElement('div');
+      lb.className = 'cs-lightbox';
+      lb.innerHTML = `
+        <button class="cs-lightbox-close" aria-label="Close">✕</button>
+        <button class="cs-lightbox-prev" aria-label="Previous">←</button>
+        <img class="cs-lightbox-img" src="" alt="" />
+        <button class="cs-lightbox-next" aria-label="Next">→</button>
+        <span class="cs-lightbox-counter"></span>`;
+      document.body.appendChild(lb);
+
+      const lbImg     = lb.querySelector('.cs-lightbox-img');
+      const lbCounter = lb.querySelector('.cs-lightbox-counter');
+      let current = 0;
+
+      function show(i) {
+        current = (i + imgs.length) % imgs.length;
+        lbImg.classList.add('is-switching');
+        setTimeout(() => {
+          lbImg.src = imgs[current].src;
+          lbImg.alt = imgs[current].alt;
+          lbImg.classList.remove('is-switching');
+        }, 150);
+        lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
+      }
+
+      function open(i) {
+        show(i);
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lb.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      // Add cursor + click to each image
+      imgs.forEach((img, i) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => open(i));
+      });
+
+      lb.querySelector('.cs-lightbox-close').addEventListener('click', close);
+      lb.querySelector('.cs-lightbox-prev').addEventListener('click', () => show(current - 1));
+      lb.querySelector('.cs-lightbox-next').addEventListener('click', () => show(current + 1));
+
+      // Close on backdrop click
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      // Touch swipe
+      let touchX = null;
+      lb.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) show(dx < 0 ? current + 1 : current - 1);
+        touchX = null;
+      }, { passive: true });
+    })();
   </script>
 
 </body>

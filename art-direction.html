@@ -269,7 +269,7 @@
     <!-- Row 1 -->
     <a class="cs-gallery-item fade-up" data-delay="1" href="https://interaktiv.tagesspiegel.de/lab/3-jahre-trump-in-15-grafiken/" target="_blank" rel="noopener">
       <div class="cs-gallery-visual" style="background: #e87a65;">
-        <img src="Assets/AD_trump-grafiken.webp" alt="Trump 3 Jahre in 15 Grafiken" />
+        <img src="Assets/AD_trump-grafiken.webp" alt="Trump 3 Jahre in 15 Grafiken" data-lightbox />
       </div>
       <div class="cs-gallery-caption">
         <span class="cs-gallery-caption-title">Trump 3 Jahre in 15 Grafiken</span>
@@ -279,7 +279,7 @@
 
     <a class="cs-gallery-item fade-up" data-delay="2" href="https://interaktiv.tagesspiegel.de/lab/europa-auf-koks-und-keta-bei-drogen-im-abwasser-ist-berlin-top-drogen-analyse-europa-deutschland/" target="_blank" rel="noopener">
       <div class="cs-gallery-visual" style="background: #4a3728;">
-        <img src="Assets/AD_drogen-berlin.webp" alt="Bei Drogen im Abwasser ist Berlin top" />
+        <img src="Assets/AD_drogen-berlin.webp" alt="Bei Drogen im Abwasser ist Berlin top" data-lightbox />
       </div>
       <div class="cs-gallery-caption">
         <span class="cs-gallery-caption-title">Bei Drogen im Abwasser ist Berlin top</span>
@@ -290,7 +290,7 @@
     <!-- Row 2 (taller visuals) -->
     <a class="cs-gallery-item fade-up" data-delay="1" href="https://interaktiv.tagesspiegel.de/lab/laengste-beheizte-pipeline-der-welt-oelbrunnen-im-nationalpark/" target="_blank" rel="noopener">
       <div class="cs-gallery-visual" style="background: #4a3728;">
-        <img src="Assets/AD_oelbrunnen.webp" alt="Ölbrunnen im Nationalpark" />
+        <img src="Assets/AD_oelbrunnen.webp" alt="Ölbrunnen im Nationalpark" data-lightbox />
       </div>
       <div class="cs-gallery-caption">
         <span class="cs-gallery-caption-title">Ölbrunnen im Nationalpark</span>
@@ -300,7 +300,7 @@
 
     <a class="cs-gallery-item fade-up" data-delay="2" href="https://urbanjournalism.org/cities-for-rent/" target="_blank" rel="noopener">
       <div class="cs-gallery-visual" style="background: #4a3728;">
-        <img src="Assets/AD_cities-for-rent.webp" alt="Cities for Rent" />
+        <img src="Assets/AD_cities-for-rent.webp" alt="Cities for Rent" data-lightbox />
       </div>
       <div class="cs-gallery-caption">
         <span class="cs-gallery-caption-title">Cities for Rent</span>
@@ -426,6 +426,80 @@
       });
     }
     initVideoHero();
+
+    // ── Lightbox ────────────────────────────────────────────────────
+    (function () {
+      const imgs = Array.from(document.querySelectorAll('img[data-lightbox]'));
+      if (!imgs.length) return;
+
+      // Build overlay
+      const lb = document.createElement('div');
+      lb.className = 'cs-lightbox';
+      lb.innerHTML = `
+        <button class="cs-lightbox-close" aria-label="Close">✕</button>
+        <button class="cs-lightbox-prev" aria-label="Previous">←</button>
+        <img class="cs-lightbox-img" src="" alt="" />
+        <button class="cs-lightbox-next" aria-label="Next">→</button>
+        <span class="cs-lightbox-counter"></span>`;
+      document.body.appendChild(lb);
+
+      const lbImg     = lb.querySelector('.cs-lightbox-img');
+      const lbCounter = lb.querySelector('.cs-lightbox-counter');
+      let current = 0;
+
+      function show(i) {
+        current = (i + imgs.length) % imgs.length;
+        lbImg.classList.add('is-switching');
+        setTimeout(() => {
+          lbImg.src = imgs[current].src;
+          lbImg.alt = imgs[current].alt;
+          lbImg.classList.remove('is-switching');
+        }, 150);
+        lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
+      }
+
+      function open(i) {
+        show(i);
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lb.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      // Add cursor + click to each image
+      imgs.forEach((img, i) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => open(i));
+      });
+
+      lb.querySelector('.cs-lightbox-close').addEventListener('click', close);
+      lb.querySelector('.cs-lightbox-prev').addEventListener('click', () => show(current - 1));
+      lb.querySelector('.cs-lightbox-next').addEventListener('click', () => show(current + 1));
+
+      // Close on backdrop click
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      // Touch swipe
+      let touchX = null;
+      lb.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) show(dx < 0 ? current + 1 : current - 1);
+        touchX = null;
+      }, { passive: true });
+    })();
   </script>
 
 </body>
