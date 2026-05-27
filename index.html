@@ -56,17 +56,8 @@
   <section class="hero" id="approach">
     <div class="hero-inner">
       <div class="hero-text">
-        <h1 class="hero-headline hero-animate" data-delay="0">
-          <span>Designing</span>
-          <span class="tw-line"><em class="mono">[<span id="tw-word">data</span><span class="tw-cursor">|</span>]</em></span>
-          <span>for humans.</span>
-        </h1>
-        <p class="hero-sub hero-animate" data-delay="1">
-          I'm a multidisciplinary designer specializing in <span class="flip-wrap"><span class="flip-text" id="flipText">data visualisations</span></span>,
-          and intuitive interfaces — making the complicated
-          feel accessible.
-        </p>
-        <a href="#work" class="hero-btn hero-animate" data-delay="2">See selected work <span class="hero-btn-arrow">→</span></a>
+        <h1 class="hero-headline hero-animate" data-delay="0">Hi 'im Bene a designer specializing in <span class="flip-wrap"><span class="flip-text" id="heroFlipText">complex systems</span></span><span class="hero-suffix"> — making the complicated feel accessible.</span></h1>
+        <a href="#work" class="hero-btn hero-animate" data-delay="1">See selected work</a>
       </div>
     </div>
   </section>
@@ -260,42 +251,6 @@
   </button>
 
   <script>
-    // ── Typewriter effect ──────────────────────────────────────────
-    const words = ['data', 'products', 'interfaces', 'web'];
-    const el = document.getElementById('tw-word');
-    let wordIdx = 0;
-    let charIdx = words[0].length;
-    let deleting = true;
-    const TYPE_SPEED = 90;
-    const DELETE_SPEED = 55;
-    const PAUSE_AFTER_TYPE = 1800;
-    const PAUSE_AFTER_DELETE = 300;
-
-    function tick() {
-      const current = words[wordIdx];
-      if (deleting) {
-        charIdx--;
-        el.textContent = current.slice(0, charIdx);
-        if (charIdx === 0) {
-          deleting = false;
-          wordIdx = (wordIdx + 1) % words.length;
-          setTimeout(tick, PAUSE_AFTER_DELETE);
-        } else {
-          setTimeout(tick, DELETE_SPEED);
-        }
-      } else {
-        charIdx++;
-        el.textContent = words[wordIdx].slice(0, charIdx);
-        if (charIdx === words[wordIdx].length) {
-          deleting = true;
-          setTimeout(tick, PAUSE_AFTER_TYPE);
-        } else {
-          setTimeout(tick, TYPE_SPEED);
-        }
-      }
-    }
-    setTimeout(tick, PAUSE_AFTER_TYPE);
-
     // ── Mobile hamburger menu ─────────────────────────────────────
     const burger = document.getElementById('navBurger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -440,9 +395,9 @@
 
     // ── Flip / cycling text ───────────────────────────────────────
     (function () {
-      const words = ['data visualisations', 'interfaces', 'digital products', 'storytelling'];
+      const words = ['complex systems', 'data visualisations', 'interfaces', 'digital products', 'storytelling'];
       let idx = 0;
-      const el = document.getElementById('flipText');
+      const el = document.getElementById('heroFlipText');
       if (!el) return;
 
       function next() {

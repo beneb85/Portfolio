@@ -195,78 +195,34 @@ section {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  padding-top: 80px; /* clear fixed nav */
 }
 
 .hero-inner {
-  display: flex;
-  align-items: center;
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-top: 96px;
 }
 
 .hero-text {
-  max-width: 760px;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
 }
 
 .hero-headline {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 500;
-  font-size: clamp(36px, 8.5vw, 90px);
-  line-height: 0.92;
-  letter-spacing: -0.0224em;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 32px;
-}
-
-.tw-line {
-  display: block;
-  white-space: nowrap;
-}
-
-.hero-headline em.mono {
-  font-family: 'Geist Mono', monospace;
-  font-weight: 600;
-  font-style: italic;
-  white-space: nowrap;
-}
-
-/* Typewriter */
-#tw-word {
-  display: inline;
-}
-
-.tw-cursor {
-  display: inline-block;
-  font-style: normal;
-  font-weight: 300;
-  opacity: 0.6;
-  animation: blink 0.9s step-end infinite;
-  margin-left: 1px;
-}
-
-.hero-sub {
-  font-family: 'Geist', sans-serif;
-  font-weight: 400;
-  font-size: 21px;
-  line-height: 1.35;
+  font-weight: 700;
+  font-size: clamp(40px, 6.5vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 520px;
-}
-
-.hero-sub u {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
 }
 
 .hero-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  align-self: flex-start;
   font-family: 'Geist Mono', monospace;
   font-weight: 500;
   font-size: 18px;
@@ -274,8 +230,7 @@ section {
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  padding: 21px 49px;
-  margin-top: 40px;
+  padding: 22px 50px;
   transition: background 0.25s, border-color 0.25s, transform 0.25s;
 }
 
@@ -283,15 +238,6 @@ section {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.65);
   transform: translateY(-2px);
-}
-
-.hero-btn-arrow {
-  display: inline-block;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero-btn:hover .hero-btn-arrow {
-  transform: translateX(4px);
 }
 
 /* ── Page intro overlay ── */
@@ -330,15 +276,23 @@ section {
   transform: translateY(0);
 }
 
+/* Forces "— making…" onto its own line regardless of flip word length */
+.hero-suffix {
+  display: block;
+}
+
 /* ── Flip text ── */
 .flip-wrap {
   display: inline-block;
   overflow: hidden;
   vertical-align: baseline;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
 }
 
 .flip-text {
   display: inline-block;
+  white-space: nowrap;
 }
 
 .flip-text--out {
@@ -871,12 +825,6 @@ section {
 /* ========================================
    Responsive
    ======================================== */
-@media (max-width: 1100px) {
-  .hero-text {
-    max-width: 100%;
-  }
-}
-
 /* ========================================
    Hamburger button
    ======================================== */
@@ -1018,11 +966,11 @@ section {
 
   .hero-text {
     max-width: 100%;
+    gap: 24px;
   }
 
-  .hero-inner {
-    padding-top: 120px;
-    padding-bottom: 64px;
+  .hero-headline {
+    font-size: clamp(32px, 9vw, 48px);
   }
 
   .values {
