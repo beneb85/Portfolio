@@ -225,7 +225,7 @@ section {
   align-self: flex-start;
   font-family: 'Geist Mono', monospace;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -283,16 +283,16 @@ section {
 
 /* ── Flip text ── */
 .flip-wrap {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: baseline;
-  padding-bottom: 0.1em;
-  margin-bottom: -0.1em;
+  /* Must stay inline so it doesn't add height to the line box */
+  display: inline;
 }
 
 .flip-text {
+  /* inline-block is required for transform animations to work */
   display: inline-block;
   white-space: nowrap;
+  vertical-align: baseline;
+  line-height: inherit;
 }
 
 .flip-text--out {
@@ -994,6 +994,10 @@ section {
 
   .values-col:last-child {
     padding-top: 0;
+  }
+
+  .values-heading {
+    font-size: 32px;
   }
 
   .services-grid {
