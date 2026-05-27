@@ -27,7 +27,7 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="nav" id="mainNav">
+  <nav class="nav" id="mainNav" data-section="hero">
     <a href="index.html" class="nav-logo">Bene Brandhofer</a>
     <ul class="nav-links">
       <li><a href="#values">Approach</a></li>
@@ -305,12 +305,7 @@
         if (entry.isIntersecting) {
           const match = navSections.find(s => s.id === entry.target.id);
           if (match) {
-            if (match.key === 'hero' && window.scrollY < 80) {
-              // At the very top: revert to blend-mode transparent state
-              mainNav.removeAttribute('data-section');
-            } else {
-              mainNav.setAttribute('data-section', match.key);
-            }
+            mainNav.setAttribute('data-section', match.key);
           }
         }
       });
@@ -324,9 +319,9 @@
       if (el) sectionObserver.observe(el);
     });
 
-    // Remove data-section when back at very top (hero blend-mode state)
+    // Ensure hero state when scrolled back to top
     window.addEventListener('scroll', () => {
-      if (window.scrollY < 80) mainNav.removeAttribute('data-section');
+      if (window.scrollY < 80) mainNav.setAttribute('data-section', 'hero');
     }, { passive: true });
 
     // ── Scroll-to-top button ───────────────────────────────────────
