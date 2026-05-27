@@ -136,7 +136,7 @@ section {
 }
 /* Awards — near black */
 .nav[data-section="awards"] {
-  background: rgba(24, 24, 27, 0.88);
+  background: rgba(28, 28, 28, 0.88);
   --nav-color: #fff;
 }
 /* Contact — dark red */
@@ -543,7 +543,7 @@ section {
    Section 4 — Recognition
    ======================================== */
 .awards {
-  background: #18181b;
+  background: #1c1c1c;
   padding-top: 128px;
   padding-bottom: 160px;
   min-height: 800px;
