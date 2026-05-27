@@ -445,7 +445,7 @@
       // Add cursor + click to each image
       imgs.forEach((img, i) => {
         img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => open(i));
+        img.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); open(i); });
       });
 
       lb.querySelector('.cs-lightbox-close').addEventListener('click', close);
