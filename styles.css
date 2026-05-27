@@ -313,8 +313,17 @@ section {
 }
 
 .values-top {
-  max-width: 680px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
   margin-bottom: 80px;
+}
+
+/* Offset right col so its text aligns with the paragraph in the left col:
+   h2 height (font-size × line-height) + h2 margin-bottom */
+.values-col:last-child {
+  padding-top: calc(clamp(38px, 4vw, 51px) * 1.1 + 28px);
 }
 
 .section-label {
@@ -976,6 +985,15 @@ section {
   .values {
     padding-top: 80px;
     padding-bottom: 80px;
+  }
+
+  .values-top {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .values-col:last-child {
+    padding-top: 0;
   }
 
   .services-grid {
