@@ -134,6 +134,12 @@ section {
   background: rgba(245, 240, 234, 0.82);
   --nav-color: #1c1c1c;
 }
+/* Lab — white */
+.nav[data-section="lab"] {
+  background: rgba(255, 255, 255, 0.85);
+  --nav-color: #1c1c1c;
+}
+
 /* Awards — near black */
 .nav[data-section="awards"] {
   background: rgba(28, 28, 28, 0.88);
@@ -537,6 +543,117 @@ section {
   font-size: 16px;
   line-height: 1.5;
   color: rgba(28, 28, 28, 0.7);
+}
+
+/* ========================================
+   Section: Lab
+   ======================================== */
+.lab {
+  background: #ffffff;
+  padding-top: 128px;
+  padding-bottom: 128px;
+}
+
+.lab-heading-group {
+  margin-bottom: 40px;
+}
+
+.lab-heading {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 500;
+  font-size: clamp(38px, 4vw, 51px);
+  line-height: 1.1;
+  letter-spacing: -0.072em;
+  color: #1c1c1c;
+  margin-bottom: 16px;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+}
+
+.lab-sub {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #888;
+}
+
+.lab-list {
+  list-style: none;
+}
+
+.lab-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  transition: background 0.2s;
+}
+
+.lab-item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.lab-item:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.lab-left {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.lab-year {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #888;
+  min-width: 48px;
+}
+
+.lab-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.013em;
+  color: #1c1c1c;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+}
+
+.lab-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lab-link {
+  font-family: 'Geist Mono', monospace;
+  font-size: 18px;
+  color: #1c1c1c;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.lab-link:hover {
+  opacity: 0.6;
+}
+
+.lab-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f64e00;
+  flex-shrink: 0;
+}
+
+.lab-tag {
+  font-family: 'Geist Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* ========================================
@@ -1041,6 +1158,37 @@ section {
   .works-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .lab {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .lab-heading {
+    font-size: 32px;
+    letter-spacing: -0.03em;
+  }
+
+  .lab-sub {
+    font-size: 16px;
+  }
+
+  .lab-item {
+    height: auto;
+    min-height: 80px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .lab-name {
+    font-size: 22px;
+  }
+
+  .lab-link {
+    font-size: 14px;
   }
 
   .awards {
