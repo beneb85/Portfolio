@@ -421,13 +421,22 @@
 
       function show(i) {
         current = (i + imgs.length) % imgs.length;
+        lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
         lbImg.classList.add('is-switching');
-        setTimeout(() => {
+        let swapped = false;
+        function swap() {
+          if (swapped) return; swapped = true;
           lbImg.src = imgs[current].src;
           lbImg.alt = imgs[current].alt;
-          lbImg.classList.remove('is-switching');
-        }, 150);
-        lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
+          if (lbImg.complete && lbImg.naturalWidth > 0) {
+            lbImg.classList.remove('is-switching');
+          } else {
+            lbImg.onload = () => { lbImg.onload = null; lbImg.classList.remove('is-switching'); };
+            lbImg.onerror = () => { lbImg.onerror = null; lbImg.classList.remove('is-switching'); };
+          }
+        }
+        lbImg.addEventListener('transitionend', swap, { once: true });
+        setTimeout(swap, 300); // fallback if transitionend doesn't fire
       }
 
       function open(i) {

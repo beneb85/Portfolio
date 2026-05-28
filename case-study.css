@@ -866,11 +866,11 @@ body {
 /* Close */
 .cs-lightbox-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 0;
+  right: 0;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 0 0 0 8px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -910,11 +910,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Push lightbox close button below the mobile nav bar */
-  .cs-lightbox-close {
-    top: 64px;
-    right: 16px;
-  }
 
   html { font-size: 18px; }
 
