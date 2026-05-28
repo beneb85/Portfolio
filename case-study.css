@@ -821,17 +821,36 @@ body {
   pointer-events: auto;
 }
 
-.cs-lightbox-img {
+/* Stage wraps both buffer images */
+.cs-lightbox-stage {
+  position: relative;
   max-width: calc(100% - 96px);
+  max-height: calc(100dvh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-lightbox-img {
+  max-width: 100%;
   max-height: calc(100dvh - 80px);
   object-fit: contain;
   border-radius: 8px;
   display: block;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease;
+}
+
+/* Back buffer: absolutely stacked, hidden by default */
+.cs-lightbox-img.lb-back {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
 }
 
 .cs-lightbox-img.is-switching {
   opacity: 0;
+  pointer-events: none;
 }
 
 /* Prev / Next */

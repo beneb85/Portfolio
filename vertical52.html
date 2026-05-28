@@ -410,37 +410,62 @@
       lb.innerHTML = `
         <button class="cs-lightbox-close" aria-label="Close">✕</button>
         <button class="cs-lightbox-prev" aria-label="Previous">←</button>
-        <img class="cs-lightbox-img" src="" alt="" />
+        <div class="cs-lightbox-stage">
+          <img class="cs-lightbox-img lb-front" src="" alt="" />
+          <img class="cs-lightbox-img lb-back" src="" alt="" />
+        </div>
         <button class="cs-lightbox-next" aria-label="Next">→</button>
         <span class="cs-lightbox-counter"></span>`;
       document.body.appendChild(lb);
 
-      const lbImg     = lb.querySelector('.cs-lightbox-img');
+      const lbFront   = lb.querySelector('.lb-front');
+      const lbBack    = lb.querySelector('.lb-back');
       const lbCounter = lb.querySelector('.cs-lightbox-counter');
       let current = 0;
 
       function show(i) {
         current = (i + imgs.length) % imgs.length;
         lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
-        lbImg.classList.add('is-switching');
-        let swapped = false;
-        function swap() {
-          if (swapped) return; swapped = true;
-          lbImg.src = imgs[current].src;
-          lbImg.alt = imgs[current].alt;
-          if (lbImg.complete && lbImg.naturalWidth > 0) {
-            lbImg.classList.remove('is-switching');
-          } else {
-            lbImg.onload = () => { lbImg.onload = null; lbImg.classList.remove('is-switching'); };
-            lbImg.onerror = () => { lbImg.onerror = null; lbImg.classList.remove('is-switching'); };
-          }
+        // Load next image into the hidden back layer
+        lbBack.src = imgs[current].src;
+        lbBack.alt = imgs[current].alt;
+        function crossfade() {
+          lbBack.onload = null; lbBack.onerror = null;
+          lbFront.classList.add('is-switching');    // fade out current
+          lbBack.classList.remove('is-switching');  // fade in next
+          // After transition, promote back → front so layout stays correct
+          lbFront.addEventListener('transitionend', function promote() {
+            lbFront.removeEventListener('transitionend', promote);
+            lbFront.src = lbBack.src;
+            lbFront.alt = lbBack.alt;
+            lbFront.classList.remove('is-switching');
+            lbBack.classList.add('is-switching');
+            lbBack.src = '';
+          }, { once: true });
+          setTimeout(() => {
+            if (!lbFront.classList.contains('is-switching')) return;
+            lbFront.src = lbBack.src;
+            lbFront.alt = lbBack.alt;
+            lbFront.classList.remove('is-switching');
+            lbBack.classList.add('is-switching');
+            lbBack.src = '';
+          }, 400);
         }
-        lbImg.addEventListener('transitionend', swap, { once: true });
-        setTimeout(swap, 300); // fallback if transitionend doesn't fire
+        if (lbBack.complete && lbBack.naturalWidth > 0) {
+          crossfade();
+        } else {
+          lbBack.onload  = crossfade;
+          lbBack.onerror = crossfade;
+        }
       }
 
       function open(i) {
-        show(i);
+        current = i;
+        lbFront.src = imgs[i].src;
+        lbFront.alt = imgs[i].alt;
+        lbFront.classList.remove('is-switching');
+        lbBack.classList.add('is-switching');
+        lbCounter.textContent = (i + 1) + ' / ' + imgs.length;
         lb.classList.add('is-open');
         document.body.style.overflow = 'hidden';
       }
