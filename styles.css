@@ -839,42 +839,41 @@ section {
    ======================================== */
 .nav-burger {
   display: none;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 6px;
+  position: relative;
   width: 40px;
   height: 40px;
   background: none;
   border: none;
   cursor: pointer;
   pointer-events: auto;
-  padding: 4px;
+  padding: 0;
   z-index: 101;
 }
 
 .nav-burger span {
   display: block;
+  position: absolute;
+  left: 8px;
   height: 1.5px;
   background: var(--nav-color, white);
   border-radius: 2px;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
               width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.2s ease, background 0.4s ease;
-  transform-origin: center;
+              background 0.4s ease;
+  transform-origin: center center;
 }
 
-.nav-burger span:nth-child(1) { width: 24px; }
-.nav-burger span:nth-child(2) { width: 16px; }
+.nav-burger span:nth-child(1) { width: 24px; top: 14px; }
+.nav-burger span:nth-child(2) { width: 16px; top: 22px; }
 
 /* Open state — animate to X */
 .nav-burger.is-open span:nth-child(1) {
   width: 22px;
-  transform: translateY(3.75px) rotate(45deg);
+  transform: translateY(4px) rotate(45deg);
 }
 .nav-burger.is-open span:nth-child(2) {
   width: 22px;
-  transform: translateY(-3.75px) rotate(-45deg);
+  transform: translateY(-4px) rotate(-45deg);
 }
 
 /* ========================================
