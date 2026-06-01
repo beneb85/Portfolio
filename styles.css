@@ -114,7 +114,9 @@ body {
    Scroll offset for fixed nav
    ======================================== */
 section {
-  scroll-margin-top: 80px;
+  /* Match the fixed nav height (~65px) so anchored sections tuck flush
+     under the nav with no gap revealing the previous section. */
+  scroll-margin-top: 64px;
   padding-left: max(72px, calc((100% - 1440px) / 2));
   padding-right: max(72px, calc((100% - 1440px) / 2));
 }
