@@ -378,19 +378,6 @@ section {
   margin-bottom: 80px;
 }
 
-/* Column is a size container so the heading can be sized off the column
-   width (see .values-heading) and never wrap. */
-.values-col {
-  container-type: inline-size;
-}
-
-/* Offset right col so its text aligns with the paragraph in the left col:
-   h2 height (font-size × line-height) + h2 margin-bottom.
-   Uses the same column-relative font expression as the heading. */
-.values-col:last-child {
-  padding-top: calc(min(51px, 9.5cqw) * 1.1 + 28px);
-}
-
 .section-label {
   font-family: 'Geist Mono', monospace;
   font-weight: 500;
@@ -404,14 +391,11 @@ section {
 .values-heading {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  /* Sized off the column width so "Simple & Accessible" always fits on
-     one line (text is ~9.3em wide; 9.5cqw keeps a safe margin). */
-  font-size: min(51px, 9.5cqw);
+  font-size: clamp(38px, 4vw, 51px);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #fff;
-  margin-bottom: 28px;
-  white-space: nowrap;
+  margin-bottom: 48px;
 }
 
 .values-body {
@@ -1218,8 +1202,11 @@ section {
     gap: 24px;
   }
 
-  .values-col:last-child {
-    padding-top: 0;
+  /* Full-width heading on phones — fits "Simple & Accessible" on one line
+     down to small screens. */
+  .values-heading {
+    font-size: clamp(26px, 8.5vw, 32px);
+    margin-bottom: 32px;
   }
 
   .services-grid {
