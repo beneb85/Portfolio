@@ -727,7 +727,7 @@ section {
 .awards-heading {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
-  font-size: 51px;
+  font-size: clamp(38px, 4vw, 51px);
   line-height: 1.1;
   letter-spacing: -0.072em;
   color: #f6f7ed;
@@ -1216,6 +1216,11 @@ section {
   .works {
     padding-top: 80px;
     padding-bottom: 80px;
+  }
+
+  .works-heading {
+    font-size: 32px;
+    letter-spacing: -0.03em;
   }
 
   .works-grid {
