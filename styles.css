@@ -953,7 +953,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-links {
@@ -965,13 +965,13 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-links a:hover {
-  color: rgba(255, 255, 255, 0.7);
+  color: #fff;
 }
 
 /* ========================================
