@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Art Direction — Bene Brandhofer</title>
@@ -197,9 +198,9 @@
   <!-- Hero -->
   <section class="cs-hero">
     <a href="index.html#work" class="cs-back">← All work</a>
-    <div class="cs-hero-text fade-up">
-      <h1 class="cs-title">Art Direction</h1>
-      <p class="cs-subtitle">I build visual systems across concept, design, and storytelling—focusing on clarity, atmosphere, and strong visual narratives with intention.</p>
+    <div class="cs-hero-text">
+      <h1 class="cs-title" data-split>Art Direction</h1>
+      <p class="cs-subtitle fade-up" data-delay="1">I build visual systems across concept, design, and storytelling—focusing on clarity, atmosphere, and strong visual narratives with intention.</p>
     </div>
 
     <!-- Collage hero image -->
@@ -311,7 +312,7 @@
 
   <!-- CTA -->
   <section class="cs-cta">
-    <h2 class="cs-cta-heading fade-up">Like what you see?</h2>
+    <h2 class="cs-cta-heading" data-split>Like what you see?</h2>
     <div class="cs-cta-btns fade-up" data-delay="1">
       <a href="index.html#contact" class="cs-cta-btn cs-cta-btn--primary">Get in Touch</a>
       <a href="index.html" class="cs-cta-btn cs-cta-btn--outline">Back Home</a>
@@ -333,6 +334,12 @@
       <polyline points="4 13 10 7 16 13"/>
     </svg>
   </button>
+
+  <!-- GSAP motion layer -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="motion.js" defer></script>
 
   <script>
     // ── Fade-up reveal ──────────────────────────────────────────

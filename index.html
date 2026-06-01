@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bene Brandhofer — Portfolio 2025</title>
@@ -78,7 +79,7 @@
   <section class="values" id="values">
     <div class="values-top">
       <div class="values-col">
-        <h2 class="values-heading">Simple &amp; Accessible</h2>
+        <h2 class="values-heading" data-split>Simple &amp; Accessible</h2>
         <p class="values-body">
           I think the essence of good design has never been the output. It's about
           collaboration, where people can see, question, and refine decisions together
@@ -131,12 +132,12 @@
 
   <!-- Section 3: Selected Works -->
   <section class="works" id="work">
-    <h2 class="works-heading fade-up">Selected Works</h2>
+    <h2 class="works-heading" data-split>Selected Works</h2>
     <div class="works-grid">
 
       <a href="housing-games.html" class="card card--dark fade-up" data-delay="1" style="text-decoration:none;display:block;">
-        <div class="card-image card-image--housing" style="background:#1a2535;">
-          <img src="Assets/Card_Preview-HousingGames.webp" alt="The Housing Games" style="width:100%;height:100%;object-fit:fill"/>
+        <div class="card-image card-image--housing" data-parallax-box style="background:#1a2535;">
+          <img src="Assets/Card_Preview-HousingGames.webp" alt="The Housing Games" data-parallax style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Interactive Journalism · 2025 Voices Award</span>
@@ -146,8 +147,8 @@
       </a>
 
       <a href="vertical52.html" class="card card--light fade-up" data-delay="2" style="text-decoration:none;display:block;">
-        <div class="card-image card-image--vertical52" style="background:#d4cfc7;">
-          <img src="Assets/Card_Preview-Vertical52.webp" alt="Vertical52" style="width:100%;height:100%;object-fit:cover"/>
+        <div class="card-image card-image--vertical52" data-parallax-box style="background:#d4cfc7;">
+          <img src="Assets/Card_Preview-Vertical52.webp" alt="Vertical52" data-parallax style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Product Design · SaaS</span>
@@ -157,8 +158,8 @@
       </a>
 
       <a href="data-viz.html" class="card card--dark fade-up" data-delay="1">
-        <div class="card-image card-image--dataviz" style="background:#1e2235;">
-          <img src="Assets/Card_Preview-DataViz.webp" alt="Data Viz Graphics" style="width:100%;height:100%;object-fit:cover"/>
+        <div class="card-image card-image--dataviz" data-parallax-box style="background:#1e2235;">
+          <img src="Assets/Card_Preview-DataViz.webp" alt="Data Viz Graphics" data-parallax style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Editorial · Data Journalism</span>
@@ -168,8 +169,8 @@
       </a>
 
       <a href="art-direction.html" class="card card--dark fade-up" data-delay="2">
-        <div class="card-image card-image--artdir" style="background:#2e2418;">
-          <img src="Assets/Card_Preview-ArtDirection.webp" alt="Art Direction" style="width:100%;height:100%;object-fit:cover"/>
+        <div class="card-image card-image--artdir" data-parallax-box style="background:#2e2418;">
+          <img src="Assets/Card_Preview-ArtDirection.webp" alt="Art Direction" data-parallax style="width:100%;height:100%;object-fit:cover"/>
         </div>
         <div class="card-body">
           <span class="card-tag">Art Direction · Editorial</span>
@@ -183,9 +184,9 @@
 
   <!-- Section: Lab -->
   <section class="lab" id="lab">
-    <div class="lab-heading-group fade-up">
-      <h2 class="lab-heading">Lab</h2>
-      <p class="lab-sub">All my Experiments, Tinkerings and AI Slops</p>
+    <div class="lab-heading-group">
+      <h2 class="lab-heading" data-split>Lab</h2>
+      <p class="lab-sub fade-up" data-delay="1">All my Experiments, Tinkerings and AI Slops</p>
     </div>
     <ul class="lab-list">
       <li class="lab-item fade-up" data-delay="1">
@@ -215,7 +216,7 @@
 
   <!-- Section 4: Recognition -->
   <section class="awards" id="awards">
-    <h2 class="awards-heading fade-up">Recognition &amp; Awards</h2>
+    <h2 class="awards-heading" data-split>Recognition &amp; Awards</h2>
     <ul class="awards-list">
       <li class="award-item fade-up" data-delay="1">
         <div class="award-left">
@@ -268,7 +269,7 @@
   <section class="contact" id="contact">
     <div class="contact-glow"></div>
     <div class="contact-content">
-      <h2 class="contact-heading fade-up">Interested in working<br>together?</h2>
+      <h2 class="contact-heading" data-split>Interested in working<br>together?</h2>
       <p class="contact-sub">I'm always open to new projects, collaborations, and conversations. Drop me a line.</p>
       <a href="mailto:hello@beneb.de" class="contact-email">hello@beneb.de</a>
       <div class="contact-socials">
@@ -298,6 +299,12 @@
       <polyline points="4 13 10 7 16 13"/>
     </svg>
   </button>
+
+  <!-- GSAP motion layer -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="motion.js" defer></script>
 
   <script>
     // ── Mobile hamburger menu ─────────────────────────────────────
@@ -414,12 +421,12 @@
       }
     }, { passive: true });
 
-    // ── Hero stagger animation ────────────────────────────────────
+    // ── Hero entrance ─────────────────────────────────────────────
+    // Hand off to motion.js (GSAP timeline) via an event + pending flag.
+    // motion.js owns both the GSAP and the reduced-motion/no-GSAP fallback.
     function triggerHeroAnimation() {
-      document.querySelectorAll('.hero-animate').forEach(el => {
-        const delay = (parseInt(el.dataset.delay || 0) * 130);
-        setTimeout(() => el.classList.add('hero-animate--visible'), delay);
-      });
+      window.__heroPlayPending = true;
+      document.dispatchEvent(new CustomEvent('hero:play'));
     }
 
     // ── Page intro overlay ────────────────────────────────────────

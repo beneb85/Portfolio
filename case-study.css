@@ -20,6 +20,19 @@ body {
 }
 
 /* ========================================
+   GSAP motion layer (motion.js)
+   ======================================== */
+.js [data-split] { visibility: hidden; }
+.motion-ready [data-split] { visibility: visible; }
+.reveal-line { overflow: hidden; will-change: transform; }
+[data-parallax] { scale: 1.12; transform-origin: center center; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-split] { visibility: visible; }
+  [data-parallax] { scale: 1; }
+}
+
+/* ========================================
    Shared tokens
    ======================================== */
 :root {
