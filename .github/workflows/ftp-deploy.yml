@@ -1,0 +1,51 @@
+name: Deploy to FTP
+
+# Uploads the site to your FTP web host on every push to main.
+# Credentials are read from GitHub repo Secrets — never stored in code.
+#
+# Required repo Secrets (Settings → Secrets and variables → Actions → Secrets):
+#   FTP_SERVER     e.g. ftp.your-host.com   (host only, no ftp:// prefix)
+#   FTP_USERNAME   your FTP username
+#   FTP_PASSWORD   your FTP password
+#
+# Optional repo Variables (same page → Variables tab):
+#   FTP_SERVER_DIR  remote web root, MUST end with "/" (default "./").
+#                   Common values: /public_html/  /htdocs/  /www/
+#   FTP_PROTOCOL    ftp | ftps | ftps-legacy   (default "ftp";
+#                   use "ftps" if your host supports secure FTP — recommended)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:        # lets you trigger it manually from the Actions tab
+
+concurrency:
+  group: ftp-deploy
+  cancel-in-progress: true  # a newer push supersedes an in-flight upload
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
+          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          local-dir: ./
+          # Don't upload repo plumbing or dev-only files.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/.DS_Store
+            **/node_modules/**
+            package.json
+            serve.json
