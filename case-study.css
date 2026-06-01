@@ -129,10 +129,32 @@ body {
   text-decoration: none;
   opacity: 0.65;
   transition: opacity 0.2s;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.4;
 }
 
 .cs-nav-links a:hover {
   opacity: 1;
+}
+
+/* ── Nav link rolodex flip on click (see motion.js) ── */
+.nav-flip-inner {
+  display: inline-block;
+  will-change: transform;
+}
+.nav-flip-inner.is-flipping {
+  animation: navFlip 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+@keyframes navFlip {
+  0%   { transform: translateY(0); }
+  45%  { transform: translateY(-110%); }
+  46%  { transform: translateY(110%); }
+  100% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-flip-inner.is-flipping { animation: none; }
 }
 
 /* Hamburger */
@@ -203,6 +225,7 @@ body {
 
 .cs-mobile-nav-links a {
   display: block;
+  overflow: hidden;
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 500;
   font-size: clamp(40px, 10vw, 64px);

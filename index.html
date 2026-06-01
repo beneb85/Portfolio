@@ -393,23 +393,6 @@
       });
     });
 
-    // ── Nav link flip on click ────────────────────────────────────
-    // Wrap each link's text so it can roll up-and-back (same word).
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      const span = document.createElement('span');
-      span.className = 'nav-flip-inner';
-      span.textContent = link.textContent;
-      link.textContent = '';
-      link.appendChild(span);
-      link.addEventListener('click', () => {
-        span.classList.remove('is-flipping');
-        void span.offsetWidth; // force reflow to restart the animation
-        span.classList.add('is-flipping');
-        span.addEventListener('animationend',
-          () => span.classList.remove('is-flipping'), { once: true });
-      });
-    });
-
     // ── Land on the correct section when arriving with a hash ──────
     // (e.g. "index.html#lab" from a case study). The browser's native
     // jump happens using fallback-font metrics; once the web fonts load

@@ -18,6 +18,30 @@
   const splitEls = () => Array.from(document.querySelectorAll('[data-split]'));
   const parallaxEls = () => Array.from(document.querySelectorAll('[data-parallax]'));
 
+  // ── Nav link rolodex flip on click (all navs, every page) ───────────
+  // Runs regardless of GSAP/reduced-motion (CSS guards the animation).
+  // Deferred script → DOM is already parsed when this executes.
+  (function setupNavFlip() {
+    const links = document.querySelectorAll(
+      '.nav-links a, .mobile-nav-links a, .cs-nav-links a, .cs-mobile-nav-links a'
+    );
+    links.forEach(link => {
+      if (link.querySelector('.nav-flip-inner')) return; // already wrapped
+      const span = document.createElement('span');
+      span.className = 'nav-flip-inner';
+      span.textContent = link.textContent;
+      link.textContent = '';
+      link.appendChild(span);
+      link.addEventListener('click', () => {
+        span.classList.remove('is-flipping');
+        void span.offsetWidth; // force reflow to restart the animation
+        span.classList.add('is-flipping');
+        span.addEventListener('animationend',
+          () => span.classList.remove('is-flipping'), { once: true });
+      });
+    });
+  })();
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGSAP = typeof window.gsap !== 'undefined';
   const animate = hasGSAP && !reduce;
