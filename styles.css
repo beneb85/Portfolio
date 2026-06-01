@@ -95,7 +95,7 @@ body {
 
 /* Parallax images drift inside their overflow-hidden container; the
    slight upscale prevents edges showing during the drift. */
-[data-parallax] { scale: 1.12; transform-origin: center center; }
+[data-parallax] { scale: 1.14; transform-origin: center center; }
 
 /* When GSAP is active it fully owns the hero entrance, so neutralise
    the CSS class-toggle initial state. */

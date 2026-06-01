@@ -139,12 +139,16 @@
     });
 
     // Feature B — subtle image parallax.
-    // Image is upscaled to 1.12 in CSS → ~6% headroom on each edge.
-    // Travelling ±6% uses exactly that headroom so edges never show.
+    // Scale must be baked into the GSAP tween (the transform matrix):
+    // GSAP writes `scale: none` on the element, which would otherwise
+    // clear the CSS [data-parallax]{scale:1.12} and leave no headroom,
+    // exposing a gap as the image translates. Keeping scale 1.12 across
+    // the tween gives ~6% headroom each edge for the ±6% travel.
     parallaxEls().forEach(img => {
       const box = img.closest('[data-parallax-box]') || img;
-      gsap.fromTo(img, { yPercent: 6 }, {
-        yPercent: -6,
+      gsap.fromTo(img, { yPercent: 5, scale: 1.14 }, {
+        yPercent: -5,
+        scale: 1.14,
         ease: 'none',
         scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true }
       });
