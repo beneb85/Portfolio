@@ -11,8 +11,10 @@ name: Deploy to FTP
 # Optional repo Variables (same page → Variables tab):
 #   FTP_SERVER_DIR  remote web root, MUST end with "/" (default "./").
 #                   Common values: /public_html/  /htdocs/  /www/
-#   FTP_PROTOCOL    ftp | ftps | ftps-legacy   (default "ftp";
-#                   use "ftps" if your host supports secure FTP — recommended)
+#   FTP_PROTOCOL    ftp | ftps | ftps-legacy   (default "ftps").
+#                   "ftps"        = explicit FTPS over port 21 (most hosts)
+#                   "ftps-legacy" = implicit FTPS over port 990 (older hosts)
+#                   "ftp"         = plain, insecure (many hosts now refuse this)
 
 on:
   push:
@@ -36,7 +38,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
           server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
           local-dir: ./
           # Don't upload repo plumbing or dev-only files.
