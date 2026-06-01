@@ -18,10 +18,13 @@
   const splitEls = () => Array.from(document.querySelectorAll('[data-split]'));
   const parallaxEls = () => Array.from(document.querySelectorAll('[data-parallax]'));
 
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ── Nav link rolodex flip on click (all navs, every page) ───────────
-  // Runs regardless of GSAP/reduced-motion (CSS guards the animation).
-  // Deferred script → DOM is already parsed when this executes.
+  // Runs regardless of GSAP (CSS guards the animation). Deferred script →
+  // DOM is already parsed when this executes.
   (function setupNavFlip() {
+    const FLIP_MS = 320; // delay cross-page nav so the flip is visible
     const links = document.querySelectorAll(
       '.nav-links a, .mobile-nav-links a, .cs-nav-links a, .cs-mobile-nav-links a'
     );
@@ -32,17 +35,30 @@
       span.textContent = link.textContent;
       link.textContent = '';
       link.appendChild(span);
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        // Play the flip.
         span.classList.remove('is-flipping');
         void span.offsetWidth; // force reflow to restart the animation
         span.classList.add('is-flipping');
         span.addEventListener('animationend',
           () => span.classList.remove('is-flipping'), { once: true });
+
+        // Same-page anchors (e.g. "#work" on home) don't navigate away, so
+        // the flip is already visible — leave their handling alone.
+        // Cross-page links (e.g. "index.html#work") would unload the page
+        // instantly; briefly defer navigation so the flip can be seen.
+        const href = link.getAttribute('href');
+        const crossPage = href && !href.startsWith('#');
+        const modified = e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
+          || e.button === 1 || link.target === '_blank';
+        if (crossPage && !modified && !reduce) {
+          e.preventDefault();
+          const dest = link.href;
+          setTimeout(() => { window.location.href = dest; }, FLIP_MS);
+        }
       });
     });
   })();
-
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGSAP = typeof window.gsap !== 'undefined';
   const animate = hasGSAP && !reduce;
 
