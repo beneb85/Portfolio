@@ -623,7 +623,7 @@ section {
   justify-content: space-between;
   height: 100px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-  transition: background 0.2s;
+  transition: background 0.2s, opacity 0.3s ease;
 }
 
 .lab-item:last-child {
@@ -632,6 +632,11 @@ section {
 
 .lab-item:hover {
   background: rgba(0, 0, 0, 0.025);
+}
+
+/* Dim the other entries when one is hovered */
+.lab-list:hover .lab-item:not(:hover) {
+  opacity: 0.45;
 }
 
 .lab-left {
@@ -722,7 +727,7 @@ section {
   justify-content: space-between;
   height: 100px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background 0.2s;
+  transition: background 0.2s, opacity 0.3s ease;
 }
 
 .award-item:last-child {
@@ -731,6 +736,11 @@ section {
 
 .award-item:hover {
   background: rgba(255, 255, 255, 0.03);
+}
+
+/* Dim the other entries when one is hovered */
+.awards-list:hover .award-item:not(:hover) {
+  opacity: 0.45;
 }
 
 .award-left {
