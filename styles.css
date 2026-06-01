@@ -216,10 +216,33 @@ section {
   text-decoration: none;
   opacity: 0.9;
   transition: opacity 0.2s, color 0.4s ease;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.4;
 }
 
 .nav-links a:hover {
   opacity: 1;
+}
+
+/* Click flip: the word rolls up out of the masked link and the same
+   word rolls back in from below (rolodex-style). */
+.nav-flip-inner {
+  display: inline-block;
+  will-change: transform;
+}
+.nav-flip-inner.is-flipping {
+  animation: navFlip 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+@keyframes navFlip {
+  0%   { transform: translateY(0); }
+  45%  { transform: translateY(-110%); }
+  46%  { transform: translateY(110%); }
+  100% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-flip-inner.is-flipping { animation: none; }
 }
 
 /* ========================================
