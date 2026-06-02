@@ -15,7 +15,7 @@ name: Deploy to SFTP
 #   Secret SFTP_SSH_KEY   a private SSH key (use instead of a password if
 #                         your host uses key auth; leave unset to use password)
 #   Variable FTP_SERVER_DIR  remote web root, e.g. /public_html/ (default "/")
-#   Variable SFTP_PORT       SSH port (default 22)
+#   Variable SFTP_PORT       SSH/SFTP port (default 23 for this host)
 
 on:
   push:
@@ -48,7 +48,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           ssh_private_key: ${{ secrets.SFTP_SSH_KEY }}
-          port: ${{ vars.SFTP_PORT || 22 }}
+          port: ${{ vars.SFTP_PORT || 23 }}
           local_path: './dist/*'
           remote_path: ${{ vars.FTP_SERVER_DIR || '/' }}
           sftp_only: true
