@@ -7,7 +7,10 @@
   padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* Smooth scrolling only on hover-capable (non-touch) devices. On iOS it
+   can interfere with native momentum scrolling; nav-link clicks still
+   smooth-scroll there via JS (scrollTo behavior:'smooth'). */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
   html { scroll-behavior: smooth; }
 }
 

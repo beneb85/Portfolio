@@ -7,7 +7,9 @@
   padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* Smooth scrolling only on hover-capable (non-touch) devices — avoids
+   interfering with iOS native momentum scrolling. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
   html { scroll-behavior: smooth; }
 }
 
