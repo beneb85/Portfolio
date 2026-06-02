@@ -1,0 +1,55 @@
+name: Deploy to SFTP
+
+# Uploads the site to your host over SFTP (single SSH connection on
+# port 22 — no passive FTP data ports, which were unreliable on this host).
+# Credentials come from GitHub repo Secrets — never stored in code.
+#
+# Reuses the same Secrets you already set for FTP (SFTP usually uses the
+# same host / username / password on shared hosting):
+#   FTP_SERVER     e.g. your-host.com   (the SSH/SFTP host; often the same
+#                  as the FTP host — if SFTP uses a different host, update this)
+#   FTP_USERNAME   your SSH/SFTP username
+#   FTP_PASSWORD   your SSH/SFTP password
+#
+# Optional:
+#   Secret SFTP_SSH_KEY   a private SSH key (use instead of a password if
+#                         your host uses key auth; leave unset to use password)
+#   Variable FTP_SERVER_DIR  remote web root, e.g. /public_html/ (default "/")
+#   Variable SFTP_PORT       SSH port (default 22)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: sftp-deploy
+  cancel-in-progress: true
+
+jobs:
+  sftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage deployable files
+        # Copy only the public site into dist/ so repo plumbing
+        # (.git, .github, .claude, dev configs) is never uploaded.
+        run: |
+          mkdir -p dist
+          cp -v *.html *.css *.js dist/
+          cp -rv Assets dist/Assets
+
+      - name: Upload via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          ssh_private_key: ${{ secrets.SFTP_SSH_KEY }}
+          port: ${{ vars.SFTP_PORT || 22 }}
+          local_path: './dist/*'
+          remote_path: ${{ vars.FTP_SERVER_DIR || '/' }}
+          sftp_only: true
+          delete_remote_files: false
