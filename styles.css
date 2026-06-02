@@ -674,6 +674,8 @@ section {
   align-items: center;
   justify-content: space-between;
   height: 100px;
+  padding-left: 8px;
+  padding-right: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   transition: background 0.2s, opacity 0.3s ease;
 }
@@ -778,6 +780,8 @@ section {
   align-items: center;
   justify-content: space-between;
   height: 100px;
+  padding-left: 8px;
+  padding-right: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   transition: background 0.2s, opacity 0.3s ease;
 }
