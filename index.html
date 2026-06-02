@@ -360,17 +360,9 @@
       if (el) sectionObserver.observe(el);
     });
 
-    // Ensure hero state when scrolled back to top
-    window.addEventListener('scroll', () => {
-      if (window.scrollY < 80) mainNav.setAttribute('data-section', 'hero');
-    }, { passive: true });
-
     // ── Scroll-to-top button ───────────────────────────────────────
+    // (Scroll-driven visibility is handled by the unified rAF handler below.)
     const scrollBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-      const pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      scrollBtn.classList.toggle('visible', pct >= 0.85);
-    }, { passive: true });
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -450,14 +442,40 @@
     }, { threshold: 0.2 });
     glowObserver.observe(document.getElementById('contact'));
 
-    // ── Hero parallax ─────────────────────────────────────────────
+    // ── Unified, rAF-throttled scroll handling ────────────────────
+    // One passive listener; all per-scroll work is batched into a single
+    // animation frame to avoid the layout reads / transform writes that
+    // stutter iOS momentum scrolling. Layout metrics are cached and only
+    // recomputed on resize/load (reading scrollHeight per scroll = reflow).
     const heroText = document.querySelector('.hero-text');
-    window.addEventListener('scroll', () => {
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    let docHeight = document.documentElement.scrollHeight;
+    let viewH = window.innerHeight;
+    function refreshMetrics() {
+      docHeight = document.documentElement.scrollHeight;
+      viewH = window.innerHeight;
+    }
+    window.addEventListener('resize', refreshMetrics, { passive: true });
+    window.addEventListener('load', refreshMetrics);
+
+    let scrollTicking = false;
+    function onScrollFrame() {
       const y = window.scrollY;
-      if (y < window.innerHeight) {
-        heroText.style.transform = `translateY(${y * 0.05}px)`;
+      // Restore hero nav state near the very top.
+      if (y < 80) mainNav.setAttribute('data-section', 'hero');
+      // Scroll-to-top button visibility (cached metrics — no reflow).
+      scrollBtn.classList.toggle('visible', (y + viewH) / docHeight >= 0.85);
+      // Hero parallax — fine-pointer (desktop) only; a scroll-linked
+      // transform stutters during iOS momentum scrolling.
+      if (!coarsePointer && heroText && y < viewH) {
+        heroText.style.transform = 'translateY(' + (y * 0.05) + 'px)';
       }
+      scrollTicking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(onScrollFrame); }
     }, { passive: true });
+    onScrollFrame();
 
     // ── Hero entrance ─────────────────────────────────────────────
     // Hand off to motion.js (GSAP timeline) via an event + pending flag.

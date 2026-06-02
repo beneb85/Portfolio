@@ -139,20 +139,25 @@
     });
 
     // Feature B — subtle image parallax.
-    // Scale must be baked into the GSAP tween (the transform matrix):
-    // GSAP writes `scale: none` on the element, which would otherwise
-    // clear the CSS [data-parallax]{scale:1.12} and leave no headroom,
-    // exposing a gap as the image translates. Keeping scale 1.12 across
-    // the tween gives ~6% headroom each edge for the ±6% travel.
-    parallaxEls().forEach(img => {
-      const box = img.closest('[data-parallax-box]') || img;
-      gsap.fromTo(img, { yPercent: 5, scale: 1.14 }, {
-        yPercent: -5,
-        scale: 1.14,
-        ease: 'none',
-        scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true }
+    // Skipped on touch/coarse-pointer devices: a continuously scrubbed,
+    // scroll-linked transform stutters during iOS momentum scrolling. The
+    // CSS [data-parallax]{scale:1.14} still applies there, so the images
+    // stay filled — just static.
+    // Scale is baked into the tween (the transform matrix): GSAP writes
+    // `scale: none` on the element, which would otherwise clear the CSS
+    // scale and leave no headroom, exposing a gap as the image translates.
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!coarsePointer) {
+      parallaxEls().forEach(img => {
+        const box = img.closest('[data-parallax-box]') || img;
+        gsap.fromTo(img, { yPercent: 5, scale: 1.14 }, {
+          yPercent: -5,
+          scale: 1.14,
+          ease: 'none',
+          scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true }
+        });
       });
-    });
+    }
 
     window.ScrollTrigger.refresh();
   }

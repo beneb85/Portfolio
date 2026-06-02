@@ -91,7 +91,7 @@ body {
 
 /* Masked line wrapper injected by SplitText (defensive — SplitText's
    mask:'lines' already clips, this guarantees it). */
-.reveal-line { overflow: hidden; will-change: transform; }
+.reveal-line { overflow: hidden; }
 
 /* Parallax images drift inside their overflow-hidden container; the
    slight upscale prevents edges showing during the drift. */
