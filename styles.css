@@ -98,6 +98,19 @@ body {
    mask:'lines' already clips, this guarantees it). */
 .reveal-line { overflow: hidden; }
 
+/* Page transition overlay (motion.js): fades in before a same-site
+   navigation so multi-page jumps aren't an abrupt cut. */
+.page-fade {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #f5f0ea;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.43s ease;
+}
+.page-fade.is-covering { opacity: 1; }
+
 /* Parallax images drift inside their overflow-hidden container; the
    slight upscale prevents edges showing during the drift. */
 [data-parallax] { scale: 1.14; transform-origin: center center; }

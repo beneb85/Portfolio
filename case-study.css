@@ -30,6 +30,17 @@ body {
 .motion-ready [data-split] { visibility: visible; }
 .reveal-line { overflow: hidden; }
 [data-parallax] { scale: 1.14; transform-origin: center center; }
+/* Page transition overlay (motion.js) — see styles.css for notes. */
+.page-fade {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #f5f0ea;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.43s ease;
+}
+.page-fade.is-covering { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   [data-split] { visibility: visible; }

@@ -21,10 +21,9 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ── Nav link rolodex flip on click (all navs, every page) ───────────
-  // Runs regardless of GSAP (CSS guards the animation). Deferred script →
-  // DOM is already parsed when this executes.
+  // Plays the flip only. Cross-page navigation is handled by the page
+  // transition below (which also delays nav, so the flip stays visible).
   (function setupNavFlip() {
-    const FLIP_MS = 320; // delay cross-page nav so the flip is visible
     const links = document.querySelectorAll(
       '.nav-links a, .mobile-nav-links a, .cs-nav-links a, .cs-mobile-nav-links a'
     );
@@ -35,28 +34,53 @@
       span.textContent = link.textContent;
       link.textContent = '';
       link.appendChild(span);
-      link.addEventListener('click', (e) => {
-        // Play the flip.
+      link.addEventListener('click', () => {
         span.classList.remove('is-flipping');
         void span.offsetWidth; // force reflow to restart the animation
         span.classList.add('is-flipping');
         span.addEventListener('animationend',
           () => span.classList.remove('is-flipping'), { once: true });
-
-        // Same-page anchors (e.g. "#work" on home) don't navigate away, so
-        // the flip is already visible — leave their handling alone.
-        // Cross-page links (e.g. "index.html#work") would unload the page
-        // instantly; briefly defer navigation so the flip can be seen.
-        const href = link.getAttribute('href');
-        const crossPage = href && !href.startsWith('#');
-        const modified = e.metaKey || e.ctrlKey || e.shiftKey || e.altKey
-          || e.button === 1 || link.target === '_blank';
-        if (crossPage && !modified && !reduce) {
-          e.preventDefault();
-          const dest = link.href;
-          setTimeout(() => { window.location.href = dest; }, FLIP_MS);
-        }
       });
+    });
+  })();
+
+  // ── Page transition: fade out before same-site navigation ───────────
+  // Multi-page jumps (e.g. case study → home, or opening a case study)
+  // were an abrupt hard cut. Fade a soft overlay in, then navigate — and
+  // the delay lets the nav-link flip play. Covers all internal links
+  // (nav, work cards, "← All work", logo, footer). Skipped for reduced
+  // motion, external links, new-tab/modified clicks, and in-page anchors.
+  (function setupPageTransition() {
+    if (reduce) return;
+    const fade = document.createElement('div');
+    fade.className = 'page-fade';
+    document.body.appendChild(fade);
+
+    let leaving = false;
+    function leaveTo(url) {
+      if (leaving) return;
+      leaving = true;
+      fade.classList.add('is-covering');
+      setTimeout(() => { window.location.href = url; }, 430);
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.defaultPrevented) return;
+      const a = e.target.closest('a[href]');
+      if (!a) return;
+      if (a.target === '_blank' || a.hasAttribute('download')
+          || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      let url;
+      try { url = new URL(a.getAttribute('href'), window.location.href); } catch (_) { return; }
+      if (url.origin !== window.location.origin) return;     // external
+      if (url.pathname === window.location.pathname) return; // same page → in-page anchor
+      e.preventDefault();
+      leaveTo(url.href);
+    });
+
+    // Reset overlay if the page is restored from the back/forward cache.
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) { leaving = false; fade.classList.remove('is-covering'); }
     });
   })();
   const hasGSAP = typeof window.gsap !== 'undefined';
