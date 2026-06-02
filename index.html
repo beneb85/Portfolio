@@ -360,6 +360,18 @@
       if (el) sectionObserver.observe(el);
     });
 
+    // Arriving with a hash (e.g. from a case study): colour the nav for the
+    // target section immediately, with the transition suppressed for that
+    // first set, so it doesn't visibly flash from hero → target on load.
+    (function initNavFromHash() {
+      if (!window.location.hash || window.location.hash === '#') return;
+      const match = navSections.find(s => '#' + s.id === window.location.hash);
+      if (!match) return;
+      mainNav.style.transition = 'none';
+      mainNav.setAttribute('data-section', match.key);
+      requestAnimationFrame(() => { mainNav.style.transition = ''; });
+    })();
+
     // ── Scroll-to-top button ───────────────────────────────────────
     // (Scroll-driven visibility is handled by the unified rAF handler below.)
     const scrollBtn = document.getElementById('scrollTop');
@@ -375,7 +387,7 @@
       if (!target) return;
       const navH = mainNav ? mainNav.offsetHeight : 64;
       const top = target.getBoundingClientRect().top + window.scrollY - navH;
-      window.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+      window.scrollTo({ top, behavior: smooth ? 'smooth' : 'instant' });
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -389,30 +401,38 @@
     });
 
     // ── Land on the correct section when arriving with a hash ──────
-    // (e.g. "index.html#lab" from a case study). The browser's native
-    // jump happens using fallback-font metrics; once the web fonts load
-    // the page reflows and the target moves, leaving you parked on an
-    // earlier section. Re-anchor after fonts are ready (and SplitText
-    // has run), with the nav offset — but bail out if the user has
-    // already started scrolling, so we never fight a deliberate scroll.
+    // (e.g. "index.html#awards" from a case study). The native jump uses
+    // fallback-font metrics; as web fonts/images/SplitText reflow the page
+    // afterwards, the target drifts. So we re-pin the target (instant, no
+    // animation — no scroll-through-sections flicker) on every layout
+    // change during a short window after load, cancelling the moment the
+    // user scrolls so we never fight a deliberate scroll.
     if (window.location.hash && window.location.hash !== '#'
         && document.querySelector(window.location.hash)) {
       const hash = window.location.hash;
       let cancelled = false;
+      const ro = ('ResizeObserver' in window)
+        ? new ResizeObserver(() => { if (!cancelled) scrollToTarget(hash, false); })
+        : null;
+      let stopTimer;
       const cancelEvents = ['wheel', 'touchstart', 'keydown'];
-      const cancel = () => {
+      function stop() {
         cancelled = true;
-        cancelEvents.forEach(ev => window.removeEventListener(ev, cancel));
-      };
-      cancelEvents.forEach(ev => window.addEventListener(ev, cancel, { passive: true }));
-      const reanchor = () => {
-        if (!cancelled) scrollToTarget(hash, false);
-        cancelEvents.forEach(ev => window.removeEventListener(ev, cancel));
-      };
-      const afterFonts = () => requestAnimationFrame(() => setTimeout(reanchor, 80));
+        if (ro) ro.disconnect();
+        clearTimeout(stopTimer);
+        cancelEvents.forEach(ev => window.removeEventListener(ev, stop));
+      }
+      cancelEvents.forEach(ev => window.addEventListener(ev, stop, { passive: true }));
+
+      function begin() {
+        if (cancelled) return;
+        scrollToTarget(hash, false);             // pin now
+        if (ro) ro.observe(document.body);        // re-pin on any reflow
+        stopTimer = setTimeout(stop, 1600);       // stop fighting after settle
+      }
       const onReady = () => {
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(afterFonts);
-        else afterFonts();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => requestAnimationFrame(begin));
+        else requestAnimationFrame(begin);
       };
       if (document.readyState === 'complete') onReady();
       else window.addEventListener('load', onReady);

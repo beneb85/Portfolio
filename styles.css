@@ -7,12 +7,11 @@
   padding: 0;
 }
 
-/* Smooth scrolling only on hover-capable (non-touch) devices. On iOS it
-   can interfere with native momentum scrolling; nav-link clicks still
-   smooth-scroll there via JS (scrollTo behavior:'smooth'). */
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  html { scroll-behavior: smooth; }
-}
+/* No CSS scroll-behavior: smooth — it made the browser animate-scroll
+   from the top to a #section on load (flickering the adaptive header as
+   it passed each section), and interfered with iOS momentum scrolling.
+   Intentional smooth scrolls (nav clicks, scroll-to-top) use explicit
+   JS scrollTo({ behavior: 'smooth' }); hash arrivals jump instantly. */
 
 body {
   font-family: 'Geist', sans-serif;

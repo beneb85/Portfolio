@@ -7,11 +7,8 @@
   padding: 0;
 }
 
-/* Smooth scrolling only on hover-capable (non-touch) devices — avoids
-   interfering with iOS native momentum scrolling. */
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  html { scroll-behavior: smooth; }
-}
+/* No CSS scroll-behavior: smooth — hash arrivals jump instantly and
+   intentional smooth scrolls use JS scrollTo({ behavior: 'smooth' }). */
 
 body {
   font-family: 'Geist', sans-serif;
