@@ -19,7 +19,9 @@ body {
   background: #1c1c1c;
   color: #1c1c1c;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (not hidden): prevents horizontal overflow without turning the
+     body into a scroll container, which would stutter iOS momentum. */
+  overflow-x: clip;
 }
 
 /* ========================================
