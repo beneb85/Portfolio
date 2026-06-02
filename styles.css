@@ -404,7 +404,7 @@ section {
   font-family: 'Geist', sans-serif;
   font-weight: 400;
   font-size: 20px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.75);
   margin-bottom: 16px;
 }
@@ -800,14 +800,12 @@ section {
   font-family: 'Geist Mono', monospace;
   font-size: 18px;
   color: white;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 
 .award-project:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .award-dot {
