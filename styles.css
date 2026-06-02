@@ -1310,7 +1310,7 @@ section {
   .award-item {
     flex-direction: column;
     height: auto;
-    padding: 20px 0;
+    padding: 20px 8px;
     gap: 8px;
     align-items: flex-start;
   }
