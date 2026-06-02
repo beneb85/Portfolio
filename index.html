@@ -42,6 +42,20 @@
       <span></span>
     </button>
   </nav>
+  <script>
+    /* Colour the nav for the hash target BEFORE first paint, so arriving
+       from a case study (e.g. index.html#awards) never flashes the hero
+       green before switching to the section colour. Runs synchronously
+       during parse, right after the nav element exists. */
+    (function () {
+      var h = location.hash;
+      if (!h || h === '#') return;
+      var map = { '#approach': 'hero', '#values': 'values', '#work': 'works',
+                  '#lab': 'lab', '#awards': 'awards', '#contact': 'contact' };
+      var k = map[h];
+      if (k) document.getElementById('mainNav').setAttribute('data-section', k);
+    })();
+  </script>
 
   <!-- Mobile menu overlay -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
@@ -330,6 +344,10 @@
 
     // ── Nav: adaptive frosted-glass per section ───────────────────
     const mainNav = document.getElementById('mainNav');
+    // True while a hash arrival is being pinned — suppresses the
+    // "scrolled to top → hero" override so the target colour set before
+    // first paint isn't briefly flipped to the green hero state.
+    let hashArriving = false;
     const navSections = [
       { id: 'approach', key: 'hero'    },
       { id: 'values',   key: 'values'  },
@@ -360,17 +378,8 @@
       if (el) sectionObserver.observe(el);
     });
 
-    // Arriving with a hash (e.g. from a case study): colour the nav for the
-    // target section immediately, with the transition suppressed for that
-    // first set, so it doesn't visibly flash from hero → target on load.
-    (function initNavFromHash() {
-      if (!window.location.hash || window.location.hash === '#') return;
-      const match = navSections.find(s => '#' + s.id === window.location.hash);
-      if (!match) return;
-      mainNav.style.transition = 'none';
-      mainNav.setAttribute('data-section', match.key);
-      requestAnimationFrame(() => { mainNav.style.transition = ''; });
-    })();
+    // (Nav colour for a hash target is set before first paint by the inline
+    // script right after the <nav>, so there's no hero→target flash.)
 
     // ── Scroll-to-top button ───────────────────────────────────────
     // (Scroll-driven visibility is handled by the unified rAF handler below.)
@@ -410,6 +419,7 @@
     if (window.location.hash && window.location.hash !== '#'
         && document.querySelector(window.location.hash)) {
       const hash = window.location.hash;
+      hashArriving = true; // suppress the "top → hero" nav override meanwhile
       let cancelled = false;
       const ro = ('ResizeObserver' in window)
         ? new ResizeObserver(() => { if (!cancelled) scrollToTarget(hash, false); })
@@ -418,6 +428,7 @@
       const cancelEvents = ['wheel', 'touchstart', 'keydown'];
       function stop() {
         cancelled = true;
+        hashArriving = false;
         if (ro) ro.disconnect();
         clearTimeout(stopTimer);
         cancelEvents.forEach(ev => window.removeEventListener(ev, stop));
@@ -481,8 +492,9 @@
     let scrollTicking = false;
     function onScrollFrame() {
       const y = window.scrollY;
-      // Restore hero nav state near the very top.
-      if (y < 80) mainNav.setAttribute('data-section', 'hero');
+      // Restore hero nav state near the very top (but not while we're still
+      // pinning a hash arrival — scrollY is transiently 0 before the jump).
+      if (y < 80 && !hashArriving) mainNav.setAttribute('data-section', 'hero');
       // Scroll-to-top button visibility (cached metrics — no reflow).
       scrollBtn.classList.toggle('visible', (y + viewH) / docHeight >= 0.85);
       // Hero parallax — fine-pointer (desktop) only; a scroll-linked
