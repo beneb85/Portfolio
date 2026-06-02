@@ -90,6 +90,15 @@ body {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
+/* Touch devices: solid nav background, no live blur (iOS momentum fix). */
+@media (hover: none) {
+  .cs-nav {
+    background: #f5f0ea;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 .cs-nav.menu-open {
   background: transparent;
   backdrop-filter: none;

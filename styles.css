@@ -187,6 +187,22 @@ section {
   --nav-color: #fff;
 }
 
+/* Touch devices: drop the live backdrop blur on the fixed nav — iOS
+   re-rasterises it every frame as content scrolls beneath, which stalls
+   momentum scrolling. Use solid section-matched backgrounds instead. */
+@media (hover: none) {
+  .nav[data-section] {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .nav[data-section="hero"]    { background: #228C4D; }
+  .nav[data-section="values"]  { background: #1c1c1c; }
+  .nav[data-section="works"]   { background: #f5f0ea; }
+  .nav[data-section="lab"]     { background: #ffffff; }
+  .nav[data-section="awards"]  { background: #1c1c1c; }
+  .nav[data-section="contact"] { background: #DD5C38; }
+}
+
 /* When mobile menu is open — match menu background */
 .nav.menu-open {
   background: #1c1c1c !important;
