@@ -45,6 +45,11 @@ jobs:
           # giving up (host's data sockets are slow/flaky).
           timeout: 120000
           # Don't upload repo plumbing or dev-only files.
+          # Assets/ (≈41 MB of images) is excluded: this host's data
+          # connection drops during long transfers, so we only sync the
+          # small code files here. Images were uploaded in the first run
+          # and rarely change — upload new/changed images manually (e.g.
+          # via Cyberduck/FileZilla) when needed.
           exclude: |
             **/.git*
             **/.git*/**
@@ -52,5 +57,6 @@ jobs:
             **/.claude/**
             **/.DS_Store
             **/node_modules/**
+            Assets/**
             package.json
             serve.json
