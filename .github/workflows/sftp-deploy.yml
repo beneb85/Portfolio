@@ -14,8 +14,9 @@ name: Deploy to SFTP
 # Optional:
 #   Secret SFTP_SSH_KEY   a private SSH key (use instead of a password if
 #                         your host uses key auth; leave unset to use password)
-#   Variable FTP_SERVER_DIR  remote web root, e.g. /public_html/ (default "/")
 #   Variable SFTP_PORT       SSH/SFTP port (default 23 for this host)
+#
+# Remote web root is set below in `remote_path` (web/beneb.de/).
 
 on:
   push:
@@ -50,6 +51,7 @@ jobs:
           ssh_private_key: ${{ secrets.SFTP_SSH_KEY }}
           port: ${{ vars.SFTP_PORT || 23 }}
           local_path: './dist/*'
-          remote_path: ${{ vars.FTP_SERVER_DIR || '/' }}
+          # Web root on the host (must already exist — sftp won't create it).
+          remote_path: 'web/beneb.de/'
           sftp_only: true
           delete_remote_files: false
