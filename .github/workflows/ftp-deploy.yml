@@ -41,6 +41,9 @@ jobs:
           protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
           server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
           local-dir: ./
+          # Give slow passive-mode data connections more time before
+          # giving up (host's data sockets are slow/flaky).
+          timeout: 120000
           # Don't upload repo plumbing or dev-only files.
           exclude: |
             **/.git*
