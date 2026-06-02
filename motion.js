@@ -121,6 +121,17 @@
   window.__motion = { playHeroEntrance: playHero };
 
   function setup() {
+    // On touch/coarse-pointer devices, skip ALL ScrollTrigger work
+    // (heading reveals + parallax). ScrollTrigger runs its update loop on
+    // the main thread synced to scroll, which stutters/stalls iOS momentum
+    // scrolling. Headings simply appear (already made visible via
+    // motion-ready); .fade-up entrances still run via IntersectionObserver.
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (coarsePointer) {
+      splitEls().forEach(el => { el.style.visibility = 'visible'; });
+      return;
+    }
+
     // Feature A — masked line-by-line heading reveals.
     splitEls().forEach(el => {
       el.style.visibility = 'visible';
@@ -139,25 +150,18 @@
     });
 
     // Feature B — subtle image parallax.
-    // Skipped on touch/coarse-pointer devices: a continuously scrubbed,
-    // scroll-linked transform stutters during iOS momentum scrolling. The
-    // CSS [data-parallax]{scale:1.14} still applies there, so the images
-    // stay filled — just static.
     // Scale is baked into the tween (the transform matrix): GSAP writes
     // `scale: none` on the element, which would otherwise clear the CSS
     // scale and leave no headroom, exposing a gap as the image translates.
-    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-    if (!coarsePointer) {
-      parallaxEls().forEach(img => {
-        const box = img.closest('[data-parallax-box]') || img;
-        gsap.fromTo(img, { yPercent: 5, scale: 1.14 }, {
-          yPercent: -5,
-          scale: 1.14,
-          ease: 'none',
-          scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true }
-        });
+    parallaxEls().forEach(img => {
+      const box = img.closest('[data-parallax-box]') || img;
+      gsap.fromTo(img, { yPercent: 5, scale: 1.14 }, {
+        yPercent: -5,
+        scale: 1.14,
+        ease: 'none',
+        scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true }
       });
-    }
+    });
 
     window.ScrollTrigger.refresh();
   }
