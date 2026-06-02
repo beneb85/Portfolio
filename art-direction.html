@@ -458,49 +458,32 @@
       const lbBack    = lb.querySelector('.lb-back');
       const lbCounter = lb.querySelector('.cs-lightbox-counter');
       let current = 0;
+      // Ping-pong double buffer: two equally-stacked layers. Each step
+      // loads the next image into the hidden layer, then crossfades and
+      // swaps roles — no src reset on the visible layer, so no flicker.
+      let front = lbFront, back = lbBack;
 
       function show(i) {
         current = (i + imgs.length) % imgs.length;
         lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
-        // Load next image into the hidden back layer
-        lbBack.src = imgs[current].src;
-        lbBack.alt = imgs[current].alt;
-        function crossfade() {
-          lbBack.onload = null; lbBack.onerror = null;
-          lbFront.classList.add('is-switching');    // fade out current
-          lbBack.classList.remove('is-switching');  // fade in next
-          // After transition, promote back → front so layout stays correct
-          lbFront.addEventListener('transitionend', function promote() {
-            lbFront.removeEventListener('transitionend', promote);
-            lbFront.src = lbBack.src;
-            lbFront.alt = lbBack.alt;
-            lbFront.classList.remove('is-switching');
-            lbBack.classList.add('is-switching');
-            lbBack.src = '';
-          }, { once: true });
-          setTimeout(() => {
-            if (!lbFront.classList.contains('is-switching')) return;
-            lbFront.src = lbBack.src;
-            lbFront.alt = lbBack.alt;
-            lbFront.classList.remove('is-switching');
-            lbBack.classList.add('is-switching');
-            lbBack.src = '';
-          }, 400);
+        back.src = imgs[current].src;
+        back.alt = imgs[current].alt;
+        function reveal() {
+          back.onload = null; back.onerror = null;
+          back.classList.remove('is-switching');  // fade the new image in
+          front.classList.add('is-switching');    // fade the old one out
+          const tmp = front; front = back; back = tmp;  // swap roles
         }
-        if (lbBack.complete && lbBack.naturalWidth > 0) {
-          crossfade();
-        } else {
-          lbBack.onload  = crossfade;
-          lbBack.onerror = crossfade;
-        }
+        if (back.complete && back.naturalWidth > 0) reveal();
+        else { back.onload = reveal; back.onerror = reveal; }
       }
 
       function open(i) {
         current = i;
-        lbFront.src = imgs[i].src;
-        lbFront.alt = imgs[i].alt;
-        lbFront.classList.remove('is-switching');
-        lbBack.classList.add('is-switching');
+        front.src = imgs[i].src;
+        front.alt = imgs[i].alt;
+        front.classList.remove('is-switching');
+        back.classList.add('is-switching');
         lbCounter.textContent = (i + 1) + ' / ' + imgs.length;
         lb.classList.add('is-open');
         document.body.style.overflow = 'hidden';

@@ -881,31 +881,26 @@ body {
   pointer-events: auto;
 }
 
-/* Stage wraps both buffer images */
+/* Stage wraps both buffer images, filling the overlay. */
 .cs-lightbox-stage {
-  position: relative;
-  max-width: calc(100% - 96px);
-  max-height: calc(100dvh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
+/* Both buffer images are stacked identically and centered, so swapping
+   which one is visible never shifts layout (clean crossfade, no flicker). */
 .cs-lightbox-img {
-  max-width: 100%;
-  max-height: calc(100dvh - 80px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 128px);
+  max-height: calc(100dvh - 96px);
   object-fit: contain;
   border-radius: 8px;
   display: block;
-  transition: opacity 0.25s ease;
-}
-
-/* Back buffer: absolutely stacked, hidden by default */
-.cs-lightbox-img.lb-back {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 100%;
+  transition: opacity 0.3s ease;
 }
 
 .cs-lightbox-img.is-switching {
@@ -917,6 +912,7 @@ body {
 .cs-lightbox-prev,
 .cs-lightbox-next {
   position: absolute;
+  z-index: 2;
   top: 50%;
   transform: translateY(-50%);
   width: 44px;
@@ -945,6 +941,7 @@ body {
 /* Close */
 .cs-lightbox-close {
   position: absolute;
+  z-index: 2;
   top: 0;
   right: 0;
   width: 40px;
@@ -970,6 +967,7 @@ body {
 /* Counter */
 .cs-lightbox-counter {
   position: absolute;
+  z-index: 2;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
