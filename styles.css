@@ -992,6 +992,12 @@ section {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
 .footer-links {
   display: flex;
   gap: 36px;
@@ -1013,33 +1019,20 @@ section {
 /* ========================================
    Scroll-to-top button
    ======================================== */
+/* In-flow footer button (rightmost item in the footer row). */
 .scroll-top {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  z-index: 200;
+  flex-shrink: 0;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .scroll-top:hover {
@@ -1330,11 +1323,6 @@ section {
   .contact {
     padding-top: 80px;
     padding-bottom: 40px;
-  }
-
-  .scroll-top {
-    bottom: 24px;
-    right: 24px;
   }
 
   .footer {
