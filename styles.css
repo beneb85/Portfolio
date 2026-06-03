@@ -983,6 +983,9 @@ section {
   align-items: center;
   justify-content: space-between;
   padding-top: 48px;
+  /* Reserve room on the right so the Imprint/Privacy links never sit
+     under the floating scroll-to-top button (fixed at right:40, 48px). */
+  padding-right: 56px;
 }
 
 .footer-copy {
@@ -990,12 +993,6 @@ section {
   font-weight: 400;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
-}
-
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 32px;
 }
 
 .footer-links {
@@ -1019,20 +1016,34 @@ section {
 /* ========================================
    Scroll-to-top button
    ======================================== */
-/* In-flow footer button (rightmost item in the footer row). */
+/* Floating scroll-to-top button — fades in past 85% scroll. */
 .scroll-top {
-  flex-shrink: 0;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 200;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, border-color 0.2s;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .scroll-top:hover {
@@ -1325,10 +1336,16 @@ section {
     padding-bottom: 40px;
   }
 
+  .scroll-top {
+    bottom: 24px;
+    right: 24px;
+  }
+
   .footer {
     flex-direction: column;
     align-items: center;
     gap: 16px;
     text-align: center;
+    padding-right: 0; /* centered column — no need to reserve button space */
   }
 }

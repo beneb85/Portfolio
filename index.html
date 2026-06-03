@@ -300,19 +300,19 @@
     </div>
     <footer class="footer">
       <span class="footer-copy">© 2026 Benedikt Brandhofer</span>
-      <div class="footer-right">
-        <div class="footer-links">
-          <a href="imprint.html">Imprint</a>
-          <a href="privacy.html">Privacy</a>
-        </div>
-        <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="4 13 10 7 16 13"/>
-          </svg>
-        </button>
+      <div class="footer-links">
+        <a href="imprint.html">Imprint</a>
+        <a href="privacy.html">Privacy</a>
       </div>
     </footer>
   </section>
+
+  <!-- Scroll to top (floating, fades in on scroll) -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 13 10 7 16 13"/>
+    </svg>
+  </button>
 
   <!-- GSAP motion layer -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -495,7 +495,8 @@
       // Restore hero nav state near the very top (but not while we're still
       // pinning a hash arrival — scrollY is transiently 0 before the jump).
       if (y < 80 && !hashArriving) mainNav.setAttribute('data-section', 'hero');
-      // (Scroll-to-top button now lives in the footer — always visible there.)
+      // Floating scroll-to-top button fades in past 85% (cached metrics — no reflow).
+      scrollBtn.classList.toggle('visible', (y + viewH) / docHeight >= 0.85);
       // Hero parallax — fine-pointer (desktop) only; a scroll-linked
       // transform stutters during iOS momentum scrolling.
       if (!coarsePointer && heroText && y < viewH) {
