@@ -702,6 +702,10 @@ section {
   color: inherit;
 }
 
+.lab-item-link * {
+  text-decoration: none;
+}
+
 .lab-left {
   display: flex;
   align-items: baseline;
@@ -1298,6 +1302,12 @@ section {
     padding-bottom: 16px;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .lab-item-link {
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
   }
 
   .lab-name {
