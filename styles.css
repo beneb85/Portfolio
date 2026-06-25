@@ -693,6 +693,15 @@ section {
   opacity: 0.45;
 }
 
+.lab-item-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
 .lab-left {
   display: flex;
   align-items: baseline;
